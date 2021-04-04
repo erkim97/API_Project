@@ -1,5 +1,6 @@
-function search_name() {
-    let url = `https://comp4537-termproj.herokuapp.com/api/v1/admin.html`
+function display_stats() {
+    let url = `https://g11-workout-server.herokuapp.com/api/v1/admin`
+    // let url = `http://localhost:5000/api/v1/admin`
     console.log(url)
     fetch(url)
     .then((res) => res.json())
@@ -8,7 +9,7 @@ function search_name() {
         search.innerHTML = ""
         search.innerHTML += "["
         for(let i = 0; i < data.length; i++){
-            search.innerHTML += `{"id":${data[i].id},"name":"${data[i].name}","category":"${data[i].category}","setrep":"${data[i].setrep}","exercise_id":${data[i].exercise_id},"exerciseInst_id":${data[i].exerciseInst_id},"instructions":"${data[i].instructions}"}`;
+            search.innerHTML += `{"id":${data[i].id},"method":"${data[i].method}","endpoint":"${data[i].endpoint}","requests":"${data[i].requests}"}`;
             if (i > data.length - 1) {
                 search.innerHTML += ","
             }
@@ -17,3 +18,5 @@ function search_name() {
         console.log(data)
     }).catch(e => console.log(e))
 }
+
+window.addEventListener("load", display_stats());
