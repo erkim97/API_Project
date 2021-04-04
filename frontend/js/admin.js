@@ -1,5 +1,5 @@
 function display_stats() {
-    let url = `https://comp4537-termproj.herokuapp.com/api/v1/admin`
+    let url = `https://g11-workout-server.herokuapp.com/api/v1/admin`
     // let url = `http://localhost:5000/api/v1/admin`
     console.log(url)
     fetch(url)

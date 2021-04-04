@@ -1,6 +1,6 @@
 // get all workouts
 function workouts() {
-    let url = `https://comp4537-termproj.herokuapp.com/api/v1/workouts`
+    let url = `https://g11-workout-server.herokuapp.com/api/v1/workouts`
     fetch(url)
     .then((res) => res.json())
     .then((data) => {
@@ -33,7 +33,7 @@ function add() {
         amounts: amounts 
     }
     console.log(data)
-    let url = `https://comp4537-termproj.herokuapp.com/api/v1/add_exercise`
+    let url = `https://g11-workout-server.herokuapp.com/api/v1/add_exercise`
     fetch(url, {
         method: 'POST',
         headers: {'Content-Type': 'application/json'},
