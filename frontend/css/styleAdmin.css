@@ -1,0 +1,11 @@
+#response {
+    border-style: inset;
+    height: 50vh;
+    width: 50vw;
+    margin: left;
+    margin-bottom: 1%;
+    overflow-y: auto;
+    word-wrap: break-word;
+    padding: 5px;
+    border-radius: 5px;
+}

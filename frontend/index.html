@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Workouts Recorder</title>
+    <script src="./js/index.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <link rel="stylesheet" href="./css/style.css">
+</head>
+<body>
+    <div id="response"></div>
+
+    <!-- get all workouts -->
+    <input id="btn-workouts" type="submit" value="Get all workouts" onclick="workouts()"><br><br>
+    
+    <!-- get workout by random  -->
+    <input id="btn-submit-random" type="submit" value="Get random workout" onclick="search_random()"><br><br>
+
+    Search for a workout: <br>
+    <!-- search workout by name -->
+    <input id="input-search-name" type="text" placeholder="Name">
+    <input id="btn-submit-name" type="submit" value="Search by name" onclick="search_name()"><br><br>
+
+    <!-- search workout by id -->
+    <input id="input-search-id" type="text" placeholder="Id">
+    <input id="btn-submit-id" type="submit" value="Search by id" onclick="search_id()"><br><br>
+
+
+
+    <!-- add workout -->
+    Add a workout exercise:<br>
+    Name:
+    <input id="input-add-exercise-name" type="text" placeholder=""><br><br>
+    Category:
+    <input id="input-add-exercise-category" type="text" placeholder="chest, bicep, tricep, shoulder, back, lat, leg, cardio"><br><br>
+    Instructions:
+    <input id="input-add-exercise-instructions" type="text" placeholder=""><br><br>
+    Equipment:
+    <input id="input-add-exercise-equipment" type="text" placeholder=""><br><br>
+    Amount of each equipment:
+    <input id="input-add-exercise-amounts" type="text" placeholder=""><br>
+    <input id="btn-add" type="submit" value="Add" onclick="add()"><br><br>
+
+    Delete a workout <br>
+    <input id="input-delete-exercise" type="text" placeholder="Delete a workout exercise">
+    <input id="btn-delete" type="submit" value="Delete" onclick="remove()"><br><br>
+    <!-- end -->
+
+
+    Change the name of a workout:<br>
+    Old name:
+    <input id="input-old-name" type="text" placeholder="Old name"><br>
+    New name:
+    <input id="input-new-name" type="text" placeholder="New name"><br>
+    <input id="btn-change-name" type="submit" value="Change" onclick="update()">
+
+</body>
+</html>
