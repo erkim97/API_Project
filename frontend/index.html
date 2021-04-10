@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Workouts Recorder</title>
+    <title>Workout Recorder</title>
     <script src="../frontend/js/index.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <link rel="stylesheet" href="../frontend/css/style.css">
@@ -29,8 +29,6 @@
     <input id="input-search-id" type="text" placeholder="Id">
     <input id="btn-submit-id" type="submit" value="Search by id" onclick="search_id()"><br><br>
 
-
-
     <!-- add workout -->
     Add a workout exercise:<br>
     Name:
@@ -48,8 +46,19 @@
     Delete a workout <br>
     <input id="input-delete-exercise" type="text" placeholder="Delete a workout exercise">
     <input id="btn-delete" type="submit" value="Delete" onclick="remove()"><br><br>
-    <!-- end -->
 
+    Filter for workout:<br>
+    <input id="input-filter-name" type="text" placeholder="Filter by category"><br>
+    <input id="btn-filter" type="submit" value="Filter" onclick="filter()"><br><br>
+
+    <input id="btn-filter-chest" type="submit" value="chests" onclick="filter_chest()">
+    <input id="btn-filter-bicep" type="submit" value="biceps" onclick="filter_bicep()">
+    <input id="btn-filter-tricep" type="submit" value="triceps" onclick="filter_tricep()"><br><br>
+    <input id="btn-filter-shoulder" type="submit" value="shoulder" onclick="filter_shoulder()"><br><br>
+    <input id="btn-filter-back" type="submit" value="backs" onclick="filter_back()"><br><br>
+    <input id="btn-filter-lat" type="submit" value="lats" onclick="filter_lat()"><br><br>
+    <input id="btn-filter-leg" type="submit" value="legs" onclick="filter_leg()"><br><br>
+    <input id="btn-filter-cardio" type="submit" value="cardios" onclick="filter_cardio()"><br><br>
 
     Change the name of a workout:<br>
     Old name:
