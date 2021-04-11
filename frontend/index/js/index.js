@@ -374,6 +374,26 @@ function update() {
     }).catch(e => console.log(e))
 }
 
+// get all sessions
+function getSessions() {
+    let url = `https://g11-workout-server.herokuapp.com/api/v1/sessions`
+    fetch(url)
+    .then((res) => res.json())
+    .then((data) => {
+        let sessions = document.getElementById('response');
+        sessions.innerHTML = ""
+        sessions.innerHTML += "List of Sessions: <br>"
+        for(let i = 0; i < data.length; i++){
+            sessions.innerHTML += `{"id":${data[i].id},"name":"${data[i].name}","time":"${data[i].time}"}`;
+            if (i > data.length - 1) {
+                sessions.innerHTML += ", <br>"
+            }
+        }
+        console.log(data)
+    }).catch(e => console.log(e))
+}
+
+
 // add session function
 function addSession() {
     let name = document.getElementById("input-add-session-name").value.trim()
