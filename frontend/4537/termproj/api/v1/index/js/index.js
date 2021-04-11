@@ -69,7 +69,7 @@ function search_random() {
 
 // search by first letter 
 function search_fletter() {
-    let fletter = document.getElementById("input-search-fletter").value.trim()
+    let fletter = document.getElementById("input-search").value.trim()
     console.log(fletter)
     let url = `https://g11-workout-server.herokuapp.com/api/v1/search_fletter/${fletter}`
     tempdata = {
@@ -98,7 +98,7 @@ function search_fletter() {
 
 // search workout by name
 function search_name() {
-    let inputSearchName = document.getElementById("input-search-name").value.trim()
+    let inputSearchName = document.getElementById("input-search").value.trim()
     let url = `https://g11-workout-server.herokuapp.com/api/v1/search_name/${inputSearchName}`
     console.log(url)
     fetch(url)
@@ -120,7 +120,7 @@ function search_name() {
 
 // search workout by id using post
 function search_id() {
-    let inputSearchId = document.getElementById("input-search-id").value.trim()
+    let inputSearchId = document.getElementById("input-search").value.trim()
     let url = `https://g11-workout-server.herokuapp.com/api/v1/search_id/${inputSearchId}`
 
     console.log(url)

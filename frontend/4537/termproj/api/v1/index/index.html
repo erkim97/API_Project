@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Workout Recorder</title>
+    <script src="../index/js/index.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/js/bootstrap.bundle.min.js" integrity="sha384-JEW9xMcG8R+pH31jmWH6WWP0WintQrMb4s7ZOdauHnUtxwoG2vI5DkLtS3qm9Ekf" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="../index/css/style.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-eOJMYsd53ii+scO/bJGFsiCZc+5NDVN2yr8+0RDqr0Ql0h+rP48ckxlpbzKgwra6" crossorigin="anonymous">
+    <link href="https://fonts.googleapis.com/css?family=Playfair+Display:700,900" rel="stylesheet">
+</head>
+<body>
+    <header class="proj-header py-3">
+    <div class="container">
+        <div class="row flex-nowrap justify-content-between align-items-center">
+          <div class="col-4 pt-1">
+          </div>
+          <div class="col-4 text-center">
+              <a class="proj-header-logo text-light"> Workout Recorder
+            </a>
+          </div>
+          <div class="col-4 d-flex justify-content-end align-items-center">
+            <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" viewBox="0 0 24 24" fill="none" stroke="#dd6127" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="mx-3"><circle cx="10.5" cy="10.5" r="7.5"></circle><line x1="21" y1="21" x2="15.8" y2="15.8"></line></svg>
+            <div class="input-group align-items-center">
+                <input type="text" id="input-search" class="form-control" aria-label="Text input search with dropdown button">
+                <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">Search By...</button>
+                <ul class="dropdown-menu dropdown-menu-end">
+                  <li><a class="dropdown-item" type="submit" value="Search by name" onclick="search_name()">Search By Name</a></li>
+                  <li><a class="dropdown-item"  type="submit" value="Search by id" onclick="search_id()">Search By ID</a></li>
+                  <li><a class="dropdown-item"  type="submit" value="Search by first letter" onclick=" search_fletter()">Search By First Letter</a></li>
+                </ul>
+              </div>
+          </div>
+        </div>
+    </div>
+</header>
+    <!-- <div id="admin"><a href="../v1/admin.html">Admin page</a></div>
+    <div id="documentation"><a href="../v1/documentation.html">Documentation page</a></div> -->
+
+    <!-- Response container -->
+    <div class="container">
+        <div class="row">
+            <div class="col"></div>
+                <div class="col">
+                    <div id="response"></div>
+
+                    
+                </div>
+                
+            <div class="col">
+                <!-- Add Workout Btn --> 
+                <button type="button" class="btn btn-lg btn-success" data-toggle="tooltip" data-placement="right" title="Add a Workout">
+                    <span data-bs-toggle="modal" data-bs-target="#addModal" data-bs-whatever="@addworkout">+</span>
+                   </button> <br><br>
+
+                   <div class="modal fade" id="addModal" tabindex="-1" aria-labelledby="addModalLabel" aria-hidden="true">
+                    <div class="modal-dialog modal-dialog-centered ">
+                        <div class="modal-content">
+                          <div class="modal-header">
+                            <h5 class="modal-title" id="addModalLabel">Add Workout</h5>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                          </div>
+                          <div class="modal-body">
+                            <form>
+                              <div class="mb-3">
+                                <label for="workout-name" class="col-form-label">Name:</label>
+                                <input id="input-add-exercise-name" type="text" placeholder="">
+                            </div>
+                              <div class="mb-3">
+                                <label for="workout-category" class="col-form-label">Category:</label>
+                                <input id="input-add-exercise-category" type="text" placeholder="chest, bicep, tricep, shoulder, back, lat, leg, cardio" data-bs-toggle="tooltip" data-bs-placement="right" title="chest, bicep, tricep, shoulder, back, lat, leg, cardio">
+                            </div>
+                            <div class="mb-3">
+                                <label for="workout-category" class="col-form-label">Instructions:</label>
+                                <input id="input-add-exercise-instructions" type="text" placeholder="">
+                            </div>
+                            <div class="mb-3">
+                                <label for="workout-category" class="col-form-label">Equipment:</label>
+                                <input id="input-add-exercise-equipment" type="text" placeholder="">
+                            </div>
+                            <div class="mb-3">
+                                <label for="workout-category" class="col-form-label">Amount of each equipment:</label>
+                                <input id="input-add-exercise-amounts" type="text" placeholder="">
+                            </div>
+                            </form>
+                          </div>
+                          <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                            <button id="btn-add" type="submit" value="Add" onclick="add()" class="btn btn-success" data-bs-dismiss="modal">Add Workout</button>
+                        </div>
+                        </div>
+                      </div>
+                    </div>
+
+                    <!-- Remove Workout Btn -->
+                   <button type="button" class="btn btn-lg btn-danger btn-margin-reduce" data-toggle="tooltip" data-placement="right" title="Remove a Workout">
+                    <span data-bs-toggle="modal" data-bs-target="#deleteModal" data-bs-whatever="@deleteworkout">-</span>
+                   </button>
+
+                   <div class="modal fade" id="deleteModal" tabindex="-1" aria-labelledby="deleteModalLabel" aria-hidden="true">
+                    <div class="modal-dialog modal-dialog-centered ">
+                        <div class="modal-content">
+                          <div class="modal-header">
+                            <h5 class="modal-title" id="deleteModalLabel">Delete Workout</h5>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                          </div>
+                          <div class="modal-body">
+                            <form>
+                              <div class="mb-3">
+                                <label for="delete-workout-name" class="col-form-label">Workout Name:</label>
+                                <input id="input-delete-exercise" type="text">
+                            </div>
+                            </form>
+                          </div>
+                          <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                            <button id="btn-delete" type="submit" value="delete" onclick="remove()" class="btn btn-danger" data-bs-dismiss="modal">Delete Workout</button>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+
+                    <br><br>
+                    <!-- Filter Workouts Btn -->
+                    <button type="button" class="btn  btn-info btn-margin-reduce" data-toggle="tooltip" data-placement="right" title="Get Filtered Workouts">
+                      <span data-bs-toggle="modal" data-bs-target="#filterModal" data-bs-whatever="@filterworkouts">Get Filtered Category Workouts</span>
+                     </button>
+
+                     <div class="modal fade" id="filterModal" tabindex="-1" aria-labelledby="filterModalLabel" aria-hidden="true">
+                      <div class="modal-dialog modal-dialog-centered ">
+                          <div class="modal-content">
+                            <div class="modal-header">
+                              <h5 class="modal-title" id="filterModalLabel">Filter Workouts</h5>
+                              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                            </div>
+
+                            <div class="modal-body">
+                              <form>
+                                <div class="mb-3">
+                                  <label for="filter-workout" class="col-form-label">Category to filter:</label>
+                                  <input id="input-filter-name" type="text" placeholder="Filter by Category">
+                                </div>                            
+                              </form>
+                            </div>
+
+                            <div class="modal-footer">
+                              <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                              <button id="btn-filter" type="submit" value="Filter" onclick="filter()" class="btn btn-info" data-bs-dismiss="modal">Filter Workouts</button>
+                                <div>
+                                <button id="btn-filter" type="submit" value="chest" onclick="filter_chest()" class="btn btn-outline-info" data-bs-dismiss="modal">Quick Filter: Chest</button>
+                                <button id="btn-filter" type="submit" value="bicep" onclick="filter_bicep()" class="btn btn-outline-info" data-bs-dismiss="modal">Quick Filter: Bicep</button>
+                                <button id="btn-filter" type="submit" value="tricep" onclick="filter_tricep()" class="btn btn-outline-info" data-bs-dismiss="modal">Quick Filter: Tricep</button>
+                                <button id="btn-filter" type="submit" value="shoulder" onclick="filter_shoulder()" class="btn btn-outline-info" data-bs-dismiss="modal">Quick Filter: Shoulder</button>
+                                <button id="btn-filter" type="submit" value="back" onclick="filter_back()" class="btn btn-outline-info" data-bs-dismiss="modal">Quick Filter: Back</button>
+                                <button id="btn-filter" type="submit" value="lat" onclick="filter_lat()" class="btn btn-outline-info" data-bs-dismiss="modal">Quick Filter: Lat</button>
+                                <button id="btn-filter" type="submit" value="leg" onclick="filter_leg()" class="btn btn-outline-info" data-bs-dismiss="modal">Quick Filter: Leg</button>
+                                <button id="btn-filter" type="submit" value="cardio" onclick="filter_cardio()" class="btn btn-outline-info" data-bs-dismiss="modal">Quick Filter: Cardio</button>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+
+            </div>
+        </div>
+        <div class="row">
+          <div class="col"></div>
+
+          <div class="col d-flex justify-content-center">
+             <!-- get all workouts -->
+            <button type="button" id="btn-workouts" class="btn btn-lg btn-primary btn-margin" type="submit" value="Get all workouts" onclick="workouts()">Get All Workouts</button>  
+          </div>
+
+          <div class="col d-flex justify-content-center">
+            <!-- get workout by random  -->
+            <button type="button" id="btn-submit-random" class="btn btn-lg btn-primary btn-margin" type="submit" value="Get random workout" onclick="search_random()">Get Random Workout</button>  
+          </div>
+          <div class="col"></div>
+        </div>
+        <div class="row">
+            <div class="col d-flex justify-content-center">
+                <button type="button" class="btn btn-lg btn-warning btn-margin" data-bs-toggle="modal" data-bs-target="#changeModal" data-bs-whatever="@namechange">Change Workout Name</button>
+                <div class="modal fade" id="changeModal" tabindex="-1" aria-labelledby="changeModalLabel" aria-hidden="true">
+                    <div class="modal-dialog modal-dialog-centered ">
+                        <div class="modal-content">
+                          <div class="modal-header">
+                            <h5 class="modal-title" id="changeModalLabel">Change Workout Name</h5>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                          </div>
+                          <div class="modal-body">
+                            <form>
+                              <div class="mb-3">
+                                <label for="old-name" class="col-form-label">Old Name:</label>
+                                <input id="input-old-name" type="text" placeholder="Old name"><br>
+                            </div>
+                              <div class="mb-3">
+                                <label for="new-name" class="col-form-label">New Name:</label>
+                                <input id="input-new-name" type="text" placeholder="New name"><br>
+                            </div>
+                            </form>
+                          </div>
+                          <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                            <button id="btn-change-name" type="submit" value="Change" onclick="update()" class="btn btn-primary" data-bs-dismiss="modal">Change Name</button>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+            </div>
+        </div>  
+    </div>
+</body>
+</html>
