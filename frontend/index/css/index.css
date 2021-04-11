@@ -7,7 +7,7 @@ body {
     text-align: left;
     background-image: url('../../assets/background.jpeg');
     background-repeat: no-repeat;
-    background-size: cover;
+    background-size: fill;
 }
 
 .text-light {
@@ -24,7 +24,8 @@ body {
 
 .proj-header-logo {
     font-family: "Playfair Display", Georgia, "Times New Roman", serif;
-    font-size: 3rem;
+    font-size: 4vw;
+    font-size: 4vh;
 }
 
 .pb-3, .py-3 {
@@ -42,7 +43,7 @@ body {
 #response {
     border-style: inset;
     height: 65vh;
-    width: 50vw;
+    width: 55vw;
     margin-bottom: 1%;
     overflow-y: auto;
     word-wrap: break-word;
