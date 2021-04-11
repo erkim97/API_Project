@@ -1,1 +1,1 @@
-<?php include_once("./frontend/login/login.html"); ?>
+<?php include_once("./frontend/index/index.html"); ?>
