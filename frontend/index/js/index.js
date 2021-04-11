@@ -373,3 +373,7 @@ function update() {
         update.innerHTML = `${oldname} has been changed to ${newname}.`;
     }).catch(e => console.log(e))
 }
+
+function logout() {
+    
+}
