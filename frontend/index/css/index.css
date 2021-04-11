@@ -49,13 +49,13 @@ body {
 #response {
     border-style: inset;
     height: 65vh;
-    width: 40vw;
     margin-bottom: 1%;
     overflow-y: auto;
     word-wrap: break-word;
     padding: 5px;
     border-radius: 5px;
     margin: auto;
+    margin-bottom: 25px;
     background-color: white;
  }
 
