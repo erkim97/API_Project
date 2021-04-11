@@ -423,7 +423,7 @@ function updateSession() {
 
     data = {
         name: name,
-        time: time,
+        time: time
     }
     fetch(url, {
         method: 'PUT',
@@ -434,10 +434,10 @@ function updateSession() {
     })
     .then((res) => res.json())
     .then((data) => {
-        let update = document.getElementById('response');
+        let updateSesh = document.getElementById('response');
         let seshname = document.getElementById('input-sesh-name').value;
         let newtime = document.getElementById('input-new-time').value;
-        update.innerHTML = `${seshname} time has been changed to ${newtime}.`;
+        updateSesh.innerHTML = `${seshname} time has been changed to ${newtime}.`;
     }).catch(e => console.log(e))
 }
 
