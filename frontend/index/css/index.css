@@ -16,9 +16,6 @@ body {
 
 }
 
-.btn {
-}
-
 .btn-primary {
     color: black !important;
 }
@@ -124,4 +121,13 @@ body {
 .ph-btn-orange:hover, .ph-btn-orange:focus, .ph-btn-orange:active {
     background: none repeat scroll 0 0 #fa7d29 !important;
     border-color: #e85c31 !important;    
+}
+
+.logout {
+    margin-left: 25px;
+    color: #dd6127;
+    
+}
+.logout:hover {
+    cursor: pointer;
 }
