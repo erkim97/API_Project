@@ -16,6 +16,9 @@ body {
 
 }
 
+.btn {
+    font-family: "Playfair Display", Georgia, "Times New Roman", serif;
+}
 .proj-header{
     line-height: 1;
     border-bottom: 1px solid #5f5e5e;
