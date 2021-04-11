@@ -5,9 +5,12 @@ body {
     font-weight: 400;
     line-height: 1.5;
     text-align: left;
-    background-image: url('../../../frontend/assets/background.jpeg');
-    background-repeat: no-repeat;
-    background-size: fill;
+    background: url('../../../frontend/assets/background.jpeg') no-repeat center center fixed; 
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+
 }
 
 .text-light {
@@ -46,6 +49,7 @@ body {
 #response {
     border-style: inset;
     height: 65vh;
+    width: 100%;
     margin-bottom: 1%;
     overflow-y: auto;
     word-wrap: break-word;
@@ -56,6 +60,9 @@ body {
     background-color: white;
  }
 
+ #input-search{
+     width:30px;
+ }
  .btn-margin {
      margin: 33px;
  }
@@ -88,7 +95,7 @@ body {
 ==========================*/
 .ph-btn-green {
 
-    border-color: #3AC162;
+    border-color: #208d41;
 	background-color: #5FCF80;
 
 }
@@ -101,7 +108,7 @@ body {
 ==========================*/
 .ph-btn-blue {
 
-    border-color: #326E99;
+    border-color: #0b2d44;
     background-color: #3F8ABF;
 }
 
@@ -110,12 +117,38 @@ body {
     border-color: #326E99;   
 }
 
+/*red
+==========================*/
+.ph-btn-red {
+
+    border-color: #831414;
+    background-color: #da2d2d;
+}
+
+.ph-btn-red:hover, .ph-btn-red:focus, .ph-btn-red:active {
+    background-color: #a31616;
+    border-color: #700a0a;   
+}
+
+/* dark green
+==========================*/
+.ph-btn-dgreen {
+
+    border-color: #043c16;
+    background-color: #0d7730;
+}
+
+.ph-btn-dgreen:hover, .ph-btn-dgreen:focus, .ph-btn-dgreen:active {
+    background-color: #0b6334;
+    border-color: #04330b;   
+}
+
 /*Orange
 ==========================*/
 .ph-btn-orange {
 
     background-color: #ed8d5a !important;
-    border-color: #ea8643 !important;
+    border-color: #c06020 !important;
 
 }
 .ph-btn-orange:hover, .ph-btn-orange:focus, .ph-btn-orange:active {
@@ -126,8 +159,15 @@ body {
 .logout {
     margin-left: 25px;
     color: #dd6127;
-    
+    text-align: right !important;
 }
 .logout:hover {
     cursor: pointer;
+}
+.formfield * {
+  vertical-align: top;
+}
+
+.btn-group-margin{
+    margin-right: 5px;
 }

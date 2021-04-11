@@ -55,7 +55,7 @@ function search_random() {
     .then((data) => {
         let random = document.getElementById('response');
         random.innerHTML = ""
-        random.innerHTML += "Random Workout:"
+        random.innerHTML += "Random Workout: <br>"
         for(let i = 0; i < data.length; i++){
             random.innerHTML += `{"id":${data[i].id},"name":"${data[i].name}","category":"${data[i].category}","amount":"${data[i].amount}","equipment_id":${data[i].equipment_id},"exercise_id":${data[i].exercise_id},"instructions":"${data[i].instructions}"}`;
             if (i > data.length - 1) {
@@ -83,7 +83,7 @@ function search_fletter() {
     .then((data) => {
         let fletter_workouts = document.getElementById('response');
         fletter_workouts.innerHTML = ""
-        fletter_workouts.innerHTML += "List of workouts that start with the letter: "
+        fletter_workouts.innerHTML += "List of workouts that start with the letter: <br>"
         for(let i = 0; i < data.length; i++){
             fletter_workouts.innerHTML += `{"id":${data[i].id},"name":"${data[i].name}"},"category":"${data[i].category}","instructions":"${data[i].instructions}"`;
             if (i > data.length - 1) {
@@ -106,7 +106,7 @@ function search_name() {
     .then((data) => {
         let search = document.getElementById('response');
         search.innerHTML = ""
-        search.innerHTML += "Found workout: "
+        search.innerHTML += "Found workout: <br>"
         for(let i = 0; i < data.length; i++){
             search.innerHTML += `{"id":${data[i].id},"name":"${data[i].name}","category":"${data[i].category}","amount":"${data[i].amount}","equipment_id":${data[i].equipment_id},"exercise_id":${data[i].exercise_id},"instructions":"${data[i].instructions}"}`;
             if (i > data.length - 1) {
@@ -135,7 +135,7 @@ function search_id() {
     .then((data) => {
         let search = document.getElementById('response');
         search.innerHTML = ""
-        search.innerHTML += "Found workout by id: "
+        search.innerHTML += "Found workout by id: <br>"
         for(let i = 0; i < data.length; i++){
             search.innerHTML += `{"id":${data[i].id},"name":"${data[i].name}","category":"${data[i].category}","amount":"${data[i].amount}","equipment_id":${data[i].equipment_id},"exercise_id":${data[i].exercise_id},"instructions":"${data[i].instructions}"}`;
             if (i > data.length - 1) {
@@ -174,7 +174,7 @@ function filter() {
     .then(data => {
         let ordinary = document.getElementById('response');
         ordinary.innerHTML = ""
-        ordinary.innerHTML += "Filtered category workouts: "
+        ordinary.innerHTML += "Filtered category workouts: <br>"
         for(let i = 0; i < data.length; i++){
             ordinary.innerHTML += `{"id":${data[i].id},"name":"${data[i].name}"},"category":"${data[i].category}","instructions":"${data[i].instructions}"`;
             if (i > data.length - 1) {
@@ -195,7 +195,7 @@ function filter_chest() {
     .then(data => {
         let chest = document.getElementById('response');
         chest.innerHTML = ""
-        chest.innerHTML += "Filtered chest workouts: "
+        chest.innerHTML += "Filtered chest workouts: <br>"
         for(let i = 0; i < data.length; i++){
             chest.innerHTML += `{"id":${data[i].id},"name":"${data[i].name}"},"category":"${data[i].category}","instructions":"${data[i].instructions}"`;
             if (i > data.length - 1) {
@@ -215,7 +215,7 @@ function filter_bicep() {
     .then(data => {
         let bicep = document.getElementById('response');
         bicep.innerHTML = ""
-        bicep.innerHTML += "Filtered bicep workouts: "
+        bicep.innerHTML += "Filtered bicep workouts: <br>"
         for(let i = 0; i < data.length; i++){
             bicep.innerHTML += `{"id":${data[i].id},"name":"${data[i].name}"},"category":"${data[i].category}","instructions":"${data[i].instructions}"`;
             if (i > data.length - 1) {
@@ -235,7 +235,7 @@ function filter_tricep() {
     .then(data => {
         let tricep = document.getElementById('response');
         tricep.innerHTML = ""
-        tricep.innerHTML += "Filtered tricep workouts: "
+        tricep.innerHTML += "Filtered tricep workouts: <br>"
         for(let i = 0; i < data.length; i++){
             tricep.innerHTML += `{"id":${data[i].id},"name":"${data[i].name}"},"category":"${data[i].category}","instructions":"${data[i].instructions}"`;
             if (i > data.length - 1) {
@@ -255,7 +255,7 @@ function filter_shoulder() {
     .then(data => {
         let tricep = document.getElementById('response');
         tricep.innerHTML = ""
-        tricep.innerHTML += "Filtered shoulder workouts: "
+        tricep.innerHTML += "Filtered shoulder workouts: <br>"
         for(let i = 0; i < data.length; i++){
             tricep.innerHTML += `{"id":${data[i].id},"name":"${data[i].name}"},"category":"${data[i].category}","instructions":"${data[i].instructions}"`;
             if (i > data.length - 1) {
@@ -275,7 +275,7 @@ function filter_back() {
     .then(data => {
         let tricep = document.getElementById('response');
         tricep.innerHTML = ""
-        tricep.innerHTML += "Filtered tricep workouts: "
+        tricep.innerHTML += "Filtered tricep workouts: <br>"
         for(let i = 0; i < data.length; i++){
             tricep.innerHTML += `{"id":${data[i].id},"name":"${data[i].name}"},"category":"${data[i].category}","instructions":"${data[i].instructions}"`;
             if (i > data.length - 1) {
@@ -295,7 +295,7 @@ function filter_lat() {
     .then(data => {
         let tricep = document.getElementById('response');
         tricep.innerHTML = ""
-        tricep.innerHTML += "Filtered lat workouts"
+        tricep.innerHTML += "Filtered lat workouts: <br>"
         for(let i = 0; i < data.length; i++){
             tricep.innerHTML += `{"id":${data[i].id},"name":"${data[i].name}"},"category":"${data[i].category}","instructions":"${data[i].instructions}"`;
             if (i > data.length - 1) {
@@ -315,7 +315,7 @@ function filter_leg() {
     .then(data => {
         let tricep = document.getElementById('response');
         tricep.innerHTML = ""
-        tricep.innerHTML += "Filtered leg workouts: "
+        tricep.innerHTML += "Filtered leg workouts: <br>"
         for(let i = 0; i < data.length; i++){
             tricep.innerHTML += `{"id":${data[i].id},"name":"${data[i].name}"},"category":"${data[i].category}","instructions":"${data[i].instructions}"`;
             if (i > data.length - 1) {
@@ -335,7 +335,7 @@ function filter_cardio() {
     .then(data => {
         let tricep = document.getElementById('response');
         tricep.innerHTML = ""
-        tricep.innerHTML += "Filtered cardio workouts: "
+        tricep.innerHTML += "Filtered cardio workouts: <br>"
         for(let i = 0; i < data.length; i++){
             tricep.innerHTML += `{"id":${data[i].id},"name":"${data[i].name}"},"category":"${data[i].category}","instructions":"${data[i].instructions}"`;
             if (i > data.length - 1) {
@@ -374,6 +374,60 @@ function update() {
     }).catch(e => console.log(e))
 }
 
+// add session function
+function addSession() {
+    let name = document.getElementById("input-add-session-name").value.trim()
+    let time = document.getElementById("input-add-session-time").value.trim()
+
+    data = {
+        name: name, 
+        time: time, 
+    }
+    console.log(data)
+    let url = `https://g11-workout-server.herokuapp.com/api/v1/add_session`
+    fetch(url, {
+        method: 'POST',
+        headers: {'Content-Type': 'application/json'},
+        body: JSON.stringify(data)
+    })
+    .then((res) => res.json())
+    .then((data) => {
+        alert("Added Session");
+        let exercise = document.getElementById('response');
+        exercise.innerHTML = `"name":"${name}","time":"${time}"`
+    }).catch(e => console.log(e))
+}
+
+
+function updateSession() {
+    let oldSName = document.getElementById("input-old-session").value.trim()
+    let newSName = document.getElementById("input-new-session").value.trim()
+    let url = `https://g11-workout-server.herokuapp.com/api/v1/update_session`
+
+    data = {
+        oldSName: oldSName,
+        newSName: newSName
+    }
+    fetch(url, {
+        method: 'PUT',
+        headers: { 
+            'Content-type': 'application/json'
+        }, 
+        body: JSON.stringify(data) 
+    })
+    .then((res) => res.json())
+    .then((data) => {
+        let update = document.getElementById('response');
+        let oldname = document.getElementById('input-old-name').value;
+        let newname = document.getElementById('input-new-name').value;
+        update.innerHTML = `${oldname} has been changed to ${newname}.`;
+    }).catch(e => console.log(e))
+}
+
+
+//delete_session/:name
+//update_session
+
 function logout() {
-    
+
 }
