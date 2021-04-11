@@ -1,4 +1,4 @@
-// get all workouts
+// get all workouts, workouts = () => {}
 function workouts() {
     let url = `https://g11-workout-server.herokuapp.com/api/v1/workouts`
     fetch(url)
@@ -248,7 +248,7 @@ function filter_tricep() {
 }
 
 function filter_shoulder() {
-    let url = `https://g11-workout-server.herokuapp.com/api/v1/category/tricep`
+    let url = `https://g11-workout-server.herokuapp.com/api/v1/category/shoulder`
     console.log(url)
     fetch(url)
     .then(res => res.json())
@@ -268,7 +268,7 @@ function filter_shoulder() {
 }
 
 function filter_back() {
-    let url = `https://g11-workout-server.herokuapp.com/api/v1/category/tricep`
+    let url = `https://g11-workout-server.herokuapp.com/api/v1/category/back`
     console.log(url)
     fetch(url)
     .then(res => res.json())
@@ -288,7 +288,7 @@ function filter_back() {
 }
 
 function filter_lat() {
-    let url = `https://g11-workout-server.herokuapp.com/api/v1/category/tricep`
+    let url = `https://g11-workout-server.herokuapp.com/api/v1/category/lat`
     console.log(url)
     fetch(url)
     .then(res => res.json())
@@ -308,7 +308,7 @@ function filter_lat() {
 }
 
 function filter_leg() {
-    let url = `https://g11-workout-server.herokuapp.com/api/v1/category/tricep`
+    let url = `https://g11-workout-server.herokuapp.com/api/v1/category/leg`
     console.log(url)
     fetch(url)
     .then(res => res.json())
@@ -328,7 +328,7 @@ function filter_leg() {
 }
 
 function filter_cardio() {
-    let url = `https://g11-workout-server.herokuapp.com/api/v1/category/tricep`
+    let url = `https://g11-workout-server.herokuapp.com/api/v1/category/cardio`
     console.log(url)
     fetch(url)
     .then(res => res.json())

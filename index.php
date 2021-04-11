@@ -1,1 +1,1 @@
-<?php include_once("./frontend/index.html"); ?>
+<?php include_once("./frontend/4537/termproj/api/v1/index.html"); ?>
