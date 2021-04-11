@@ -171,3 +171,7 @@ body {
 .btn-group-margin{
     margin-right: 5px;
 }
+
+.update-btn {
+    background-color: #ed8d5a !important;
+}

@@ -393,20 +393,36 @@ function addSession() {
     .then((res) => res.json())
     .then((data) => {
         alert("Added Session");
-        let exercise = document.getElementById('response');
-        exercise.innerHTML = `"name":"${name}","time":"${time}"`
+        let session = document.getElementById('response');
+        session.innerHTML = `"name":"${name}","time":"${time}"`
     }).catch(e => console.log(e))
 }
 
 
+//delete session function
+function deleteSession() {
+    let name = document.getElementById("input-delete-exercise").value.trim()
+    let url = `https://g11-workout-server.herokuapp.com/api/v1/delete_session/${name}`
+    fetch(url, {
+        method: 'DELETE'
+    })
+    .then(res => res.json())
+    .then(data => {
+        let delete_sesh = document.getElementById('response');
+        let input = document.getElementById('input-delete-session').value;
+        delete_sesh.innerHTML = input + " deleted.";
+    }).catch(e => console.log(e))
+}
+
+//update session function
 function updateSession() {
-    let oldSName = document.getElementById("input-old-session").value.trim()
-    let newSName = document.getElementById("input-new-session").value.trim()
+    let name = document.getElementById("input-sesh-name").value.trim()
+    let time = document.getElementById("input-new-time").value.trim()
     let url = `https://g11-workout-server.herokuapp.com/api/v1/update_session`
 
     data = {
-        oldSName: oldSName,
-        newSName: newSName
+        name: name,
+        time: time,
     }
     fetch(url, {
         method: 'PUT',
@@ -418,15 +434,11 @@ function updateSession() {
     .then((res) => res.json())
     .then((data) => {
         let update = document.getElementById('response');
-        let oldname = document.getElementById('input-old-name').value;
-        let newname = document.getElementById('input-new-name').value;
-        update.innerHTML = `${oldname} has been changed to ${newname}.`;
+        let seshname = document.getElementById('input-sesh-name').value;
+        let newtime = document.getElementById('input-new-time').value;
+        update.innerHTML = `${seshname} time has been changed to ${newtime}.`;
     }).catch(e => console.log(e))
 }
-
-
-//delete_session/:name
-//update_session
 
 function logout() {
 
