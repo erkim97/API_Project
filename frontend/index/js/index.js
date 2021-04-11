@@ -401,7 +401,7 @@ function addSession() {
 
 //delete session function
 function deleteSession() {
-    let name = document.getElementById("input-delete-exercise").value.trim()
+    let name = document.getElementById("input-delete-session").value.trim()
     let url = `https://g11-workout-server.herokuapp.com/api/v1/delete_session/${name}`
     fetch(url, {
         method: 'DELETE'
@@ -413,6 +413,7 @@ function deleteSession() {
         delete_sesh.innerHTML = input + " deleted.";
     }).catch(e => console.log(e))
 }
+
 
 //update session function
 function updateSession() {
