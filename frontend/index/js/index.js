@@ -41,6 +41,7 @@ function add() {
     })
     .then((res) => res.json())
     .then((data) => {
+        alert("Added New Workout");
         let exercise = document.getElementById('response');
         exercise.innerHTML = `"name":"${name}","category":"${category}","instructions":"${instructions}","equipment":"${equipment}","amounts":"${amounts}"`
     }).catch(e => console.log(e))

@@ -1,6 +1,6 @@
 body {
     margin: 0;
-    font-family: "Playfair Display", Georgia, "Times New Roman", serif;
+    font-family: "Gotham Rounded A","Gotham Rounded B",Helvetica,Arial,sans-serif;
     font-size: 1rem;
     font-weight: 400;
     line-height: 1.5;
@@ -17,7 +17,10 @@ body {
 }
 
 .btn {
-    font-family: "Playfair Display", Georgia, "Times New Roman", serif;
+}
+
+.btn-primary {
+    color: black !important;
 }
 .proj-header{
     line-height: 1;
@@ -26,7 +29,7 @@ body {
 }
 
 .proj-header-logo {
-    font-family: "Playfair Display", Georgia, "Times New Roman", serif;
+    font-family: "Gotham Rounded A","Gotham Rounded B",Helvetica,Arial,sans-serif;
     font-size: 4vw;
     font-size: 4vh;
 }
@@ -46,7 +49,7 @@ body {
 #response {
     border-style: inset;
     height: 65vh;
-    width: 55vw;
+    width: 40vw;
     margin-bottom: 1%;
     overflow-y: auto;
     word-wrap: break-word;
@@ -60,5 +63,65 @@ body {
      margin: 33px;
  }
 
+/*Main button class
+==========================*/
+.ph-button {
+	
+    border-style: solid;
+    border-width: 0px 0px 3px;
+    box-shadow: 0 -1px 0 rgba(255, 255, 255, 0.1) inset;
+    color: #FFFFFF;	   
+    border-radius: 6px;
+    cursor: pointer;
+    font-style: normal;
+    display: inline-block;
+    overflow: hidden;
+    text-align: center;
+    text-decoration: none;
+    text-overflow: ellipsis;
+    transition: all 200ms ease-in-out 0s;
+    white-space: nowrap;	
+    font-family: "Gotham Rounded A","Gotham Rounded B",Helvetica,Arial,sans-serif;
+    font-weight: 700;	
+    padding: 19px 39px 18px;
+    font-size: 18px;
+	
+}
+/*Green
+==========================*/
+.ph-btn-green {
 
+    border-color: #3AC162;
+	background-color: #5FCF80;
 
+}
+.ph-btn-green:hover, .ph-btn-green:focus, .ph-btn-green:active {
+    background-color: #3ebf64;
+    border-color: #2cb656;    
+}
+
+/*Blue
+==========================*/
+.ph-btn-blue {
+
+    border-color: #326E99;
+    background-color: #3F8ABF;
+}
+
+.ph-btn-blue:hover, .ph-btn-blue:focus, .ph-btn-blue:active {
+    background-color: #397CAC;
+    border-color: #326E99;   
+}
+
+/*Orange
+==========================*/
+.ph-btn-orange {
+
+    background-color: #ed8d5a !important;
+    border-color: #ea8643 !important;
+
+}
+.ph-btn-orange:hover, .ph-btn-orange:focus, .ph-btn-orange:active {
+    background: none repeat scroll 0 0 #fa7d29 !important;
+    border-color: #e85c31 !important;    
+}
