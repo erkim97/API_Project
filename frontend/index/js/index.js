@@ -6,14 +6,13 @@ function workouts() {
     .then((data) => {
         let workouts = document.getElementById('response');
         workouts.innerHTML = ""
-        workouts.innerHTML += "["
+        workouts.innerHTML += "List of Workouts: <br>"
         for(let i = 0; i < data.length; i++){
             workouts.innerHTML += `{"id":${data[i].id},"name":"${data[i].name}","category":"${data[i].category}","instructions":"${data[i].instructions}"}`;
             if (i > data.length - 1) {
-                workouts.innerHTML += ","
+                workouts.innerHTML += ", <br>"
             }
         }
-        workouts.innerHTML += "]"
         console.log(data)
     }).catch(e => console.log(e))
 }
@@ -56,14 +55,14 @@ function search_random() {
     .then((data) => {
         let random = document.getElementById('response');
         random.innerHTML = ""
-        random.innerHTML += "["
+        random.innerHTML += "Random Workout:"
         for(let i = 0; i < data.length; i++){
             random.innerHTML += `{"id":${data[i].id},"name":"${data[i].name}","category":"${data[i].category}","amount":"${data[i].amount}","equipment_id":${data[i].equipment_id},"exercise_id":${data[i].exercise_id},"instructions":"${data[i].instructions}"}`;
             if (i > data.length - 1) {
                 random.innerHTML += ","
             }
         }
-        random.innerHTML += "]"
+        //random.innerHTML += "]"
         console.log(data)
     }).catch(e => console.log(e))
 }
@@ -84,14 +83,14 @@ function search_fletter() {
     .then((data) => {
         let fletter_workouts = document.getElementById('response');
         fletter_workouts.innerHTML = ""
-        fletter_workouts.innerHTML += "["
+        fletter_workouts.innerHTML += "List of workouts that start with the letter: "
         for(let i = 0; i < data.length; i++){
             fletter_workouts.innerHTML += `{"id":${data[i].id},"name":"${data[i].name}"},"category":"${data[i].category}","instructions":"${data[i].instructions}"`;
             if (i > data.length - 1) {
-                fletter_workouts.innerHTML += ","
+                fletter_workouts.innerHTML += ", <br>"
             }
         }
-        fletter_workouts.innerHTML += "]"
+        //fletter_workouts.innerHTML += "]"
         console.log(data)
     }).catch(e => console.log(e))
 }
@@ -107,14 +106,14 @@ function search_name() {
     .then((data) => {
         let search = document.getElementById('response');
         search.innerHTML = ""
-        search.innerHTML += "["
+        search.innerHTML += "Found workout: "
         for(let i = 0; i < data.length; i++){
             search.innerHTML += `{"id":${data[i].id},"name":"${data[i].name}","category":"${data[i].category}","amount":"${data[i].amount}","equipment_id":${data[i].equipment_id},"exercise_id":${data[i].exercise_id},"instructions":"${data[i].instructions}"}`;
             if (i > data.length - 1) {
-                search.innerHTML += ","
+                search.innerHTML += ", <br>"
             }
         }
-        search.innerHTML += "]"
+        //search.innerHTML += "]"
         console.log(data)
     }).catch(e => console.log(e))
 }
@@ -136,14 +135,14 @@ function search_id() {
     .then((data) => {
         let search = document.getElementById('response');
         search.innerHTML = ""
-        search.innerHTML += "["
+        search.innerHTML += "Found workout by id: "
         for(let i = 0; i < data.length; i++){
             search.innerHTML += `{"id":${data[i].id},"name":"${data[i].name}","category":"${data[i].category}","amount":"${data[i].amount}","equipment_id":${data[i].equipment_id},"exercise_id":${data[i].exercise_id},"instructions":"${data[i].instructions}"}`;
             if (i > data.length - 1) {
-                search.innerHTML += ","
+                search.innerHTML += ", <br>"
             }
         }
-        search.innerHTML += "]"
+        //search.innerHTML += "]"
         console.log(data)
     }).catch(e => console.log(e))
 }
@@ -175,14 +174,14 @@ function filter() {
     .then(data => {
         let ordinary = document.getElementById('response');
         ordinary.innerHTML = ""
-        ordinary.innerHTML += "["
+        ordinary.innerHTML += "Filtered category workouts: "
         for(let i = 0; i < data.length; i++){
             ordinary.innerHTML += `{"id":${data[i].id},"name":"${data[i].name}"},"category":"${data[i].category}","instructions":"${data[i].instructions}"`;
             if (i > data.length - 1) {
-                ordinary.innerHTML += ","
+                ordinary.innerHTML += ", <br>"
             }
         }
-        ordinary.innerHTML += "]"
+        //ordinary.innerHTML += "]"
         console.log(data)
     }).catch(e => console.log(e))
 }
@@ -196,14 +195,14 @@ function filter_chest() {
     .then(data => {
         let chest = document.getElementById('response');
         chest.innerHTML = ""
-        chest.innerHTML += "["
+        chest.innerHTML += "Filtered chest workouts: "
         for(let i = 0; i < data.length; i++){
             chest.innerHTML += `{"id":${data[i].id},"name":"${data[i].name}"},"category":"${data[i].category}","instructions":"${data[i].instructions}"`;
             if (i > data.length - 1) {
-                chest.innerHTML += ","
+                chest.innerHTML += ", <br>"
             }
         }
-        chest.innerHTML += "]"
+        //chest.innerHTML += "]"
         console.log(data)
     }).catch(e => console.log(e))
 }
@@ -216,14 +215,14 @@ function filter_bicep() {
     .then(data => {
         let bicep = document.getElementById('response');
         bicep.innerHTML = ""
-        bicep.innerHTML += "["
+        bicep.innerHTML += "Filtered bicep workouts: "
         for(let i = 0; i < data.length; i++){
             bicep.innerHTML += `{"id":${data[i].id},"name":"${data[i].name}"},"category":"${data[i].category}","instructions":"${data[i].instructions}"`;
             if (i > data.length - 1) {
-                bicep.innerHTML += ","
+                bicep.innerHTML += ", <br>"
             }
         }
-        bicep.innerHTML += "]"
+        //bicep.innerHTML += "]"
         console.log(data)
     }).catch(e => console.log(e))
 }
@@ -236,14 +235,14 @@ function filter_tricep() {
     .then(data => {
         let tricep = document.getElementById('response');
         tricep.innerHTML = ""
-        tricep.innerHTML += "["
+        tricep.innerHTML += "Filtered tricep workouts: "
         for(let i = 0; i < data.length; i++){
             tricep.innerHTML += `{"id":${data[i].id},"name":"${data[i].name}"},"category":"${data[i].category}","instructions":"${data[i].instructions}"`;
             if (i > data.length - 1) {
-                tricep.innerHTML += ","
+                tricep.innerHTML += ", <br>"
             }
         }
-        tricep.innerHTML += "]"
+        //tricep.innerHTML += "]"
         console.log(data)
     }).catch(e => console.log(e))
 }
@@ -256,14 +255,14 @@ function filter_shoulder() {
     .then(data => {
         let tricep = document.getElementById('response');
         tricep.innerHTML = ""
-        tricep.innerHTML += "["
+        tricep.innerHTML += "Filtered shoulder workouts: "
         for(let i = 0; i < data.length; i++){
             tricep.innerHTML += `{"id":${data[i].id},"name":"${data[i].name}"},"category":"${data[i].category}","instructions":"${data[i].instructions}"`;
             if (i > data.length - 1) {
-                tricep.innerHTML += ","
+                tricep.innerHTML += ", <br>"
             }
         }
-        tricep.innerHTML += "]"
+        //tricep.innerHTML += "]"
         console.log(data)
     }).catch(e => console.log(e))
 }
@@ -276,14 +275,14 @@ function filter_back() {
     .then(data => {
         let tricep = document.getElementById('response');
         tricep.innerHTML = ""
-        tricep.innerHTML += "["
+        tricep.innerHTML += "Filtered tricep workouts: "
         for(let i = 0; i < data.length; i++){
             tricep.innerHTML += `{"id":${data[i].id},"name":"${data[i].name}"},"category":"${data[i].category}","instructions":"${data[i].instructions}"`;
             if (i > data.length - 1) {
-                tricep.innerHTML += ","
+                tricep.innerHTML += ", <br>"
             }
         }
-        tricep.innerHTML += "]"
+        //tricep.innerHTML += "]"
         console.log(data)
     }).catch(e => console.log(e))
 }
@@ -296,14 +295,14 @@ function filter_lat() {
     .then(data => {
         let tricep = document.getElementById('response');
         tricep.innerHTML = ""
-        tricep.innerHTML += "["
+        tricep.innerHTML += "Filtered lat workouts"
         for(let i = 0; i < data.length; i++){
             tricep.innerHTML += `{"id":${data[i].id},"name":"${data[i].name}"},"category":"${data[i].category}","instructions":"${data[i].instructions}"`;
             if (i > data.length - 1) {
-                tricep.innerHTML += ","
+                tricep.innerHTML += ", <br>"
             }
         }
-        tricep.innerHTML += "]"
+        //tricep.innerHTML += "]"
         console.log(data)
     }).catch(e => console.log(e))
 }
@@ -316,14 +315,14 @@ function filter_leg() {
     .then(data => {
         let tricep = document.getElementById('response');
         tricep.innerHTML = ""
-        tricep.innerHTML += "["
+        tricep.innerHTML += "Filtered leg workouts: "
         for(let i = 0; i < data.length; i++){
             tricep.innerHTML += `{"id":${data[i].id},"name":"${data[i].name}"},"category":"${data[i].category}","instructions":"${data[i].instructions}"`;
             if (i > data.length - 1) {
-                tricep.innerHTML += ","
+                tricep.innerHTML += ", <br>"
             }
         }
-        tricep.innerHTML += "]"
+        //tricep.innerHTML += "]"
         console.log(data)
     }).catch(e => console.log(e))
 }
@@ -336,14 +335,14 @@ function filter_cardio() {
     .then(data => {
         let tricep = document.getElementById('response');
         tricep.innerHTML = ""
-        tricep.innerHTML += "["
+        tricep.innerHTML += "Filtered cardio workouts: "
         for(let i = 0; i < data.length; i++){
             tricep.innerHTML += `{"id":${data[i].id},"name":"${data[i].name}"},"category":"${data[i].category}","instructions":"${data[i].instructions}"`;
             if (i > data.length - 1) {
-                tricep.innerHTML += ","
+                tricep.innerHTML += ", <br>"
             }
         }
-        tricep.innerHTML += "]"
+        //tricep.innerHTML += "]"
         console.log(data)
     }).catch(e => console.log(e))
 }
