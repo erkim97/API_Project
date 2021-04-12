@@ -8,11 +8,7 @@ function workouts() {
         workouts.innerHTML = ""
         workouts.innerHTML += "<b>List of Workouts: </b> <br>"
         for(let i = 0; i < data.length; i++){
-<<<<<<< HEAD
             workouts.innerHTML += `"id":${data[i].id},"name":"${data[i].name}","category":"${data[i].category}","instructions":"${data[i].instructions}","equipment":"${data[i].equipment}","amounts":"${data[i].amounts}" <br>`;
-=======
-            workouts.innerHTML += `"id":${data[i].id},"name":"${data[i].name}","category":"${data[i].category}","instructions":"${data[i].instructions}","equipment":"${equipment}","amounts":"${amounts}" <br>`;
->>>>>>> 0bab7666fbc3b8ddb360d8a71a592ada17490073
             if (i > data.length - 1) {
                 workouts.innerHTML += ", "
             }
@@ -61,11 +57,7 @@ function search_random() {
         random.innerHTML = ""
         random.innerHTML += "<b>Random Workout: </b> <br>"
         for(let i = 0; i < data.length; i++){
-<<<<<<< HEAD
             random.innerHTML += `"id":${data[i].id},"name":"${data[i].name}","category":"${data[i].category}","instructions":"${data[i].instructions}","equipment":"${data[i].equipment}","amounts":"${data[i].amounts}" <br>`;
-=======
-            random.innerHTML += `"id":${data[i].id},"name":"${data[i].name}","category":"${data[i].category}","instructions":"${data[i].instructions}","equipment":"${equipment}","amounts":"${amounts}" <br>`;
->>>>>>> 0bab7666fbc3b8ddb360d8a71a592ada17490073
             if (i > data.length - 1) {
                 random.innerHTML += ","
             }
@@ -93,11 +85,7 @@ function search_fletter() {
         fletter_workouts.innerHTML = ""
         fletter_workouts.innerHTML += "<b>List of workouts that start with the letter: </b> <br>"
         for(let i = 0; i < data.length; i++){
-<<<<<<< HEAD
             fletter_workouts.innerHTML += `"id":${data[i].id},"name":"${data[i].name}","category":"${data[i].category}","instructions":"${data[i].instructions}","equipment":"${data[i].equipment}","amounts":"${data[i].amounts}" <br>`;
-=======
-            fletter_workouts.innerHTML += `"id":${data[i].id},"name":"${data[i].name}","category":"${data[i].category}","instructions":"${data[i].instructions}","equipment":"${equipment}","amounts":"${amounts}" <br>`;
->>>>>>> 0bab7666fbc3b8ddb360d8a71a592ada17490073
             if (i > data.length - 1) {
                 fletter_workouts.innerHTML += ", <br>"
             }
@@ -120,11 +108,7 @@ function search_name() {
         search.innerHTML = ""
         search.innerHTML += "<b>Found workout: </b> <br>"
         for(let i = 0; i < data.length; i++){
-<<<<<<< HEAD
             search.innerHTML += `"id":${data[i].id},"name":"${data[i].name}","category":"${data[i].category}","instructions":"${data[i].instructions}","equipment":"${data[i].equipment}","amounts":"${data[i].amounts}" <br>`;
-=======
-            search.innerHTML += `"id":${data[i].id},"name":"${data[i].name}","category":"${data[i].category}","instructions":"${data[i].instructions}","equipment":"${equipment}","amounts":"${amounts}" <br>`;
->>>>>>> 0bab7666fbc3b8ddb360d8a71a592ada17490073
             if (i > data.length - 1) {
                 search.innerHTML += ", "
             }
@@ -153,11 +137,7 @@ function search_id() {
         search.innerHTML = ""
         search.innerHTML += "<b>Found workout by id:</b> <br>"
         for(let i = 0; i < data.length; i++){
-<<<<<<< HEAD
             search.innerHTML += `"id":${data[i].id},"name":"${data[i].name}","category":"${data[i].category}","instructions":"${data[i].instructions}","equipment":"${data[i].equipment}","amounts":"${data[i].amounts}" <br>`;
-=======
-            search.innerHTML += `"id":${data[i].id},"name":"${data[i].name}","category":"${data[i].category}","instructions":"${data[i].instructions}","equipment":"${equipment}","amounts":"${amounts}" <br>`;
->>>>>>> 0bab7666fbc3b8ddb360d8a71a592ada17490073
             if (i > data.length - 1) {
                 search.innerHTML += ", "
             }
@@ -196,11 +176,7 @@ function filter() {
         ordinary.innerHTML = ""
         ordinary.innerHTML += "<b> Filtered category workouts: </b> <br>"
         for(let i = 0; i < data.length; i++){
-<<<<<<< HEAD
             ordinary.innerHTML += `{"id":${data[i].id},"name":"${data[i].name}"},"category":"${data[i].category}","instructions":"${data[i].instructions}","equipment":"${data[i].equipment}","amounts":"${data[i].amounts}" <br>`;
-=======
-            ordinary.innerHTML += `{"id":${data[i].id},"name":"${data[i].name}"},"category":"${data[i].category}","instructions":"${data[i].instructions}","equipment":"${equipment}","amounts":"${amounts}" <br>`;
->>>>>>> 0bab7666fbc3b8ddb360d8a71a592ada17490073
             if (i > data.length - 1) {
                 ordinary.innerHTML += ", "
             }
@@ -221,11 +197,7 @@ function filter_chest() {
         chest.innerHTML = ""
         chest.innerHTML += "<b>Filtered chest workouts:</b> <br>"
         for(let i = 0; i < data.length; i++){
-<<<<<<< HEAD
             chest.innerHTML += `{"id":${data[i].id},"name":"${data[i].name}"},"category":"${data[i].category}","instructions":"${data[i].instructions}","equipment":"${data[i].equipment}","amounts":"${data[i].amounts}" <br>`;
-=======
-            chest.innerHTML += `{"id":${data[i].id},"name":"${data[i].name}"},"category":"${data[i].category}","instructions":"${data[i].instructions}","equipment":"${equipment}","amounts":"${amounts}" <br>`;
->>>>>>> 0bab7666fbc3b8ddb360d8a71a592ada17490073
             if (i > data.length - 1) {
                 chest.innerHTML += ", "
             }
@@ -245,11 +217,7 @@ function filter_bicep() {
         bicep.innerHTML = ""
         bicep.innerHTML += "<b>Filtered bicep workouts:</b> <br>"
         for(let i = 0; i < data.length; i++){
-<<<<<<< HEAD
             bicep.innerHTML += `{"id":${data[i].id},"name":"${data[i].name}"},"category":"${data[i].category}","instructions":"${data[i].instructions}","equipment":"${data[i].equipment}","amounts":"${data[i].amounts}" <br>`;
-=======
-            bicep.innerHTML += `{"id":${data[i].id},"name":"${data[i].name}"},"category":"${data[i].category}","instructions":"${data[i].instructions}","equipment":"${equipment}","amounts":"${amounts}" <br>`;
->>>>>>> 0bab7666fbc3b8ddb360d8a71a592ada17490073
             if (i > data.length - 1) {
                 bicep.innerHTML += ", "
             }
@@ -269,11 +237,7 @@ function filter_tricep() {
         tricep.innerHTML = ""
         tricep.innerHTML += "Filtered tricep workouts: <br>"
         for(let i = 0; i < data.length; i++){
-<<<<<<< HEAD
             tricep.innerHTML += `{"id":${data[i].id},"name":"${data[i].name}"},"category":"${data[i].category}","instructions":"${data[i].instructions}","equipment":"${data[i].equipment}","amounts":"${data[i].amounts}" <br>`;
-=======
-            tricep.innerHTML += `{"id":${data[i].id},"name":"${data[i].name}"},"category":"${data[i].category}","instructions":"${data[i].instructions}","equipment":"${equipment}","amounts":"${amounts}" <br>`;
->>>>>>> 0bab7666fbc3b8ddb360d8a71a592ada17490073
             if (i > data.length - 1) {
                 tricep.innerHTML += ", "
             }
@@ -293,11 +257,7 @@ function filter_shoulder() {
         tricep.innerHTML = ""
         tricep.innerHTML += "<b>Filtered shoulder workouts:</b> <br>"
         for(let i = 0; i < data.length; i++){
-<<<<<<< HEAD
             tricep.innerHTML += `{"id":${data[i].id},"name":"${data[i].name}"},"category":"${data[i].category}","instructions":"${data[i].instructions}","equipment":"${data[i].equipment}","amounts":"${data[i].amounts}" <br>`;
-=======
-            tricep.innerHTML += `{"id":${data[i].id},"name":"${data[i].name}"},"category":"${data[i].category}","instructions":"${data[i].instructions}","equipment":"${equipment}","amounts":"${amounts}" <br>`;
->>>>>>> 0bab7666fbc3b8ddb360d8a71a592ada17490073
             if (i > data.length - 1) {
                 tricep.innerHTML += ", "
             }
@@ -317,11 +277,7 @@ function filter_back() {
         tricep.innerHTML = ""
         tricep.innerHTML += "<b>Filtered tricep workouts:</b> <br>"
         for(let i = 0; i < data.length; i++){
-<<<<<<< HEAD
             tricep.innerHTML += `{"id":${data[i].id},"name":"${data[i].name}"},"category":"${data[i].category}","instructions":"${data[i].instructions}","equipment":"${data[i].equipment}","amounts":"${data[i].amounts}" <br>`;
-=======
-            tricep.innerHTML += `{"id":${data[i].id},"name":"${data[i].name}"},"category":"${data[i].category}","instructions":"${data[i].instructions}","equipment":"${equipment}","amounts":"${amounts}" <br>`;
->>>>>>> 0bab7666fbc3b8ddb360d8a71a592ada17490073
             if (i > data.length - 1) {
                 tricep.innerHTML += ", "
             }
@@ -341,11 +297,7 @@ function filter_lat() {
         tricep.innerHTML = ""
         tricep.innerHTML += "<b>Filtered lat workouts:</b> <br>"
         for(let i = 0; i < data.length; i++){
-<<<<<<< HEAD
             tricep.innerHTML += `{"id":${data[i].id},"name":"${data[i].name}"},"category":"${data[i].category}","instructions":"${data[i].instructions}","equipment":"${data[i].equipment}","amounts":"${data[i].amounts}" <br>`;
-=======
-            tricep.innerHTML += `{"id":${data[i].id},"name":"${data[i].name}"},"category":"${data[i].category}","instructions":"${data[i].instructions}","equipment":"${equipment}","amounts":"${amounts}" <br>`;
->>>>>>> 0bab7666fbc3b8ddb360d8a71a592ada17490073
             if (i > data.length - 1) {
                 tricep.innerHTML += ", "
             }
@@ -365,11 +317,7 @@ function filter_leg() {
         tricep.innerHTML = ""
         tricep.innerHTML += "<b>Filtered leg workouts:</b> <br>"
         for(let i = 0; i < data.length; i++){
-<<<<<<< HEAD
             tricep.innerHTML += `{"id":${data[i].id},"name":"${data[i].name}"},"category":"${data[i].category}","instructions":"${data[i].instructions}","equipment":"${data[i].equipment}","amounts":"${data[i].amounts}" <br>`;
-=======
-            tricep.innerHTML += `{"id":${data[i].id},"name":"${data[i].name}"},"category":"${data[i].category}","instructions":"${data[i].instructions}","equipment":"${equipment}","amounts":"${amounts}" <br>`;
->>>>>>> 0bab7666fbc3b8ddb360d8a71a592ada17490073
             if (i > data.length - 1) {
                 tricep.innerHTML += ", "
             }
@@ -389,11 +337,7 @@ function filter_cardio() {
         tricep.innerHTML = ""
         tricep.innerHTML += "<b>Filtered cardio workouts:</b> <br>"
         for(let i = 0; i < data.length; i++){
-<<<<<<< HEAD
             tricep.innerHTML += `{"id":${data[i].id},"name":"${data[i].name}"},"category":"${data[i].category}","instructions":"${data[i].instructions}","equipment":"${data[i].equipment}","amounts":"${data[i].amounts}" <br>`;
-=======
-            tricep.innerHTML += `{"id":${data[i].id},"name":"${data[i].name}"},"category":"${data[i].category}","instructions":"${data[i].instructions}","equipment":"${equipment}","amounts":"${amounts}" <br>`;
->>>>>>> 0bab7666fbc3b8ddb360d8a71a592ada17490073
             if (i > data.length - 1) {
                 tricep.innerHTML += ", "
             }
