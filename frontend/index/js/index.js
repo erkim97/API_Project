@@ -6,11 +6,11 @@ function workouts() {
     .then((data) => {
         let workouts = document.getElementById('response');
         workouts.innerHTML = ""
-        workouts.innerHTML += "List of Workouts: <br>"
+        workouts.innerHTML += "<b>List of Workouts: </b> <br>"
         for(let i = 0; i < data.length; i++){
-            workouts.innerHTML += `"id":${data[i].id},"name":"${data[i].name}","category":"${data[i].category}","instructions":"${data[i].instructions}" <br>`;
+            workouts.innerHTML += `"id":${data[i].id},"name":"${data[i].name}","category":"${data[i].category}","instructions":"${data[i].instructions}","equipment":"${data[i].equipment}","amounts":"${data[i].amounts}" <br>`;
             if (i > data.length - 1) {
-                workouts.innerHTML += ", <br>"
+                workouts.innerHTML += ", "
             }
         }
         console.log(data)
@@ -55,9 +55,9 @@ function search_random() {
     .then((data) => {
         let random = document.getElementById('response');
         random.innerHTML = ""
-        random.innerHTML += "Random Workout: <br>"
+        random.innerHTML += "<b>Random Workout: </b> <br>"
         for(let i = 0; i < data.length; i++){
-            random.innerHTML += `"id":${data[i].id},"name":"${data[i].name}","category":"${data[i].category}","amount":"${data[i].amount}","equipment_id":${data[i].equipment_id},"exercise_id":${data[i].exercise_id},"instructions":"${data[i].instructions}"`;
+            random.innerHTML += `"id":${data[i].id},"name":"${data[i].name}","category":"${data[i].category}","instructions":"${data[i].instructions}","equipment":"${data[i].equipment}","amounts":"${data[i].amounts}" <br>`;
             if (i > data.length - 1) {
                 random.innerHTML += ","
             }
@@ -83,9 +83,9 @@ function search_fletter() {
     .then((data) => {
         let fletter_workouts = document.getElementById('response');
         fletter_workouts.innerHTML = ""
-        fletter_workouts.innerHTML += "List of workouts that start with the letter: <br>"
+        fletter_workouts.innerHTML += "<b>List of workouts that start with the letter: </b> <br>"
         for(let i = 0; i < data.length; i++){
-            fletter_workouts.innerHTML += `{"id":${data[i].id},"name":"${data[i].name}"},"category":"${data[i].category}","instructions":"${data[i].instructions}" <br>`;
+            fletter_workouts.innerHTML += `"id":${data[i].id},"name":"${data[i].name}","category":"${data[i].category}","instructions":"${data[i].instructions}","equipment":"${data[i].equipment}","amounts":"${data[i].amounts}" <br>`;
             if (i > data.length - 1) {
                 fletter_workouts.innerHTML += ", <br>"
             }
@@ -106,11 +106,11 @@ function search_name() {
     .then((data) => {
         let search = document.getElementById('response');
         search.innerHTML = ""
-        search.innerHTML += "Found workout: <br>"
+        search.innerHTML += "<b>Found workout: </b> <br>"
         for(let i = 0; i < data.length; i++){
-            search.innerHTML += `"id":${data[i].id},"name":"${data[i].name}","category":"${data[i].category}","amount":"${data[i].amount}","equipment_id":${data[i].equipment_id},"exercise_id":${data[i].exercise_id},"instructions":"${data[i].instructions}" <br>`;
+            search.innerHTML += `"id":${data[i].id},"name":"${data[i].name}","category":"${data[i].category}","instructions":"${data[i].instructions}","equipment":"${data[i].equipment}","amounts":"${data[i].amounts}" <br>`;
             if (i > data.length - 1) {
-                search.innerHTML += ", <br>"
+                search.innerHTML += ", "
             }
         }
         //search.innerHTML += "]"
@@ -135,11 +135,11 @@ function search_id() {
     .then((data) => {
         let search = document.getElementById('response');
         search.innerHTML = ""
-        search.innerHTML += "Found workout by id: <br>"
+        search.innerHTML += "<b>Found workout by id:</b> <br>"
         for(let i = 0; i < data.length; i++){
-            search.innerHTML += `"id":${data[i].id},"name":"${data[i].name}","category":"${data[i].category}","amount":"${data[i].amount}","equipment_id":${data[i].equipment_id},"exercise_id":${data[i].exercise_id},"instructions":"${data[i].instructions}" <br>`;
+            search.innerHTML += `"id":${data[i].id},"name":"${data[i].name}","category":"${data[i].category}","instructions":"${data[i].instructions}","equipment":"${data[i].equipment}","amounts":"${data[i].amounts}" <br>`;
             if (i > data.length - 1) {
-                search.innerHTML += ", <br>"
+                search.innerHTML += ", "
             }
         }
         //search.innerHTML += "]"
@@ -174,11 +174,11 @@ function filter() {
     .then(data => {
         let ordinary = document.getElementById('response');
         ordinary.innerHTML = ""
-        ordinary.innerHTML += "Filtered category workouts: <br>"
+        ordinary.innerHTML += "<b> Filtered category workouts: </b> <br>"
         for(let i = 0; i < data.length; i++){
-            ordinary.innerHTML += `{"id":${data[i].id},"name":"${data[i].name}"},"category":"${data[i].category}","instructions":"${data[i].instructions}" <br>`;
+            ordinary.innerHTML += `{"id":${data[i].id},"name":"${data[i].name}"},"category":"${data[i].category}","instructions":"${data[i].instructions}","equipment":"${data[i].equipment}","amounts":"${data[i].amounts}" <br>`;
             if (i > data.length - 1) {
-                ordinary.innerHTML += ", <br>"
+                ordinary.innerHTML += ", "
             }
         }
         //ordinary.innerHTML += "]"
@@ -195,11 +195,11 @@ function filter_chest() {
     .then(data => {
         let chest = document.getElementById('response');
         chest.innerHTML = ""
-        chest.innerHTML += "Filtered chest workouts: <br>"
+        chest.innerHTML += "<b>Filtered chest workouts:</b> <br>"
         for(let i = 0; i < data.length; i++){
-            chest.innerHTML += `{"id":${data[i].id},"name":"${data[i].name}"},"category":"${data[i].category}","instructions":"${data[i].instructions}" <br>`;
+            chest.innerHTML += `{"id":${data[i].id},"name":"${data[i].name}"},"category":"${data[i].category}","instructions":"${data[i].instructions}","equipment":"${data[i].equipment}","amounts":"${data[i].amounts}" <br>`;
             if (i > data.length - 1) {
-                chest.innerHTML += ", <br>"
+                chest.innerHTML += ", "
             }
         }
         //chest.innerHTML += "]"
@@ -215,11 +215,11 @@ function filter_bicep() {
     .then(data => {
         let bicep = document.getElementById('response');
         bicep.innerHTML = ""
-        bicep.innerHTML += "Filtered bicep workouts: <br>"
+        bicep.innerHTML += "<b>Filtered bicep workouts:</b> <br>"
         for(let i = 0; i < data.length; i++){
-            bicep.innerHTML += `{"id":${data[i].id},"name":"${data[i].name}"},"category":"${data[i].category}","instructions":"${data[i].instructions}" <br>`;
+            bicep.innerHTML += `{"id":${data[i].id},"name":"${data[i].name}"},"category":"${data[i].category}","instructions":"${data[i].instructions}","equipment":"${data[i].equipment}","amounts":"${data[i].amounts}" <br>`;
             if (i > data.length - 1) {
-                bicep.innerHTML += ", <br>"
+                bicep.innerHTML += ", "
             }
         }
         //bicep.innerHTML += "]"
@@ -237,9 +237,9 @@ function filter_tricep() {
         tricep.innerHTML = ""
         tricep.innerHTML += "Filtered tricep workouts: <br>"
         for(let i = 0; i < data.length; i++){
-            tricep.innerHTML += `{"id":${data[i].id},"name":"${data[i].name}"},"category":"${data[i].category}","instructions":"${data[i].instructions}" <br>`;
+            tricep.innerHTML += `{"id":${data[i].id},"name":"${data[i].name}"},"category":"${data[i].category}","instructions":"${data[i].instructions}","equipment":"${data[i].equipment}","amounts":"${data[i].amounts}" <br>`;
             if (i > data.length - 1) {
-                tricep.innerHTML += ", <br>"
+                tricep.innerHTML += ", "
             }
         }
         //tricep.innerHTML += "]"
@@ -255,11 +255,11 @@ function filter_shoulder() {
     .then(data => {
         let tricep = document.getElementById('response');
         tricep.innerHTML = ""
-        tricep.innerHTML += "Filtered shoulder workouts: <br>"
+        tricep.innerHTML += "<b>Filtered shoulder workouts:</b> <br>"
         for(let i = 0; i < data.length; i++){
-            tricep.innerHTML += `{"id":${data[i].id},"name":"${data[i].name}"},"category":"${data[i].category}","instructions":"${data[i].instructions}" <br>`;
+            tricep.innerHTML += `{"id":${data[i].id},"name":"${data[i].name}"},"category":"${data[i].category}","instructions":"${data[i].instructions}","equipment":"${data[i].equipment}","amounts":"${data[i].amounts}" <br>`;
             if (i > data.length - 1) {
-                tricep.innerHTML += ", <br>"
+                tricep.innerHTML += ", "
             }
         }
         //tricep.innerHTML += "]"
@@ -275,11 +275,11 @@ function filter_back() {
     .then(data => {
         let tricep = document.getElementById('response');
         tricep.innerHTML = ""
-        tricep.innerHTML += "Filtered tricep workouts: <br>"
+        tricep.innerHTML += "<b>Filtered tricep workouts:</b> <br>"
         for(let i = 0; i < data.length; i++){
-            tricep.innerHTML += `{"id":${data[i].id},"name":"${data[i].name}"},"category":"${data[i].category}","instructions":"${data[i].instructions}" <br>`;
+            tricep.innerHTML += `{"id":${data[i].id},"name":"${data[i].name}"},"category":"${data[i].category}","instructions":"${data[i].instructions}","equipment":"${data[i].equipment}","amounts":"${data[i].amounts}" <br>`;
             if (i > data.length - 1) {
-                tricep.innerHTML += ", <br>"
+                tricep.innerHTML += ", "
             }
         }
         //tricep.innerHTML += "]"
@@ -295,11 +295,11 @@ function filter_lat() {
     .then(data => {
         let tricep = document.getElementById('response');
         tricep.innerHTML = ""
-        tricep.innerHTML += "Filtered lat workouts: <br>"
+        tricep.innerHTML += "<b>Filtered lat workouts:</b> <br>"
         for(let i = 0; i < data.length; i++){
-            tricep.innerHTML += `{"id":${data[i].id},"name":"${data[i].name}"},"category":"${data[i].category}","instructions":"${data[i].instructions}" <br>`;
+            tricep.innerHTML += `{"id":${data[i].id},"name":"${data[i].name}"},"category":"${data[i].category}","instructions":"${data[i].instructions}","equipment":"${data[i].equipment}","amounts":"${data[i].amounts}" <br>`;
             if (i > data.length - 1) {
-                tricep.innerHTML += ", <br>"
+                tricep.innerHTML += ", "
             }
         }
         //tricep.innerHTML += "]"
@@ -315,11 +315,11 @@ function filter_leg() {
     .then(data => {
         let tricep = document.getElementById('response');
         tricep.innerHTML = ""
-        tricep.innerHTML += "Filtered leg workouts: <br>"
+        tricep.innerHTML += "<b>Filtered leg workouts:</b> <br>"
         for(let i = 0; i < data.length; i++){
-            tricep.innerHTML += `{"id":${data[i].id},"name":"${data[i].name}"},"category":"${data[i].category}","instructions":"${data[i].instructions}" <br>`;
+            tricep.innerHTML += `{"id":${data[i].id},"name":"${data[i].name}"},"category":"${data[i].category}","instructions":"${data[i].instructions}","equipment":"${data[i].equipment}","amounts":"${data[i].amounts}" <br>`;
             if (i > data.length - 1) {
-                tricep.innerHTML += ", <br>"
+                tricep.innerHTML += ", "
             }
         }
         //tricep.innerHTML += "]"
@@ -335,11 +335,11 @@ function filter_cardio() {
     .then(data => {
         let tricep = document.getElementById('response');
         tricep.innerHTML = ""
-        tricep.innerHTML += "Filtered cardio workouts: <br>"
+        tricep.innerHTML += "<b>Filtered cardio workouts:</b> <br>"
         for(let i = 0; i < data.length; i++){
-            tricep.innerHTML += `{"id":${data[i].id},"name":"${data[i].name}"},"category":"${data[i].category}","instructions":"${data[i].instructions}" <br>`;
+            tricep.innerHTML += `{"id":${data[i].id},"name":"${data[i].name}"},"category":"${data[i].category}","instructions":"${data[i].instructions}","equipment":"${data[i].equipment}","amounts":"${data[i].amounts}" <br>`;
             if (i > data.length - 1) {
-                tricep.innerHTML += ", <br>"
+                tricep.innerHTML += ", "
             }
         }
         //tricep.innerHTML += "]"
@@ -382,11 +382,11 @@ function getSessions() {
     .then((data) => {
         let sessions = document.getElementById('response');
         sessions.innerHTML = ""
-        sessions.innerHTML += "List of Sessions: <br>"
+        sessions.innerHTML += "<b>List of Sessions: </b><br>"
         for(let i = 0; i < data.length; i++){
             sessions.innerHTML += `"id":${data[i].id},"name":"${data[i].name}","time":"${data[i].time}" <br>`;
             if (i > data.length - 1) {
-                sessions.innerHTML += ", <br>"
+                sessions.innerHTML += ", "
             }
         }
         console.log(data)

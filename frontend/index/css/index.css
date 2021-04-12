@@ -46,10 +46,9 @@ body {
     vertical-align: center;
 }
 
-#response {
+/* #response {
     border-style: inset;
     height: 65vh;
-    width: 100%;
     margin-bottom: 1%;
     overflow-y: auto;
     word-wrap: break-word;
@@ -58,7 +57,97 @@ body {
     margin: auto;
     margin-bottom: 25px;
     background-color: white;
- }
+ } */
+
+/* Extra small devices (phones, 600px and down) */
+@media only screen and (max-width: 600px) {
+    #response {
+        border-style: inset;
+        height: 65vh;
+        width: 300px;
+        margin-bottom: 1%;
+        overflow-y: auto;
+        word-wrap: break-word;
+        padding: 5px;
+        border-radius: 5px;
+        margin: auto;
+        margin-bottom: 25px;
+        background-color: white;
+     }
+
+}
+
+/* Small devices (portrait tablets and large phones, 600px and up) */
+@media only screen and (min-width: 600px) {
+    #response {
+        border-style: inset;
+        height: 65vh;
+        width: 300px;
+        margin-bottom: 1%;
+        overflow-y: auto;
+        word-wrap: break-word;
+        padding: 5px;
+        border-radius: 5px;
+        margin: auto;
+        margin-bottom: 25px;
+        background-color: white;
+     }
+
+}
+
+/* Medium devices (landscape tablets, 768px and up) */
+@media only screen and (min-width: 768px) {
+    #response {
+        border-style: inset;
+        height: 65vh;
+        width: 500px;
+        margin-bottom: 1%;
+        overflow-y: auto;
+        word-wrap: break-word;
+        padding: 5px;
+        border-radius: 5px;
+        margin: auto;
+        margin-bottom: 25px;
+        background-color: white;
+     }
+
+}
+
+/* Large devices (laptops/desktops, 992px and up) */
+@media only screen and (min-width: 992px) {
+    #response {
+        border-style: inset;
+        height: 65vh;
+        width: 700px;
+        margin-bottom: 1%;
+        overflow-y: auto;
+        word-wrap: break-word;
+        padding: 5px;
+        border-radius: 5px;
+        margin: auto;
+        margin-bottom: 25px;
+        background-color: white;
+     }
+
+}
+
+/* Extra large devices (large laptops and desktops, 1200px and up) */
+@media only screen and (min-width: 1200px) {
+    #response {
+        border-style: inset;
+        height: 65vh;
+        width: 800px;
+        margin-bottom: 1%;
+        overflow-y: auto;
+        word-wrap: break-word;
+        padding: 5px;
+        border-radius: 5px;
+        margin: auto;
+        margin-bottom: 25px;
+        background-color: white;
+     }
+
+}
 
  #input-search{
      width:30px;
