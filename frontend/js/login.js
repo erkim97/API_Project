@@ -3,7 +3,7 @@ function login() {
     let username = document.getElementById("usernameInput").value.trim();
     let password = document.getElementById("passwordInput").value.trim();
 
-    let url = `https://comp4537-termproj.herokuapp.com/api/v1/login`;
+    let url = `https://g11-workout-server.herokuapp.com/api/v1/login`;
     const userInfo = {
         username: username,
         password: password
