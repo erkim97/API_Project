@@ -20,7 +20,7 @@ function login() {
         if (data.msg == "User logged in successfully") {
             window.location = `https://comp4537-termproj.herokuapp.com/index.html`;
         } else if (data.msg == "admin") {
-            window.location = `https://comp4537-termproj.herokuapp.com/4537/termproj/api/v1/admin.html`;
+            window.location = `https://comp4537-termproj.herokuapp.com/frontend/4537/termproj/api/v1/admin.html`;
         } else {
             alert(data[0].error);
         }
