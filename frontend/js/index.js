@@ -1,9 +1,14 @@
 // get all workouts, workouts = () => {}
 function workouts() {
-    let url = `https://g11-workout-server.herokuapp.com/api/v1/workouts`
+    let apikey = document.getElementById('apikey').value.trim();
+    let url = `https://g11-workout-server.herokuapp.com/api/v1/workouts/?apikey=${apikey}`;
     fetch(url)
     .then((res) => res.json())
     .then((data) => {
+        if (data.msg && !authorized(data.msg)) {
+            document.getElementById('response').innerHTML = data.msg;
+            return;
+        };
         let workouts = document.getElementById('response');
         workouts.innerHTML = ""
         workouts.innerHTML += "<b>List of Workouts: </b> <br>"
@@ -24,6 +29,7 @@ function add() {
     let instructions = document.getElementById("input-add-exercise-instructions").value.trim()
     let equipment = document.getElementById("input-add-exercise-equipment").value.trim()
     let amounts = document.getElementById("input-add-exercise-amounts").value.trim()
+    let apikey = document.getElementById('apikey').value.trim();
     data = {
         name: name, 
         cat: category, 
@@ -32,7 +38,7 @@ function add() {
         amounts: amounts 
     }
     console.log(data)
-    let url = `https://g11-workout-server.herokuapp.com/api/v1/add_exercise`
+    let url = `https://g11-workout-server.herokuapp.com/api/v1/add_exercise/?apikey=${apikey}`
     fetch(url, {
         method: 'POST',
         headers: {'Content-Type': 'application/json'},
@@ -40,6 +46,10 @@ function add() {
     })
     .then((res) => res.json())
     .then((data) => {
+        if (data.msg && !authorized(data.msg)) {
+            document.getElementById('response').innerHTML = data.msg;
+            return;
+        };
         alert("Added New Workout");
         let exercise = document.getElementById('response');
         exercise.innerHTML = `"name":"${name}","category":"${category}","instructions":"${instructions}","equipment":"${equipment}","amounts":"${amounts}"`
@@ -48,11 +58,16 @@ function add() {
 
 //get workout by random
 function search_random() {
-    let url = `https://g11-workout-server.herokuapp.com/api/v1/random`
+    let apikey = document.getElementById('apikey').value.trim();
+    let url = `https://g11-workout-server.herokuapp.com/api/v1/random/?apikey=${apikey}`
     console.log(url)
     fetch(url)
     .then((res) => res.json())
     .then((data) => {
+        if (data.msg && !authorized(data.msg)) {
+            document.getElementById('response').innerHTML = data.msg;
+            return;
+        };
         let random = document.getElementById('response');
         random.innerHTML = ""
         random.innerHTML += "<b>Random Workout: </b> <br>"
@@ -69,9 +84,10 @@ function search_random() {
 
 // search by first letter 
 function search_fletter() {
+    let apikey = document.getElementById('apikey').value.trim();
     let fletter = document.getElementById("input-search").value.trim()
     console.log(fletter)
-    let url = `https://g11-workout-server.herokuapp.com/api/v1/search_fletter/${fletter}`
+    let url = `https://g11-workout-server.herokuapp.com/api/v1/search_fletter/${fletter}/?apikey=${apikey}`
     tempdata = {
         fletter: fletter
     }
@@ -81,6 +97,10 @@ function search_fletter() {
     })
     .then((res) => res.json())
     .then((data) => {
+        if (data.msg && !authorized(data.msg)) {
+            document.getElementById('response').innerHTML = data.msg;
+            return;
+        };
         let fletter_workouts = document.getElementById('response');
         fletter_workouts.innerHTML = ""
         fletter_workouts.innerHTML += "<b>List of workouts that start with the letter: </b> <br>"
@@ -98,12 +118,17 @@ function search_fletter() {
 
 // search workout by name
 function search_name() {
+    let apikey = document.getElementById('apikey').value.trim();
     let inputSearchName = document.getElementById("input-search").value.trim()
-    let url = `https://g11-workout-server.herokuapp.com/api/v1/search_name/${inputSearchName}`
+    let url = `https://g11-workout-server.herokuapp.com/api/v1/search_name/${inputSearchName}/?apikey=${apikey}`
     console.log(url)
     fetch(url)
     .then((res) => res.json())
     .then((data) => {
+        if (data.msg && !authorized(data.msg)) {
+            document.getElementById('response').innerHTML = data.msg;
+            return;
+        };
         let search = document.getElementById('response');
         search.innerHTML = ""
         search.innerHTML += "<b>Found workout: </b> <br>"
@@ -120,8 +145,9 @@ function search_name() {
 
 // search workout by id using post
 function search_id() {
+    let apikey = document.getElementById('apikey').value.trim();
     let inputSearchId = document.getElementById("input-search").value.trim()
-    let url = `https://g11-workout-server.herokuapp.com/api/v1/search_id/${inputSearchId}`
+    let url = `https://g11-workout-server.herokuapp.com/api/v1/search_id/${inputSearchId}/?apikey=${apikey}`
 
     console.log(url)
     tempdata = {
@@ -133,6 +159,10 @@ function search_id() {
     })
     .then((res) => res.json())
     .then((data) => {
+        if (data.msg && !authorized(data.msg)) {
+            document.getElementById('response').innerHTML = data.msg;
+            return;
+        };
         let search = document.getElementById('response');
         search.innerHTML = ""
         search.innerHTML += "<b>Found workout by id:</b> <br>"
@@ -149,13 +179,18 @@ function search_id() {
 
 //delete workout
 function remove() {
+    let apikey = document.getElementById('apikey').value.trim();
     let name = document.getElementById("input-delete-exercise").value.trim()
-    let url = `https://g11-workout-server.herokuapp.com/api/v1/delete/${name}`
+    let url = `https://g11-workout-server.herokuapp.com/api/v1/delete/${name}/?apikey=${apikey}`
     fetch(url, {
         method: 'DELETE'
     })
     .then(res => res.json())
     .then(data => {
+        if (data.msg && !authorized(data.msg)) {
+            document.getElementById('response').innerHTML = data.msg;
+            return;
+        };
         let delete_item = document.getElementById('response');
         let input = document.getElementById('input-delete-exercise').value;
         delete_item.innerHTML = input + " deleted.";
@@ -165,13 +200,18 @@ function remove() {
 
 // filters 
 function filter() {
+    let apikey = document.getElementById('apikey').value.trim();
     let filterName= document.getElementById("input-filter-name").value.trim()
     console.log(filterName)
-    let url = `https://g11-workout-server.herokuapp.com/api/v1/category/${filterName}`
+    let url = `https://g11-workout-server.herokuapp.com/api/v1/category/${filterName}/?apikey=${apikey}`
     console.log(url)
     fetch(url)
     .then(res => res.json())
     .then(data => {
+        if (data.msg && !authorized(data.msg)) {
+            document.getElementById('response').innerHTML = data.msg;
+            return;
+        };
         let ordinary = document.getElementById('response');
         ordinary.innerHTML = ""
         ordinary.innerHTML += "<b> Filtered category workouts: </b> <br>"
@@ -188,11 +228,16 @@ function filter() {
 
 
 function filter_chest() {
-    let url = `https://g11-workout-server.herokuapp.com/api/v1/category/chest`
+    let apikey = document.getElementById('apikey').value.trim();
+    let url = `https://g11-workout-server.herokuapp.com/api/v1/category/chest/?apikey=${apikey}`
     console.log(url)
     fetch(url)
     .then(res => res.json())
     .then(data => {
+        if (data.msg && !authorized(data.msg)) {
+            document.getElementById('response').innerHTML = data.msg;
+            return;
+        };
         let chest = document.getElementById('response');
         chest.innerHTML = ""
         chest.innerHTML += "<b>Filtered chest workouts:</b> <br>"
@@ -208,11 +253,16 @@ function filter_chest() {
 }
 
 function filter_bicep() {
-    let url = `https://g11-workout-server.herokuapp.com/api/v1/category/bicep`
+    let apikey = document.getElementById('apikey').value.trim();
+    let url = `https://g11-workout-server.herokuapp.com/api/v1/category/bicep/?apikey=${apikey}`
     console.log(url)
     fetch(url)
     .then(res => res.json())
     .then(data => {
+        if (data.msg && !authorized(data.msg)) {
+            document.getElementById('response').innerHTML = data.msg;
+            return;
+        };
         let bicep = document.getElementById('response');
         bicep.innerHTML = ""
         bicep.innerHTML += "<b>Filtered bicep workouts:</b> <br>"
@@ -228,11 +278,16 @@ function filter_bicep() {
 }
 
 function filter_tricep() {
-    let url = `https://g11-workout-server.herokuapp.com/api/v1/category/tricep`
+    let apikey = document.getElementById('apikey').value.trim();
+    let url = `https://g11-workout-server.herokuapp.com/api/v1/category/tricep/?apikey=${apikey}`
     console.log(url)
     fetch(url)
     .then(res => res.json())
     .then(data => {
+        if (data.msg && !authorized(data.msg)) {
+            document.getElementById('response').innerHTML = data.msg;
+            return;
+        };
         let tricep = document.getElementById('response');
         tricep.innerHTML = ""
         tricep.innerHTML += "Filtered tricep workouts: <br>"
@@ -248,11 +303,16 @@ function filter_tricep() {
 }
 
 function filter_shoulder() {
-    let url = `https://g11-workout-server.herokuapp.com/api/v1/category/shoulder`
+    let apikey = document.getElementById('apikey').value.trim();
+    let url = `https://g11-workout-server.herokuapp.com/api/v1/category/shoulder/?apikey=${apikey}`
     console.log(url)
     fetch(url)
     .then(res => res.json())
     .then(data => {
+        if (data.msg && !authorized(data.msg)) {
+            document.getElementById('response').innerHTML = data.msg;
+            return;
+        };
         let tricep = document.getElementById('response');
         tricep.innerHTML = ""
         tricep.innerHTML += "<b>Filtered shoulder workouts:</b> <br>"
@@ -268,11 +328,16 @@ function filter_shoulder() {
 }
 
 function filter_back() {
-    let url = `https://g11-workout-server.herokuapp.com/api/v1/category/back`
+    let apikey = document.getElementById('apikey').value.trim();
+    let url = `https://g11-workout-server.herokuapp.com/api/v1/category/back/?apikey=${apikey}`
     console.log(url)
     fetch(url)
     .then(res => res.json())
     .then(data => {
+        if (data.msg && !authorized(data.msg)) {
+            document.getElementById('response').innerHTML = data.msg;
+            return;
+        };
         let tricep = document.getElementById('response');
         tricep.innerHTML = ""
         tricep.innerHTML += "<b>Filtered tricep workouts:</b> <br>"
@@ -288,11 +353,16 @@ function filter_back() {
 }
 
 function filter_lat() {
-    let url = `https://g11-workout-server.herokuapp.com/api/v1/category/lat`
+    let apikey = document.getElementById('apikey').value.trim();
+    let url = `https://g11-workout-server.herokuapp.com/api/v1/category/lat/?apikey=${apikey}`
     console.log(url)
     fetch(url)
     .then(res => res.json())
     .then(data => {
+        if (data.msg && !authorized(data.msg)) {
+            document.getElementById('response').innerHTML = data.msg;
+            return;
+        };
         let tricep = document.getElementById('response');
         tricep.innerHTML = ""
         tricep.innerHTML += "<b>Filtered lat workouts:</b> <br>"
@@ -308,11 +378,16 @@ function filter_lat() {
 }
 
 function filter_leg() {
-    let url = `https://g11-workout-server.herokuapp.com/api/v1/category/leg`
+    let apikey = document.getElementById('apikey').value.trim();
+    let url = `https://g11-workout-server.herokuapp.com/api/v1/category/leg/?apikey=${apikey}`
     console.log(url)
     fetch(url)
     .then(res => res.json())
     .then(data => {
+        if (data.msg && !authorized(data.msg)) {
+            document.getElementById('response').innerHTML = data.msg;
+            return;
+        };
         let tricep = document.getElementById('response');
         tricep.innerHTML = ""
         tricep.innerHTML += "<b>Filtered leg workouts:</b> <br>"
@@ -328,11 +403,16 @@ function filter_leg() {
 }
 
 function filter_cardio() {
-    let url = `https://g11-workout-server.herokuapp.com/api/v1/category/cardio`
+    let apikey = document.getElementById('apikey').value.trim();
+    let url = `https://g11-workout-server.herokuapp.com/api/v1/category/cardio/?apikey=${apikey}`
     console.log(url)
     fetch(url)
     .then(res => res.json())
     .then(data => {
+        if (data.msg && !authorized(data.msg)) {
+            document.getElementById('response').innerHTML = data.msg;
+            return;
+        };
         let tricep = document.getElementById('response');
         tricep.innerHTML = ""
         tricep.innerHTML += "<b>Filtered cardio workouts:</b> <br>"
@@ -350,9 +430,10 @@ function filter_cardio() {
 
 //change/update workout name
 function update() {
+    let apikey = document.getElementById('apikey').value.trim();
     let oldName = document.getElementById("input-old-name").value.trim()
     let newName = document.getElementById("input-new-name").value.trim()
-    let url = `https://g11-workout-server.herokuapp.com/api/v1/update`
+    let url = `https://g11-workout-server.herokuapp.com/api/v1/update/?apikey=${apikey}`
 
     data = {
         oldName: oldName,
@@ -367,6 +448,10 @@ function update() {
     })
     .then((res) => res.json())
     .then((data) => {
+        if (data.msg && !authorized(data.msg)) {
+            document.getElementById('response').innerHTML = data.msg;
+            return;
+        };
         let update = document.getElementById('response');
         let oldname = document.getElementById('input-old-name').value;
         let newname = document.getElementById('input-new-name').value;
@@ -376,10 +461,15 @@ function update() {
 
 // get all sessions
 function getSessions() {
-    let url = `https://g11-workout-server.herokuapp.com/api/v1/sessions`
+    let apikey = document.getElementById('apikey').value.trim();
+    let url = `https://g11-workout-server.herokuapp.com/api/v1/sessions/?apikey=${apikey}`
     fetch(url)
     .then((res) => res.json())
     .then((data) => {
+        if (data.msg && !authorized(data.msg)) {
+            document.getElementById('response').innerHTML = data.msg;
+            return;
+        };
         let sessions = document.getElementById('response');
         sessions.innerHTML = ""
         sessions.innerHTML += "<b>List of Sessions: </b><br>"
@@ -396,6 +486,7 @@ function getSessions() {
 
 // add session function
 function addSession() {
+    let apikey = document.getElementById('apikey').value.trim();
     let name = document.getElementById("input-add-session-name").value.trim()
     let time = document.getElementById("input-add-session-time").value.trim()
 
@@ -404,7 +495,7 @@ function addSession() {
         time: time, 
     }
     console.log(data)
-    let url = `https://g11-workout-server.herokuapp.com/api/v1/add_session`
+    let url = `https://g11-workout-server.herokuapp.com/api/v1/add_session/?apikey=${apikey}`
     fetch(url, {
         method: 'POST',
         headers: {'Content-Type': 'application/json'},
@@ -412,6 +503,10 @@ function addSession() {
     })
     .then((res) => res.json())
     .then((data) => {
+        if (data.msg && !authorized(data.msg)) {
+            document.getElementById('response').innerHTML = data.msg;
+            return;
+        };
         alert("Added Session");
         let session = document.getElementById('response');
         session.innerHTML = `"name":"${name}","time":"${time}"`
@@ -421,13 +516,18 @@ function addSession() {
 
 //delete session function
 function deleteSession() {
+    let apikey = document.getElementById('apikey').value.trim();
     let name = document.getElementById("input-delete-session").value.trim()
-    let url = `https://g11-workout-server.herokuapp.com/api/v1/delete_session/${name}`
+    let url = `https://g11-workout-server.herokuapp.com/api/v1/delete_session/${name}/?apikey=${apikey}`
     fetch(url, {
         method: 'DELETE'
     })
     .then(res => res.json())
     .then(data => {
+        if (data.msg && !authorized(data.msg)) {
+            document.getElementById('response').innerHTML = data.msg;
+            return;
+        };
         let delete_sesh = document.getElementById('response');
         let input = document.getElementById('input-delete-session').value;
         delete_sesh.innerHTML = input + " deleted.";
@@ -437,9 +537,10 @@ function deleteSession() {
 
 //update session function
 function updateSession() {
+    let apikey = document.getElementById('apikey').value.trim();
     let name = document.getElementById("input-sesh-name").value.trim()
     let time = document.getElementById("input-new-time").value.trim()
-    let url = `https://g11-workout-server.herokuapp.com/api/v1/update_session`
+    let url = `https://g11-workout-server.herokuapp.com/api/v1/update_session/?apikey=${apikey}`
 
     data = {
         name: name,
@@ -454,6 +555,10 @@ function updateSession() {
     })
     .then((res) => res.json())
     .then((data) => {
+        if (data.msg && !authorized(data.msg)) {
+            document.getElementById('response').innerHTML = data.msg;
+            return;
+        };
         let updateSesh = document.getElementById('response');
         let seshname = document.getElementById('input-sesh-name').value;
         let newtime = document.getElementById('input-new-time').value;
@@ -461,6 +566,23 @@ function updateSession() {
     }).catch(e => console.log(e))
 }
 
+// Log out function
 function logout() {
+    let url = `https://g11-workout-server.herokuapp.com/api/v1/logout`
+    fetch(url, {
+        method: 'DELETE'
+    })
+    .then(res => res.json())
+    .then(data => {
+        window.location = `https://comp4537-termproj.herokuapp.com/login/login.html`;
+    }).catch(e => console.log(e))
+}
 
+// Check if API key is authorized
+function authorized(msg) {
+    if (msg == 'Unauthorized request; incorrect apikey.') {
+        return false;
+    } else {
+        return true;
+    }
 }
