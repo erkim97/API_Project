@@ -20,6 +20,6 @@ function register() {
         if (data.apikey) {
             alert(`Copy and save your api key: ${data.apikey}`);
         }
-        window.location = `https://comp4537-termproj.herokuapp.com/index.html`;
+        window.location = `https://comp4537-termproj.herokuapp.com/frontend/index.html`;
     }).catch(e => console.log(e))
 }
