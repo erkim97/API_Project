@@ -574,7 +574,7 @@ function logout() {
     })
     .then(res => res.json())
     .then(data => {
-        window.location = `https://comp4537-termproj.herokuapp.com/login/login.html`;
+        window.location = `https://comp4537-termproj.herokuapp.com/frontend/login.html`;
     }).catch(e => console.log(e))
 }
 
