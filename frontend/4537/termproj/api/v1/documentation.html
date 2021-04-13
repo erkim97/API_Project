@@ -2,7 +2,7 @@
 <html>
 <head>
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>G11-TermProject</title>
+  <title>Workout Recorder</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
   <meta charset="UTF-8" />
@@ -692,11 +692,33 @@
             defs["body"] = {
   "type" : "object",
   "properties" : {
+    "name" : {
+      "type" : "string"
+    },
+    "time" : {
+      "type" : "number"
+    }
+  }
+};
+            defs["body_1"] = {
+  "type" : "object",
+  "properties" : {
+    "name" : {
+      "type" : "string"
+    },
+    "time" : {
+      "type" : "integer"
+    }
+  }
+};
+            defs["body_2"] = {
+  "type" : "object",
+  "properties" : {
     "instructions" : {
       "type" : "string"
     },
     "amounts" : {
-      "type" : "string"
+      "type" : "integer"
     },
     "cat" : {
       "type" : "string"
@@ -709,17 +731,25 @@
     }
   }
 };
+            defs["body_3"] = {
+  "type" : "object",
+  "properties" : {
+    "newName" : {
+      "type" : "string"
+    },
+    "oldName" : {
+      "type" : "string"
+    }
+  }
+};
             defs["inline_response_200"] = {
   "type" : "object",
   "properties" : {
-    "id" : {
-      "type" : "string"
-    },
     "instructions" : {
       "type" : "string"
     },
     "amounts" : {
-      "type" : "string"
+      "type" : "integer"
     },
     "cat" : {
       "type" : "string"
@@ -735,8 +765,14 @@
             defs["inline_response_200_1"] = {
   "type" : "object",
   "properties" : {
-    "msg" : {
+    "method" : {
       "type" : "string"
+    },
+    "endpoint" : {
+      "type" : "string"
+    },
+    "requests" : {
+      "type" : "number"
     }
   }
 };
@@ -760,6 +796,42 @@
                     <li data-group="Default" data-name="apiV1AddExercisePost" class="">
                       <a href="#api-Default-apiV1AddExercisePost">apiV1AddExercisePost</a>
                     </li>
+                    <li data-group="Default" data-name="apiV1AddSessionPost" class="">
+                      <a href="#api-Default-apiV1AddSessionPost">apiV1AddSessionPost</a>
+                    </li>
+                    <li data-group="Default" data-name="apiV1AdminGet" class="">
+                      <a href="#api-Default-apiV1AdminGet">apiV1AdminGet</a>
+                    </li>
+                    <li data-group="Default" data-name="apiV1CategoryTypeGet" class="">
+                      <a href="#api-Default-apiV1CategoryTypeGet">apiV1CategoryTypeGet</a>
+                    </li>
+                    <li data-group="Default" data-name="apiV1DeleteNameDelete" class="">
+                      <a href="#api-Default-apiV1DeleteNameDelete">apiV1DeleteNameDelete</a>
+                    </li>
+                    <li data-group="Default" data-name="apiV1DeleteSessionNameDelete" class="">
+                      <a href="#api-Default-apiV1DeleteSessionNameDelete">apiV1DeleteSessionNameDelete</a>
+                    </li>
+                    <li data-group="Default" data-name="apiV1RandomGet" class="">
+                      <a href="#api-Default-apiV1RandomGet">apiV1RandomGet</a>
+                    </li>
+                    <li data-group="Default" data-name="apiV1SearchFletterLetterPost" class="">
+                      <a href="#api-Default-apiV1SearchFletterLetterPost">apiV1SearchFletterLetterPost</a>
+                    </li>
+                    <li data-group="Default" data-name="apiV1SearchIdIdPost" class="">
+                      <a href="#api-Default-apiV1SearchIdIdPost">apiV1SearchIdIdPost</a>
+                    </li>
+                    <li data-group="Default" data-name="apiV1SearchNameNameGet" class="">
+                      <a href="#api-Default-apiV1SearchNameNameGet">apiV1SearchNameNameGet</a>
+                    </li>
+                    <li data-group="Default" data-name="apiV1SessionsGet" class="">
+                      <a href="#api-Default-apiV1SessionsGet">apiV1SessionsGet</a>
+                    </li>
+                    <li data-group="Default" data-name="apiV1UpdatePut" class="">
+                      <a href="#api-Default-apiV1UpdatePut">apiV1UpdatePut</a>
+                    </li>
+                    <li data-group="Default" data-name="apiV1UpdateSessionPut" class="">
+                      <a href="#api-Default-apiV1UpdateSessionPut">apiV1UpdateSessionPut</a>
+                    </li>
                     <li data-group="Default" data-name="apiV1WorkoutsGet" class="">
                       <a href="#api-Default-apiV1WorkoutsGet">apiV1WorkoutsGet</a>
                     </li>
@@ -769,7 +841,7 @@
       <div id="content">
         <div id="project">
           <div class="pull-left">
-            <h1>G11-TermProject</h1>
+            <h1>Workout Recorder</h1>
           </div>
           <div class="clearfix"></div>
         </div>
@@ -778,7 +850,7 @@
             <h2 id="welcome-to-apidoc">API and SDK Documentation</h2>
               <div class="app-desc">Version: 0.1</div>
             <hr>
-            <div>Workout tracker app</div>
+            <div>Record workout exercises and workout sessions.</div>
           </div>
         </div>
         <div id="sections">
@@ -796,7 +868,7 @@
                         <p class="marked">Create a new workout</p>
                         <p></p>
                         <br />
-                        <pre class="prettyprint language-html prettyprinted" data-type="post"><code><span class="pln">/api/v1/add_exercise</span></code></pre>
+                        <pre class="prettyprint language-html prettyprinted" data-type="post"><code><span class="pln">/api/v1/add_exercise/</span></code></pre>
                         <p>
                           <h3>Usage and SDK Samples</h3>
                         </p>
@@ -819,7 +891,7 @@
                            <pre class="prettyprint"><code class="language-bsh">curl -X POST\
 -H "Accept: application/json; charset=utf-8"\
 -H "Content-Type: application/json"\
-"https://g11-workout-server.herokuapp.com/api/v1/add_exercise"</code></pre>
+"https://g11-workout-server.herokuapp.com/api/v1/add_exercise/?apikey="</code></pre>
                           </div>
                           <div class="tab-pane" id="examples-Default-apiV1AddExercisePost-0-java">
                             <pre class="prettyprint"><code class="language-java">import io.swagger.client.*;
@@ -835,11 +907,12 @@ public class DefaultApiExample {
     public static void main(String[] args) {
         
         DefaultApi apiInstance = new DefaultApi();
-        Body body = {
-  "value" : "{\n  \"name\": \"sit-up\",\n  \"cat\": \"core\",\n  \"instructions\": \"lie down and then sit up\",\n  \"equipment\": \"none\",\n  \"amounts\": \"0\"\n}"
-}; // Body | 
+        Body_2 body = {
+  "value" : "{\r\n    \"name\": \"deadlift\",\r\n    \"cat\": \"back\",\r\n    \"instructions\": \"pick up and drop barbell\",\r\n    \"equipment\": \"barbell\",\r\n    \"amounts\": 1\r\n}\r\n"
+}; // Body_2 | 
+        String apikey = apikey_example; // String | 
         try {
-            inline_response_200_1 result = apiInstance.apiV1AddExercisePost(body);
+            'String' result = apiInstance.apiV1AddExercisePost(body, apikey);
             System.out.println(result);
         } catch (ApiException e) {
             System.err.println("Exception when calling DefaultApi#apiV1AddExercisePost");
@@ -856,11 +929,12 @@ public class DefaultApiExample {
 
     public static void main(String[] args) {
         DefaultApi apiInstance = new DefaultApi();
-        Body body = {
-  "value" : "{\n  \"name\": \"sit-up\",\n  \"cat\": \"core\",\n  \"instructions\": \"lie down and then sit up\",\n  \"equipment\": \"none\",\n  \"amounts\": \"0\"\n}"
-}; // Body | 
+        Body_2 body = {
+  "value" : "{\r\n    \"name\": \"deadlift\",\r\n    \"cat\": \"back\",\r\n    \"instructions\": \"pick up and drop barbell\",\r\n    \"equipment\": \"barbell\",\r\n    \"amounts\": 1\r\n}\r\n"
+}; // Body_2 | 
+        String apikey = apikey_example; // String | 
         try {
-            inline_response_200_1 result = apiInstance.apiV1AddExercisePost(body);
+            'String' result = apiInstance.apiV1AddExercisePost(body, apikey);
             System.out.println(result);
         } catch (ApiException e) {
             System.err.println("Exception when calling DefaultApi#apiV1AddExercisePost");
@@ -874,14 +948,16 @@ public class DefaultApiExample {
   <pre class="prettyprint language-json prettyprinted" data-type="json"><code>Coming Soon!</code></pre>
   </div> -->
                             <div class="tab-pane" id="examples-Default-apiV1AddExercisePost-0-objc">
-                              <pre class="prettyprint"><code class="language-cpp">Body *body = {
-  "value" : "{\n  \"name\": \"sit-up\",\n  \"cat\": \"core\",\n  \"instructions\": \"lie down and then sit up\",\n  \"equipment\": \"none\",\n  \"amounts\": \"0\"\n}"
+                              <pre class="prettyprint"><code class="language-cpp">Body_2 *body = {
+  "value" : "{\r\n    \"name\": \"deadlift\",\r\n    \"cat\": \"back\",\r\n    \"instructions\": \"pick up and drop barbell\",\r\n    \"equipment\": \"barbell\",\r\n    \"amounts\": 1\r\n}\r\n"
 }; //  (optional)
+String *apikey = apikey_example; //  (optional)
 
 DefaultApi *apiInstance = [[DefaultApi alloc] init];
 
 [apiInstance apiV1AddExercisePostWith:body
-              completionHandler: ^(inline_response_200_1 output, NSError* error) {
+    apikey:apikey
+              completionHandler: ^('String' output, NSError* error) {
                             if (output) {
                                 NSLog(@"%@", output);
                             }
@@ -893,13 +969,14 @@ DefaultApi *apiInstance = [[DefaultApi alloc] init];
                             </div>
 
                             <div class="tab-pane" id="examples-Default-apiV1AddExercisePost-0-javascript">
-                              <pre class="prettyprint"><code class="language-js">var G11TermProject = require('g11_term_project');
+                              <pre class="prettyprint"><code class="language-js">var WorkoutRecorder = require('workout_recorder');
 
-var api = new G11TermProject.DefaultApi()
+var api = new WorkoutRecorder.DefaultApi()
 var opts = { 
   'body': {
-  "value" : "{\n  \"name\": \"sit-up\",\n  \"cat\": \"core\",\n  \"instructions\": \"lie down and then sit up\",\n  \"equipment\": \"none\",\n  \"amounts\": \"0\"\n}"
-} // {{Body}} 
+  "value" : "{\r\n    \"name\": \"deadlift\",\r\n    \"cat\": \"back\",\r\n    \"instructions\": \"pick up and drop barbell\",\r\n    \"equipment\": \"barbell\",\r\n    \"amounts\": 1\r\n}\r\n"
+} // {{Body_2}} 
+  'apikey': apikey_example // {{String}} 
 };
 var callback = function(error, data, response) {
   if (error) {
@@ -930,11 +1007,12 @@ namespace Example
         {
 
             var apiInstance = new DefaultApi();
-            var body = new Body(); // Body |  (optional) 
+            var body = new Body_2(); // Body_2 |  (optional) 
+            var apikey = apikey_example;  // String |  (optional) 
 
             try
             {
-                inline_response_200_1 result = apiInstance.apiV1AddExercisePost(body);
+                'String' result = apiInstance.apiV1AddExercisePost(body, apikey);
                 Debug.WriteLine(result);
             }
             catch (Exception e)
@@ -953,11 +1031,12 @@ require_once(__DIR__ . '/vendor/autoload.php');
 
 $api_instance = new Swagger\Client\ApiDefaultApi();
 $body = {
-  "value" : "{\n  \"name\": \"sit-up\",\n  \"cat\": \"core\",\n  \"instructions\": \"lie down and then sit up\",\n  \"equipment\": \"none\",\n  \"amounts\": \"0\"\n}"
-}; // Body | 
+  "value" : "{\r\n    \"name\": \"deadlift\",\r\n    \"cat\": \"back\",\r\n    \"instructions\": \"pick up and drop barbell\",\r\n    \"equipment\": \"barbell\",\r\n    \"amounts\": 1\r\n}\r\n"
+}; // Body_2 | 
+$apikey = apikey_example; // String | 
 
 try {
-    $result = $api_instance->apiV1AddExercisePost($body);
+    $result = $api_instance->apiV1AddExercisePost($body, $apikey);
     print_r($result);
 } catch (Exception $e) {
     echo 'Exception when calling DefaultApi->apiV1AddExercisePost: ', $e->getMessage(), PHP_EOL;
@@ -971,10 +1050,11 @@ use WWW::SwaggerClient::Configuration;
 use WWW::SwaggerClient::DefaultApi;
 
 my $api_instance = WWW::SwaggerClient::DefaultApi->new();
-my $body = WWW::SwaggerClient::Object::Body->new(); # Body | 
+my $body = WWW::SwaggerClient::Object::Body_2->new(); # Body_2 | 
+my $apikey = apikey_example; # String | 
 
 eval { 
-    my $result = $api_instance->apiV1AddExercisePost(body => $body);
+    my $result = $api_instance->apiV1AddExercisePost(body => $body, apikey => $apikey);
     print Dumper($result);
 };
 if ($@) {
@@ -992,11 +1072,12 @@ from pprint import pprint
 # create an instance of the API class
 api_instance = swagger_client.DefaultApi()
 body = {
-  "value" : "{\n  \"name\": \"sit-up\",\n  \"cat\": \"core\",\n  \"instructions\": \"lie down and then sit up\",\n  \"equipment\": \"none\",\n  \"amounts\": \"0\"\n}"
-} # Body |  (optional)
+  "value" : "{\r\n    \"name\": \"deadlift\",\r\n    \"cat\": \"back\",\r\n    \"instructions\": \"pick up and drop barbell\",\r\n    \"equipment\": \"barbell\",\r\n    \"amounts\": 1\r\n}\r\n"
+} # Body_2 |  (optional)
+apikey = apikey_example # String |  (optional)
 
 try: 
-    api_response = api_instance.api_v1_add_exercise_post(body=body)
+    api_response = api_instance.api_v1_add_exercise_post(body=body, apikey=apikey)
     pprint(api_response)
 except ApiException as e:
     print("Exception when calling DefaultApi->apiV1AddExercisePost: %s\n" % e)</code></pre>
@@ -1023,11 +1104,11 @@ except ApiException as e:
   "content" : {
     "application/json" : {
       "schema" : {
-        "$ref" : "#/components/schemas/body"
+        "$ref" : "#/components/schemas/body_2"
       },
       "examples" : {
         "0" : {
-          "value" : "{\n  \"name\": \"sit-up\",\n  \"cat\": \"core\",\n  \"instructions\": \"lie down and then sit up\",\n  \"equipment\": \"none\",\n  \"amounts\": \"0\"\n}"
+          "value" : "{\r\n    \"name\": \"deadlift\",\r\n    \"cat\": \"back\",\r\n    \"instructions\": \"pick up and drop barbell\",\r\n    \"equipment\": \"barbell\",\r\n    \"amounts\": 1\r\n}\r\n"
         }
       }
     }
@@ -1056,23 +1137,46 @@ except ApiException as e:
                             </table>
 
 
+                            <div class="methodsubtabletitle">Query parameters</div>
+                            <table id="methodsubtable">
+                              <tr>
+                                <th width="150px">Name</th>
+                                <th>Description</th>
+                              </tr>
+                                <tr><td style="width:150px;">apikey</td>
+                                <td>
+                                
+                                
+                                    <div id="d2e199_apiV1AddExercisePost_apikey">
+                                        <div class="json-schema-view">
+                                            <div class="primitive">
+                                                <span class="type">
+                                                    String
+                                                </span>
+                                
+                                            </div>
+                                        </div>
+                                    </div>
+                                </td>
+                                </tr>
+                            </table>
 
                           <h2>Responses</h2>
-                            <h3> Status: 200 - Successfully created a new workout </h3>
+                            <h3> Status: 201 - Successfully created a new workout </h3>
 
                             <ul class="nav nav-tabs nav-tabs-examples" >
                                 <li class="active">
-                                  <a data-toggle="tab" href="#responses-apiV1AddExercisePost-200-schema">Schema</a>
+                                  <a data-toggle="tab" href="#responses-apiV1AddExercisePost-201-schema">Schema</a>
                                 </li>
 
                                   <li class="">
-                                    <a data-toggle="tab" href="#responses-apiV1AddExercisePost-200-example-0">Response Example</a>
+                                    <a data-toggle="tab" href="#responses-apiV1AddExercisePost-201-example-0">Response Example</a>
                                   </li>
                             </ul>
 
                             <div class="tab-content" style='margin-bottom: 10px;'>
-                                <div class="tab-pane active" id="responses-apiV1AddExercisePost-200-schema">
-                                  <div id='responses-apiV1AddExercisePost-200-schema-200' style="padding: 30px; border-left: 1px solid #eee; border-right: 1px solid #eee; border-bottom: 1px solid #eee;">
+                                <div class="tab-pane active" id="responses-apiV1AddExercisePost-201-schema">
+                                  <div id='responses-apiV1AddExercisePost-201-schema-201' style="padding: 30px; border-left: 1px solid #eee; border-right: 1px solid #eee; border-bottom: 1px solid #eee;">
                                     <script>
                                       $(document).ready(function() {
                                         var schemaWrapper = {
@@ -1080,13 +1184,10 @@ except ApiException as e:
   "content" : {
     "application/json; charset=utf-8" : {
       "schema" : {
-        "$ref" : "#/components/schemas/inline_response_200_1"
+        "type" : "string",
+        "x-content-type" : "application/json; charset=utf-8"
       },
-      "examples" : {
-        "0" : {
-          "value" : "{\n  \"msg\": \"POST request successful\"\n}"
-        }
-      }
+      "example" : { }
     }
   }
 };
@@ -1103,19 +1204,3703 @@ except ApiException as e:
 
                                         //console.log(JSON.stringify(schema));
                                         var view = new JSONSchemaView(schema, 3);
-                                        $('#responses-apiV1AddExercisePost-200-schema-data').val(stringify(schema));
-                                        var result = $('#responses-apiV1AddExercisePost-200-schema-200');
+                                        $('#responses-apiV1AddExercisePost-201-schema-data').val(stringify(schema));
+                                        var result = $('#responses-apiV1AddExercisePost-201-schema-201');
                                         result.empty();
                                         result.append(view.render());
                                       });
                                     </script>
                                   </div>
-                                  <input id='responses-apiV1AddExercisePost-200-schema-data' type='hidden' value=''></input>
+                                  <input id='responses-apiV1AddExercisePost-201-schema-data' type='hidden' value=''></input>
                                 </div>
-                                  <div class="tab-pane" id="responses-apiV1AddExercisePost-200-example-0">
-                                      <pre class="prettyprint"><code class="json">{
-  &quot;msg&quot;: &quot;POST request successful&quot;
+                                  <div class="tab-pane" id="responses-apiV1AddExercisePost-201-example-0">
+                                      <pre class="prettyprint"><code class="json">{}</code></pre>
+                                </div>
+                            </div>
+
+                        </article>
+                      </div>
+                      <hr>
+                    <div id="api-Default-apiV1AddSessionPost">
+                      <article id="api-Default-apiV1AddSessionPost-0" data-group="User" data-name="apiV1AddSessionPost" data-version="0">
+                        <div class="pull-left">
+                          <h1>apiV1AddSessionPost</h1>
+                          <p></p>
+                        </div>
+                        <div class="pull-right"></div>
+                        <div class="clearfix"></div>
+                        <p></p>
+                        <p class="marked">Create a new workout session</p>
+                        <p></p>
+                        <br />
+                        <pre class="prettyprint language-html prettyprinted" data-type="post"><code><span class="pln">/api/v1/add_session/</span></code></pre>
+                        <p>
+                          <h3>Usage and SDK Samples</h3>
+                        </p>
+                        <ul class="nav nav-tabs nav-tabs-examples">
+                          <li class="active"><a href="#examples-Default-apiV1AddSessionPost-0-curl">Curl</a></li>
+                          <li class=""><a href="#examples-Default-apiV1AddSessionPost-0-java">Java</a></li>
+                          <li class=""><a href="#examples-Default-apiV1AddSessionPost-0-android">Android</a></li>
+                          <!--<li class=""><a href="#examples-Default-apiV1AddSessionPost-0-groovy">Groovy</a></li>-->
+                          <li class=""><a href="#examples-Default-apiV1AddSessionPost-0-objc">Obj-C</a></li>
+                          <li class=""><a href="#examples-Default-apiV1AddSessionPost-0-javascript">JavaScript</a></li>
+                          <!--<li class=""><a href="#examples-Default-apiV1AddSessionPost-0-angular">Angular</a></li>-->
+                          <li class=""><a href="#examples-Default-apiV1AddSessionPost-0-csharp">C#</a></li>
+                          <li class=""><a href="#examples-Default-apiV1AddSessionPost-0-php">PHP</a></li>
+                          <li class=""><a href="#examples-Default-apiV1AddSessionPost-0-perl">Perl</a></li>
+                          <li class=""><a href="#examples-Default-apiV1AddSessionPost-0-python">Python</a></li>
+                        </ul>
+
+                        <div class="tab-content">
+                          <div class="tab-pane active" id="examples-Default-apiV1AddSessionPost-0-curl">
+                           <pre class="prettyprint"><code class="language-bsh">curl -X POST\
+-H "Accept: application/json; charset=utf-8"\
+-H "Content-Type: application/json"\
+"https://g11-workout-server.herokuapp.com/api/v1/add_session/?apikey="</code></pre>
+                          </div>
+                          <div class="tab-pane" id="examples-Default-apiV1AddSessionPost-0-java">
+                            <pre class="prettyprint"><code class="language-java">import io.swagger.client.*;
+import io.swagger.client.auth.*;
+import io.swagger.client.model.*;
+import io.swagger.client.api.DefaultApi;
+
+import java.io.File;
+import java.util.*;
+
+public class DefaultApiExample {
+
+    public static void main(String[] args) {
+        
+        DefaultApi apiInstance = new DefaultApi();
+        Body body = {
+  "value" : "{\r\n    \"name\": \"deadlift\",\r\n    \"time\": 30.5\r\n}\r\n"
+}; // Body | 
+        String apikey = apikey_example; // String | 
+        try {
+            'String' result = apiInstance.apiV1AddSessionPost(body, apikey);
+            System.out.println(result);
+        } catch (ApiException e) {
+            System.err.println("Exception when calling DefaultApi#apiV1AddSessionPost");
+            e.printStackTrace();
+        }
+    }
 }</code></pre>
+                          </div>
+
+                          <div class="tab-pane" id="examples-Default-apiV1AddSessionPost-0-android">
+                            <pre class="prettyprint"><code class="language-java">import io.swagger.client.api.DefaultApi;
+
+public class DefaultApiExample {
+
+    public static void main(String[] args) {
+        DefaultApi apiInstance = new DefaultApi();
+        Body body = {
+  "value" : "{\r\n    \"name\": \"deadlift\",\r\n    \"time\": 30.5\r\n}\r\n"
+}; // Body | 
+        String apikey = apikey_example; // String | 
+        try {
+            'String' result = apiInstance.apiV1AddSessionPost(body, apikey);
+            System.out.println(result);
+        } catch (ApiException e) {
+            System.err.println("Exception when calling DefaultApi#apiV1AddSessionPost");
+            e.printStackTrace();
+        }
+    }
+}</code></pre>
+                          </div>
+  <!--
+  <div class="tab-pane" id="examples-Default-apiV1AddSessionPost-0-groovy">
+  <pre class="prettyprint language-json prettyprinted" data-type="json"><code>Coming Soon!</code></pre>
+  </div> -->
+                            <div class="tab-pane" id="examples-Default-apiV1AddSessionPost-0-objc">
+                              <pre class="prettyprint"><code class="language-cpp">Body *body = {
+  "value" : "{\r\n    \"name\": \"deadlift\",\r\n    \"time\": 30.5\r\n}\r\n"
+}; //  (optional)
+String *apikey = apikey_example; //  (optional)
+
+DefaultApi *apiInstance = [[DefaultApi alloc] init];
+
+[apiInstance apiV1AddSessionPostWith:body
+    apikey:apikey
+              completionHandler: ^('String' output, NSError* error) {
+                            if (output) {
+                                NSLog(@"%@", output);
+                            }
+                            if (error) {
+                                NSLog(@"Error: %@", error);
+                            }
+                        }];
+</code></pre>
+                            </div>
+
+                            <div class="tab-pane" id="examples-Default-apiV1AddSessionPost-0-javascript">
+                              <pre class="prettyprint"><code class="language-js">var WorkoutRecorder = require('workout_recorder');
+
+var api = new WorkoutRecorder.DefaultApi()
+var opts = { 
+  'body': {
+  "value" : "{\r\n    \"name\": \"deadlift\",\r\n    \"time\": 30.5\r\n}\r\n"
+} // {{Body}} 
+  'apikey': apikey_example // {{String}} 
+};
+var callback = function(error, data, response) {
+  if (error) {
+    console.error(error);
+  } else {
+    console.log('API called successfully. Returned data: ' + data);
+  }
+};
+api.apiV1AddSessionPost(opts, callback);
+</code></pre>
+                            </div>
+
+                            <!--<div class="tab-pane" id="examples-Default-apiV1AddSessionPost-0-angular">
+              <pre class="prettyprint language-json prettyprinted" data-type="json"><code>Coming Soon!</code></pre>
+            </div>-->
+                            <div class="tab-pane" id="examples-Default-apiV1AddSessionPost-0-csharp">
+                              <pre class="prettyprint"><code class="language-cs">using System;
+using System.Diagnostics;
+using IO.Swagger.Api;
+using IO.Swagger.Client;
+using IO.Swagger.Model;
+
+namespace Example
+{
+    public class apiV1AddSessionPostExample
+    {
+        public void main()
+        {
+
+            var apiInstance = new DefaultApi();
+            var body = new Body(); // Body |  (optional) 
+            var apikey = apikey_example;  // String |  (optional) 
+
+            try
+            {
+                'String' result = apiInstance.apiV1AddSessionPost(body, apikey);
+                Debug.WriteLine(result);
+            }
+            catch (Exception e)
+            {
+                Debug.Print("Exception when calling DefaultApi.apiV1AddSessionPost: " + e.Message );
+            }
+        }
+    }
+}
+</code></pre>
+                            </div>
+
+                            <div class="tab-pane" id="examples-Default-apiV1AddSessionPost-0-php">
+                              <pre class="prettyprint"><code class="language-php"><&#63;php
+require_once(__DIR__ . '/vendor/autoload.php');
+
+$api_instance = new Swagger\Client\ApiDefaultApi();
+$body = {
+  "value" : "{\r\n    \"name\": \"deadlift\",\r\n    \"time\": 30.5\r\n}\r\n"
+}; // Body | 
+$apikey = apikey_example; // String | 
+
+try {
+    $result = $api_instance->apiV1AddSessionPost($body, $apikey);
+    print_r($result);
+} catch (Exception $e) {
+    echo 'Exception when calling DefaultApi->apiV1AddSessionPost: ', $e->getMessage(), PHP_EOL;
+}
+?></code></pre>
+                            </div>
+
+                            <div class="tab-pane" id="examples-Default-apiV1AddSessionPost-0-perl">
+                              <pre class="prettyprint"><code class="language-perl">use Data::Dumper;
+use WWW::SwaggerClient::Configuration;
+use WWW::SwaggerClient::DefaultApi;
+
+my $api_instance = WWW::SwaggerClient::DefaultApi->new();
+my $body = WWW::SwaggerClient::Object::Body->new(); # Body | 
+my $apikey = apikey_example; # String | 
+
+eval { 
+    my $result = $api_instance->apiV1AddSessionPost(body => $body, apikey => $apikey);
+    print Dumper($result);
+};
+if ($@) {
+    warn "Exception when calling DefaultApi->apiV1AddSessionPost: $@\n";
+}</code></pre>
+                            </div>
+
+                            <div class="tab-pane" id="examples-Default-apiV1AddSessionPost-0-python">
+                              <pre class="prettyprint"><code class="language-python">from __future__ import print_statement
+import time
+import swagger_client
+from swagger_client.rest import ApiException
+from pprint import pprint
+
+# create an instance of the API class
+api_instance = swagger_client.DefaultApi()
+body = {
+  "value" : "{\r\n    \"name\": \"deadlift\",\r\n    \"time\": 30.5\r\n}\r\n"
+} # Body |  (optional)
+apikey = apikey_example # String |  (optional)
+
+try: 
+    api_response = api_instance.api_v1_add_session_post(body=body, apikey=apikey)
+    pprint(api_response)
+except ApiException as e:
+    print("Exception when calling DefaultApi->apiV1AddSessionPost: %s\n" % e)</code></pre>
+                            </div>
+                          </div>
+
+                          <h2>Parameters</h2>
+
+
+
+                            <div class="methodsubtabletitle">Body parameters</div>
+                            <table id="methodsubtable">
+                              <tr>
+                                <th width="150px">Name</th>
+                                <th>Description</th>
+                              </tr>
+                                <tr><td style="width:150px;">body </td>
+                                <td>
+                                
+                                
+                                <script>
+                                $(document).ready(function() {
+                                  var schemaWrapper = {
+  "content" : {
+    "application/json" : {
+      "schema" : {
+        "$ref" : "#/components/schemas/body"
+      },
+      "examples" : {
+        "0" : {
+          "value" : "{\r\n    \"name\": \"deadlift\",\r\n    \"time\": 30.5\r\n}\r\n"
+        }
+      }
+    }
+  }
+};
+                                  var schema = schemaWrapper.content["application/json"].schema;
+                                  if (schema.$ref != null) {
+                                    schema = defsParser.$refs.get(schema.$ref);
+                                  } else {
+                                    schemaWrapper.components = {};
+                                    schemaWrapper.components.schemas = Object.assign({}, defs);
+                                    $RefParser.dereference(schemaWrapper).catch(function(err) {
+                                      console.log(err);
+                                    });
+                                  }
+                                
+                                  var view = new JSONSchemaView(schema,2,{isBodyParam: true});
+                                  var result = $('#d2e199_apiV1AddSessionPost_body');
+                                  result.empty();
+                                  result.append(view.render());
+                                });
+                                </script>
+                                <div id="d2e199_apiV1AddSessionPost_body"></div>
+                                </td>
+                                </tr>
+                            </table>
+
+
+                            <div class="methodsubtabletitle">Query parameters</div>
+                            <table id="methodsubtable">
+                              <tr>
+                                <th width="150px">Name</th>
+                                <th>Description</th>
+                              </tr>
+                                <tr><td style="width:150px;">apikey</td>
+                                <td>
+                                
+                                
+                                    <div id="d2e199_apiV1AddSessionPost_apikey">
+                                        <div class="json-schema-view">
+                                            <div class="primitive">
+                                                <span class="type">
+                                                    String
+                                                </span>
+                                
+                                            </div>
+                                        </div>
+                                    </div>
+                                </td>
+                                </tr>
+                            </table>
+
+                          <h2>Responses</h2>
+                            <h3> Status: 201 - Successfully created a new workout session </h3>
+
+                            <ul class="nav nav-tabs nav-tabs-examples" >
+                                <li class="active">
+                                  <a data-toggle="tab" href="#responses-apiV1AddSessionPost-201-schema">Schema</a>
+                                </li>
+
+                                  <li class="">
+                                    <a data-toggle="tab" href="#responses-apiV1AddSessionPost-201-example-0">Response Example</a>
+                                  </li>
+                            </ul>
+
+                            <div class="tab-content" style='margin-bottom: 10px;'>
+                                <div class="tab-pane active" id="responses-apiV1AddSessionPost-201-schema">
+                                  <div id='responses-apiV1AddSessionPost-201-schema-201' style="padding: 30px; border-left: 1px solid #eee; border-right: 1px solid #eee; border-bottom: 1px solid #eee;">
+                                    <script>
+                                      $(document).ready(function() {
+                                        var schemaWrapper = {
+  "description" : "Successfully created a new workout session",
+  "content" : {
+    "application/json; charset=utf-8" : {
+      "schema" : {
+        "type" : "string",
+        "x-content-type" : "application/json; charset=utf-8"
+      },
+      "example" : "POST success"
+    }
+  }
+};
+                                        var schema = schemaWrapper.content["application/json; charset&#x3D;utf-8"].schema;
+                                        if (schema.$ref != null) {
+                                          schema = defsParser.$refs.get(schema.$ref);
+                                        } else {
+                                          schemaWrapper.components = {};
+                                          schemaWrapper.components.schemas = Object.assign({}, defs);
+                                          $RefParser.dereference(schemaWrapper).catch(function(err) {
+                                            console.log(err);
+                                          });
+                                        }
+
+                                        //console.log(JSON.stringify(schema));
+                                        var view = new JSONSchemaView(schema, 3);
+                                        $('#responses-apiV1AddSessionPost-201-schema-data').val(stringify(schema));
+                                        var result = $('#responses-apiV1AddSessionPost-201-schema-201');
+                                        result.empty();
+                                        result.append(view.render());
+                                      });
+                                    </script>
+                                  </div>
+                                  <input id='responses-apiV1AddSessionPost-201-schema-data' type='hidden' value=''></input>
+                                </div>
+                                  <div class="tab-pane" id="responses-apiV1AddSessionPost-201-example-0">
+                                      <pre class="prettyprint"><code class="json">POST success</code></pre>
+                                </div>
+                            </div>
+
+                        </article>
+                      </div>
+                      <hr>
+                    <div id="api-Default-apiV1AdminGet">
+                      <article id="api-Default-apiV1AdminGet-0" data-group="User" data-name="apiV1AdminGet" data-version="0">
+                        <div class="pull-left">
+                          <h1>apiV1AdminGet</h1>
+                          <p></p>
+                        </div>
+                        <div class="pull-right"></div>
+                        <div class="clearfix"></div>
+                        <p></p>
+                        <p class="marked">Retrieve request information about each API endpoint</p>
+                        <p></p>
+                        <br />
+                        <pre class="prettyprint language-html prettyprinted" data-type="get"><code><span class="pln">/api/v1/admin/</span></code></pre>
+                        <p>
+                          <h3>Usage and SDK Samples</h3>
+                        </p>
+                        <ul class="nav nav-tabs nav-tabs-examples">
+                          <li class="active"><a href="#examples-Default-apiV1AdminGet-0-curl">Curl</a></li>
+                          <li class=""><a href="#examples-Default-apiV1AdminGet-0-java">Java</a></li>
+                          <li class=""><a href="#examples-Default-apiV1AdminGet-0-android">Android</a></li>
+                          <!--<li class=""><a href="#examples-Default-apiV1AdminGet-0-groovy">Groovy</a></li>-->
+                          <li class=""><a href="#examples-Default-apiV1AdminGet-0-objc">Obj-C</a></li>
+                          <li class=""><a href="#examples-Default-apiV1AdminGet-0-javascript">JavaScript</a></li>
+                          <!--<li class=""><a href="#examples-Default-apiV1AdminGet-0-angular">Angular</a></li>-->
+                          <li class=""><a href="#examples-Default-apiV1AdminGet-0-csharp">C#</a></li>
+                          <li class=""><a href="#examples-Default-apiV1AdminGet-0-php">PHP</a></li>
+                          <li class=""><a href="#examples-Default-apiV1AdminGet-0-perl">Perl</a></li>
+                          <li class=""><a href="#examples-Default-apiV1AdminGet-0-python">Python</a></li>
+                        </ul>
+
+                        <div class="tab-content">
+                          <div class="tab-pane active" id="examples-Default-apiV1AdminGet-0-curl">
+                           <pre class="prettyprint"><code class="language-bsh">curl -X GET\
+-H "Accept: text/html; charset=utf-8"\
+"https://g11-workout-server.herokuapp.com/api/v1/admin/?apikey="</code></pre>
+                          </div>
+                          <div class="tab-pane" id="examples-Default-apiV1AdminGet-0-java">
+                            <pre class="prettyprint"><code class="language-java">import io.swagger.client.*;
+import io.swagger.client.auth.*;
+import io.swagger.client.model.*;
+import io.swagger.client.api.DefaultApi;
+
+import java.io.File;
+import java.util.*;
+
+public class DefaultApiExample {
+
+    public static void main(String[] args) {
+        
+        DefaultApi apiInstance = new DefaultApi();
+        String apikey = apikey_example; // String | 
+        try {
+            inline_response_200_1 result = apiInstance.apiV1AdminGet(apikey);
+            System.out.println(result);
+        } catch (ApiException e) {
+            System.err.println("Exception when calling DefaultApi#apiV1AdminGet");
+            e.printStackTrace();
+        }
+    }
+}</code></pre>
+                          </div>
+
+                          <div class="tab-pane" id="examples-Default-apiV1AdminGet-0-android">
+                            <pre class="prettyprint"><code class="language-java">import io.swagger.client.api.DefaultApi;
+
+public class DefaultApiExample {
+
+    public static void main(String[] args) {
+        DefaultApi apiInstance = new DefaultApi();
+        String apikey = apikey_example; // String | 
+        try {
+            inline_response_200_1 result = apiInstance.apiV1AdminGet(apikey);
+            System.out.println(result);
+        } catch (ApiException e) {
+            System.err.println("Exception when calling DefaultApi#apiV1AdminGet");
+            e.printStackTrace();
+        }
+    }
+}</code></pre>
+                          </div>
+  <!--
+  <div class="tab-pane" id="examples-Default-apiV1AdminGet-0-groovy">
+  <pre class="prettyprint language-json prettyprinted" data-type="json"><code>Coming Soon!</code></pre>
+  </div> -->
+                            <div class="tab-pane" id="examples-Default-apiV1AdminGet-0-objc">
+                              <pre class="prettyprint"><code class="language-cpp">String *apikey = apikey_example; //  (optional)
+
+DefaultApi *apiInstance = [[DefaultApi alloc] init];
+
+[apiInstance apiV1AdminGetWith:apikey
+              completionHandler: ^(inline_response_200_1 output, NSError* error) {
+                            if (output) {
+                                NSLog(@"%@", output);
+                            }
+                            if (error) {
+                                NSLog(@"Error: %@", error);
+                            }
+                        }];
+</code></pre>
+                            </div>
+
+                            <div class="tab-pane" id="examples-Default-apiV1AdminGet-0-javascript">
+                              <pre class="prettyprint"><code class="language-js">var WorkoutRecorder = require('workout_recorder');
+
+var api = new WorkoutRecorder.DefaultApi()
+var opts = { 
+  'apikey': apikey_example // {{String}} 
+};
+var callback = function(error, data, response) {
+  if (error) {
+    console.error(error);
+  } else {
+    console.log('API called successfully. Returned data: ' + data);
+  }
+};
+api.apiV1AdminGet(opts, callback);
+</code></pre>
+                            </div>
+
+                            <!--<div class="tab-pane" id="examples-Default-apiV1AdminGet-0-angular">
+              <pre class="prettyprint language-json prettyprinted" data-type="json"><code>Coming Soon!</code></pre>
+            </div>-->
+                            <div class="tab-pane" id="examples-Default-apiV1AdminGet-0-csharp">
+                              <pre class="prettyprint"><code class="language-cs">using System;
+using System.Diagnostics;
+using IO.Swagger.Api;
+using IO.Swagger.Client;
+using IO.Swagger.Model;
+
+namespace Example
+{
+    public class apiV1AdminGetExample
+    {
+        public void main()
+        {
+
+            var apiInstance = new DefaultApi();
+            var apikey = apikey_example;  // String |  (optional) 
+
+            try
+            {
+                inline_response_200_1 result = apiInstance.apiV1AdminGet(apikey);
+                Debug.WriteLine(result);
+            }
+            catch (Exception e)
+            {
+                Debug.Print("Exception when calling DefaultApi.apiV1AdminGet: " + e.Message );
+            }
+        }
+    }
+}
+</code></pre>
+                            </div>
+
+                            <div class="tab-pane" id="examples-Default-apiV1AdminGet-0-php">
+                              <pre class="prettyprint"><code class="language-php"><&#63;php
+require_once(__DIR__ . '/vendor/autoload.php');
+
+$api_instance = new Swagger\Client\ApiDefaultApi();
+$apikey = apikey_example; // String | 
+
+try {
+    $result = $api_instance->apiV1AdminGet($apikey);
+    print_r($result);
+} catch (Exception $e) {
+    echo 'Exception when calling DefaultApi->apiV1AdminGet: ', $e->getMessage(), PHP_EOL;
+}
+?></code></pre>
+                            </div>
+
+                            <div class="tab-pane" id="examples-Default-apiV1AdminGet-0-perl">
+                              <pre class="prettyprint"><code class="language-perl">use Data::Dumper;
+use WWW::SwaggerClient::Configuration;
+use WWW::SwaggerClient::DefaultApi;
+
+my $api_instance = WWW::SwaggerClient::DefaultApi->new();
+my $apikey = apikey_example; # String | 
+
+eval { 
+    my $result = $api_instance->apiV1AdminGet(apikey => $apikey);
+    print Dumper($result);
+};
+if ($@) {
+    warn "Exception when calling DefaultApi->apiV1AdminGet: $@\n";
+}</code></pre>
+                            </div>
+
+                            <div class="tab-pane" id="examples-Default-apiV1AdminGet-0-python">
+                              <pre class="prettyprint"><code class="language-python">from __future__ import print_statement
+import time
+import swagger_client
+from swagger_client.rest import ApiException
+from pprint import pprint
+
+# create an instance of the API class
+api_instance = swagger_client.DefaultApi()
+apikey = apikey_example # String |  (optional)
+
+try: 
+    api_response = api_instance.api_v1_admin_get(apikey=apikey)
+    pprint(api_response)
+except ApiException as e:
+    print("Exception when calling DefaultApi->apiV1AdminGet: %s\n" % e)</code></pre>
+                            </div>
+                          </div>
+
+                          <h2>Parameters</h2>
+
+
+
+
+
+                            <div class="methodsubtabletitle">Query parameters</div>
+                            <table id="methodsubtable">
+                              <tr>
+                                <th width="150px">Name</th>
+                                <th>Description</th>
+                              </tr>
+                                <tr><td style="width:150px;">apikey</td>
+                                <td>
+                                
+                                
+                                    <div id="d2e199_apiV1AdminGet_apikey">
+                                        <div class="json-schema-view">
+                                            <div class="primitive">
+                                                <span class="type">
+                                                    String
+                                                </span>
+                                
+                                            </div>
+                                        </div>
+                                    </div>
+                                </td>
+                                </tr>
+                            </table>
+
+                          <h2>Responses</h2>
+                            <h3> Status: 200 - Succesfully retrieved </h3>
+
+                            <ul class="nav nav-tabs nav-tabs-examples" >
+                                <li class="active">
+                                  <a data-toggle="tab" href="#responses-apiV1AdminGet-200-schema">Schema</a>
+                                </li>
+
+                            </ul>
+
+                            <div class="tab-content" style='margin-bottom: 10px;'>
+                                <div class="tab-pane active" id="responses-apiV1AdminGet-200-schema">
+                                  <div id='responses-apiV1AdminGet-200-schema-200' style="padding: 30px; border-left: 1px solid #eee; border-right: 1px solid #eee; border-bottom: 1px solid #eee;">
+                                    <script>
+                                      $(document).ready(function() {
+                                        var schemaWrapper = {
+  "description" : "Succesfully retrieved",
+  "content" : {
+    "text/html; charset=utf-8" : {
+      "schema" : {
+        "$ref" : "#/components/schemas/inline_response_200_1"
+      },
+      "examples" : { }
+    }
+  }
+};
+                                        var schema = schemaWrapper.content["text/html; charset&#x3D;utf-8"].schema;
+                                        if (schema.$ref != null) {
+                                          schema = defsParser.$refs.get(schema.$ref);
+                                        } else {
+                                          schemaWrapper.components = {};
+                                          schemaWrapper.components.schemas = Object.assign({}, defs);
+                                          $RefParser.dereference(schemaWrapper).catch(function(err) {
+                                            console.log(err);
+                                          });
+                                        }
+
+                                        //console.log(JSON.stringify(schema));
+                                        var view = new JSONSchemaView(schema, 3);
+                                        $('#responses-apiV1AdminGet-200-schema-data').val(stringify(schema));
+                                        var result = $('#responses-apiV1AdminGet-200-schema-200');
+                                        result.empty();
+                                        result.append(view.render());
+                                      });
+                                    </script>
+                                  </div>
+                                  <input id='responses-apiV1AdminGet-200-schema-data' type='hidden' value=''></input>
+                                </div>
+                            </div>
+
+                        </article>
+                      </div>
+                      <hr>
+                    <div id="api-Default-apiV1CategoryTypeGet">
+                      <article id="api-Default-apiV1CategoryTypeGet-0" data-group="User" data-name="apiV1CategoryTypeGet" data-version="0">
+                        <div class="pull-left">
+                          <h1>apiV1CategoryTypeGet</h1>
+                          <p></p>
+                        </div>
+                        <div class="pull-right"></div>
+                        <div class="clearfix"></div>
+                        <p></p>
+                        <p class="marked">Retrieve workouts with the specified category type</p>
+                        <p></p>
+                        <br />
+                        <pre class="prettyprint language-html prettyprinted" data-type="get"><code><span class="pln">/api/v1/category/type:</span></code></pre>
+                        <p>
+                          <h3>Usage and SDK Samples</h3>
+                        </p>
+                        <ul class="nav nav-tabs nav-tabs-examples">
+                          <li class="active"><a href="#examples-Default-apiV1CategoryTypeGet-0-curl">Curl</a></li>
+                          <li class=""><a href="#examples-Default-apiV1CategoryTypeGet-0-java">Java</a></li>
+                          <li class=""><a href="#examples-Default-apiV1CategoryTypeGet-0-android">Android</a></li>
+                          <!--<li class=""><a href="#examples-Default-apiV1CategoryTypeGet-0-groovy">Groovy</a></li>-->
+                          <li class=""><a href="#examples-Default-apiV1CategoryTypeGet-0-objc">Obj-C</a></li>
+                          <li class=""><a href="#examples-Default-apiV1CategoryTypeGet-0-javascript">JavaScript</a></li>
+                          <!--<li class=""><a href="#examples-Default-apiV1CategoryTypeGet-0-angular">Angular</a></li>-->
+                          <li class=""><a href="#examples-Default-apiV1CategoryTypeGet-0-csharp">C#</a></li>
+                          <li class=""><a href="#examples-Default-apiV1CategoryTypeGet-0-php">PHP</a></li>
+                          <li class=""><a href="#examples-Default-apiV1CategoryTypeGet-0-perl">Perl</a></li>
+                          <li class=""><a href="#examples-Default-apiV1CategoryTypeGet-0-python">Python</a></li>
+                        </ul>
+
+                        <div class="tab-content">
+                          <div class="tab-pane active" id="examples-Default-apiV1CategoryTypeGet-0-curl">
+                           <pre class="prettyprint"><code class="language-bsh">curl -X GET\
+-H "Accept: text/html; charset=utf-8"\
+"https://g11-workout-server.herokuapp.com/api/v1/category/type:?apikey="</code></pre>
+                          </div>
+                          <div class="tab-pane" id="examples-Default-apiV1CategoryTypeGet-0-java">
+                            <pre class="prettyprint"><code class="language-java">import io.swagger.client.*;
+import io.swagger.client.auth.*;
+import io.swagger.client.model.*;
+import io.swagger.client.api.DefaultApi;
+
+import java.io.File;
+import java.util.*;
+
+public class DefaultApiExample {
+
+    public static void main(String[] args) {
+        
+        DefaultApi apiInstance = new DefaultApi();
+        String apikey = apikey_example; // String | 
+        try {
+            inline_response_200 result = apiInstance.apiV1CategoryTypeGet(apikey);
+            System.out.println(result);
+        } catch (ApiException e) {
+            System.err.println("Exception when calling DefaultApi#apiV1CategoryTypeGet");
+            e.printStackTrace();
+        }
+    }
+}</code></pre>
+                          </div>
+
+                          <div class="tab-pane" id="examples-Default-apiV1CategoryTypeGet-0-android">
+                            <pre class="prettyprint"><code class="language-java">import io.swagger.client.api.DefaultApi;
+
+public class DefaultApiExample {
+
+    public static void main(String[] args) {
+        DefaultApi apiInstance = new DefaultApi();
+        String apikey = apikey_example; // String | 
+        try {
+            inline_response_200 result = apiInstance.apiV1CategoryTypeGet(apikey);
+            System.out.println(result);
+        } catch (ApiException e) {
+            System.err.println("Exception when calling DefaultApi#apiV1CategoryTypeGet");
+            e.printStackTrace();
+        }
+    }
+}</code></pre>
+                          </div>
+  <!--
+  <div class="tab-pane" id="examples-Default-apiV1CategoryTypeGet-0-groovy">
+  <pre class="prettyprint language-json prettyprinted" data-type="json"><code>Coming Soon!</code></pre>
+  </div> -->
+                            <div class="tab-pane" id="examples-Default-apiV1CategoryTypeGet-0-objc">
+                              <pre class="prettyprint"><code class="language-cpp">String *apikey = apikey_example; //  (optional)
+
+DefaultApi *apiInstance = [[DefaultApi alloc] init];
+
+[apiInstance apiV1CategoryTypeGetWith:apikey
+              completionHandler: ^(inline_response_200 output, NSError* error) {
+                            if (output) {
+                                NSLog(@"%@", output);
+                            }
+                            if (error) {
+                                NSLog(@"Error: %@", error);
+                            }
+                        }];
+</code></pre>
+                            </div>
+
+                            <div class="tab-pane" id="examples-Default-apiV1CategoryTypeGet-0-javascript">
+                              <pre class="prettyprint"><code class="language-js">var WorkoutRecorder = require('workout_recorder');
+
+var api = new WorkoutRecorder.DefaultApi()
+var opts = { 
+  'apikey': apikey_example // {{String}} 
+};
+var callback = function(error, data, response) {
+  if (error) {
+    console.error(error);
+  } else {
+    console.log('API called successfully. Returned data: ' + data);
+  }
+};
+api.apiV1CategoryTypeGet(opts, callback);
+</code></pre>
+                            </div>
+
+                            <!--<div class="tab-pane" id="examples-Default-apiV1CategoryTypeGet-0-angular">
+              <pre class="prettyprint language-json prettyprinted" data-type="json"><code>Coming Soon!</code></pre>
+            </div>-->
+                            <div class="tab-pane" id="examples-Default-apiV1CategoryTypeGet-0-csharp">
+                              <pre class="prettyprint"><code class="language-cs">using System;
+using System.Diagnostics;
+using IO.Swagger.Api;
+using IO.Swagger.Client;
+using IO.Swagger.Model;
+
+namespace Example
+{
+    public class apiV1CategoryTypeGetExample
+    {
+        public void main()
+        {
+
+            var apiInstance = new DefaultApi();
+            var apikey = apikey_example;  // String |  (optional) 
+
+            try
+            {
+                inline_response_200 result = apiInstance.apiV1CategoryTypeGet(apikey);
+                Debug.WriteLine(result);
+            }
+            catch (Exception e)
+            {
+                Debug.Print("Exception when calling DefaultApi.apiV1CategoryTypeGet: " + e.Message );
+            }
+        }
+    }
+}
+</code></pre>
+                            </div>
+
+                            <div class="tab-pane" id="examples-Default-apiV1CategoryTypeGet-0-php">
+                              <pre class="prettyprint"><code class="language-php"><&#63;php
+require_once(__DIR__ . '/vendor/autoload.php');
+
+$api_instance = new Swagger\Client\ApiDefaultApi();
+$apikey = apikey_example; // String | 
+
+try {
+    $result = $api_instance->apiV1CategoryTypeGet($apikey);
+    print_r($result);
+} catch (Exception $e) {
+    echo 'Exception when calling DefaultApi->apiV1CategoryTypeGet: ', $e->getMessage(), PHP_EOL;
+}
+?></code></pre>
+                            </div>
+
+                            <div class="tab-pane" id="examples-Default-apiV1CategoryTypeGet-0-perl">
+                              <pre class="prettyprint"><code class="language-perl">use Data::Dumper;
+use WWW::SwaggerClient::Configuration;
+use WWW::SwaggerClient::DefaultApi;
+
+my $api_instance = WWW::SwaggerClient::DefaultApi->new();
+my $apikey = apikey_example; # String | 
+
+eval { 
+    my $result = $api_instance->apiV1CategoryTypeGet(apikey => $apikey);
+    print Dumper($result);
+};
+if ($@) {
+    warn "Exception when calling DefaultApi->apiV1CategoryTypeGet: $@\n";
+}</code></pre>
+                            </div>
+
+                            <div class="tab-pane" id="examples-Default-apiV1CategoryTypeGet-0-python">
+                              <pre class="prettyprint"><code class="language-python">from __future__ import print_statement
+import time
+import swagger_client
+from swagger_client.rest import ApiException
+from pprint import pprint
+
+# create an instance of the API class
+api_instance = swagger_client.DefaultApi()
+apikey = apikey_example # String |  (optional)
+
+try: 
+    api_response = api_instance.api_v1_category_type_get(apikey=apikey)
+    pprint(api_response)
+except ApiException as e:
+    print("Exception when calling DefaultApi->apiV1CategoryTypeGet: %s\n" % e)</code></pre>
+                            </div>
+                          </div>
+
+                          <h2>Parameters</h2>
+
+
+
+
+
+                            <div class="methodsubtabletitle">Query parameters</div>
+                            <table id="methodsubtable">
+                              <tr>
+                                <th width="150px">Name</th>
+                                <th>Description</th>
+                              </tr>
+                                <tr><td style="width:150px;">apikey</td>
+                                <td>
+                                
+                                
+                                    <div id="d2e199_apiV1CategoryTypeGet_apikey">
+                                        <div class="json-schema-view">
+                                            <div class="primitive">
+                                                <span class="type">
+                                                    String
+                                                </span>
+                                
+                                            </div>
+                                        </div>
+                                    </div>
+                                </td>
+                                </tr>
+                            </table>
+
+                          <h2>Responses</h2>
+                            <h3> Status: 200 - Successfully retrieved filtered workouts </h3>
+
+                            <ul class="nav nav-tabs nav-tabs-examples" >
+                                <li class="active">
+                                  <a data-toggle="tab" href="#responses-apiV1CategoryTypeGet-200-schema">Schema</a>
+                                </li>
+
+                            </ul>
+
+                            <div class="tab-content" style='margin-bottom: 10px;'>
+                                <div class="tab-pane active" id="responses-apiV1CategoryTypeGet-200-schema">
+                                  <div id='responses-apiV1CategoryTypeGet-200-schema-200' style="padding: 30px; border-left: 1px solid #eee; border-right: 1px solid #eee; border-bottom: 1px solid #eee;">
+                                    <script>
+                                      $(document).ready(function() {
+                                        var schemaWrapper = {
+  "description" : "Successfully retrieved filtered workouts",
+  "content" : {
+    "text/html; charset=utf-8" : {
+      "schema" : {
+        "$ref" : "#/components/schemas/inline_response_200"
+      },
+      "examples" : { }
+    }
+  }
+};
+                                        var schema = schemaWrapper.content["text/html; charset&#x3D;utf-8"].schema;
+                                        if (schema.$ref != null) {
+                                          schema = defsParser.$refs.get(schema.$ref);
+                                        } else {
+                                          schemaWrapper.components = {};
+                                          schemaWrapper.components.schemas = Object.assign({}, defs);
+                                          $RefParser.dereference(schemaWrapper).catch(function(err) {
+                                            console.log(err);
+                                          });
+                                        }
+
+                                        //console.log(JSON.stringify(schema));
+                                        var view = new JSONSchemaView(schema, 3);
+                                        $('#responses-apiV1CategoryTypeGet-200-schema-data').val(stringify(schema));
+                                        var result = $('#responses-apiV1CategoryTypeGet-200-schema-200');
+                                        result.empty();
+                                        result.append(view.render());
+                                      });
+                                    </script>
+                                  </div>
+                                  <input id='responses-apiV1CategoryTypeGet-200-schema-data' type='hidden' value=''></input>
+                                </div>
+                            </div>
+
+                        </article>
+                      </div>
+                      <hr>
+                    <div id="api-Default-apiV1DeleteNameDelete">
+                      <article id="api-Default-apiV1DeleteNameDelete-0" data-group="User" data-name="apiV1DeleteNameDelete" data-version="0">
+                        <div class="pull-left">
+                          <h1>apiV1DeleteNameDelete</h1>
+                          <p></p>
+                        </div>
+                        <div class="pull-right"></div>
+                        <div class="clearfix"></div>
+                        <p></p>
+                        <p class="marked">Delete a workout</p>
+                        <p></p>
+                        <br />
+                        <pre class="prettyprint language-html prettyprinted" data-type="delete"><code><span class="pln">/api/v1/delete/name:</span></code></pre>
+                        <p>
+                          <h3>Usage and SDK Samples</h3>
+                        </p>
+                        <ul class="nav nav-tabs nav-tabs-examples">
+                          <li class="active"><a href="#examples-Default-apiV1DeleteNameDelete-0-curl">Curl</a></li>
+                          <li class=""><a href="#examples-Default-apiV1DeleteNameDelete-0-java">Java</a></li>
+                          <li class=""><a href="#examples-Default-apiV1DeleteNameDelete-0-android">Android</a></li>
+                          <!--<li class=""><a href="#examples-Default-apiV1DeleteNameDelete-0-groovy">Groovy</a></li>-->
+                          <li class=""><a href="#examples-Default-apiV1DeleteNameDelete-0-objc">Obj-C</a></li>
+                          <li class=""><a href="#examples-Default-apiV1DeleteNameDelete-0-javascript">JavaScript</a></li>
+                          <!--<li class=""><a href="#examples-Default-apiV1DeleteNameDelete-0-angular">Angular</a></li>-->
+                          <li class=""><a href="#examples-Default-apiV1DeleteNameDelete-0-csharp">C#</a></li>
+                          <li class=""><a href="#examples-Default-apiV1DeleteNameDelete-0-php">PHP</a></li>
+                          <li class=""><a href="#examples-Default-apiV1DeleteNameDelete-0-perl">Perl</a></li>
+                          <li class=""><a href="#examples-Default-apiV1DeleteNameDelete-0-python">Python</a></li>
+                        </ul>
+
+                        <div class="tab-content">
+                          <div class="tab-pane active" id="examples-Default-apiV1DeleteNameDelete-0-curl">
+                           <pre class="prettyprint"><code class="language-bsh">curl -X DELETE\
+-H "Accept: application/json; charset=utf-8"\
+"https://g11-workout-server.herokuapp.com/api/v1/delete/name:?apikey="</code></pre>
+                          </div>
+                          <div class="tab-pane" id="examples-Default-apiV1DeleteNameDelete-0-java">
+                            <pre class="prettyprint"><code class="language-java">import io.swagger.client.*;
+import io.swagger.client.auth.*;
+import io.swagger.client.model.*;
+import io.swagger.client.api.DefaultApi;
+
+import java.io.File;
+import java.util.*;
+
+public class DefaultApiExample {
+
+    public static void main(String[] args) {
+        
+        DefaultApi apiInstance = new DefaultApi();
+        String apikey = apikey_example; // String | 
+        try {
+            'String' result = apiInstance.apiV1DeleteNameDelete(apikey);
+            System.out.println(result);
+        } catch (ApiException e) {
+            System.err.println("Exception when calling DefaultApi#apiV1DeleteNameDelete");
+            e.printStackTrace();
+        }
+    }
+}</code></pre>
+                          </div>
+
+                          <div class="tab-pane" id="examples-Default-apiV1DeleteNameDelete-0-android">
+                            <pre class="prettyprint"><code class="language-java">import io.swagger.client.api.DefaultApi;
+
+public class DefaultApiExample {
+
+    public static void main(String[] args) {
+        DefaultApi apiInstance = new DefaultApi();
+        String apikey = apikey_example; // String | 
+        try {
+            'String' result = apiInstance.apiV1DeleteNameDelete(apikey);
+            System.out.println(result);
+        } catch (ApiException e) {
+            System.err.println("Exception when calling DefaultApi#apiV1DeleteNameDelete");
+            e.printStackTrace();
+        }
+    }
+}</code></pre>
+                          </div>
+  <!--
+  <div class="tab-pane" id="examples-Default-apiV1DeleteNameDelete-0-groovy">
+  <pre class="prettyprint language-json prettyprinted" data-type="json"><code>Coming Soon!</code></pre>
+  </div> -->
+                            <div class="tab-pane" id="examples-Default-apiV1DeleteNameDelete-0-objc">
+                              <pre class="prettyprint"><code class="language-cpp">String *apikey = apikey_example; //  (optional)
+
+DefaultApi *apiInstance = [[DefaultApi alloc] init];
+
+[apiInstance apiV1DeleteNameDeleteWith:apikey
+              completionHandler: ^('String' output, NSError* error) {
+                            if (output) {
+                                NSLog(@"%@", output);
+                            }
+                            if (error) {
+                                NSLog(@"Error: %@", error);
+                            }
+                        }];
+</code></pre>
+                            </div>
+
+                            <div class="tab-pane" id="examples-Default-apiV1DeleteNameDelete-0-javascript">
+                              <pre class="prettyprint"><code class="language-js">var WorkoutRecorder = require('workout_recorder');
+
+var api = new WorkoutRecorder.DefaultApi()
+var opts = { 
+  'apikey': apikey_example // {{String}} 
+};
+var callback = function(error, data, response) {
+  if (error) {
+    console.error(error);
+  } else {
+    console.log('API called successfully. Returned data: ' + data);
+  }
+};
+api.apiV1DeleteNameDelete(opts, callback);
+</code></pre>
+                            </div>
+
+                            <!--<div class="tab-pane" id="examples-Default-apiV1DeleteNameDelete-0-angular">
+              <pre class="prettyprint language-json prettyprinted" data-type="json"><code>Coming Soon!</code></pre>
+            </div>-->
+                            <div class="tab-pane" id="examples-Default-apiV1DeleteNameDelete-0-csharp">
+                              <pre class="prettyprint"><code class="language-cs">using System;
+using System.Diagnostics;
+using IO.Swagger.Api;
+using IO.Swagger.Client;
+using IO.Swagger.Model;
+
+namespace Example
+{
+    public class apiV1DeleteNameDeleteExample
+    {
+        public void main()
+        {
+
+            var apiInstance = new DefaultApi();
+            var apikey = apikey_example;  // String |  (optional) 
+
+            try
+            {
+                'String' result = apiInstance.apiV1DeleteNameDelete(apikey);
+                Debug.WriteLine(result);
+            }
+            catch (Exception e)
+            {
+                Debug.Print("Exception when calling DefaultApi.apiV1DeleteNameDelete: " + e.Message );
+            }
+        }
+    }
+}
+</code></pre>
+                            </div>
+
+                            <div class="tab-pane" id="examples-Default-apiV1DeleteNameDelete-0-php">
+                              <pre class="prettyprint"><code class="language-php"><&#63;php
+require_once(__DIR__ . '/vendor/autoload.php');
+
+$api_instance = new Swagger\Client\ApiDefaultApi();
+$apikey = apikey_example; // String | 
+
+try {
+    $result = $api_instance->apiV1DeleteNameDelete($apikey);
+    print_r($result);
+} catch (Exception $e) {
+    echo 'Exception when calling DefaultApi->apiV1DeleteNameDelete: ', $e->getMessage(), PHP_EOL;
+}
+?></code></pre>
+                            </div>
+
+                            <div class="tab-pane" id="examples-Default-apiV1DeleteNameDelete-0-perl">
+                              <pre class="prettyprint"><code class="language-perl">use Data::Dumper;
+use WWW::SwaggerClient::Configuration;
+use WWW::SwaggerClient::DefaultApi;
+
+my $api_instance = WWW::SwaggerClient::DefaultApi->new();
+my $apikey = apikey_example; # String | 
+
+eval { 
+    my $result = $api_instance->apiV1DeleteNameDelete(apikey => $apikey);
+    print Dumper($result);
+};
+if ($@) {
+    warn "Exception when calling DefaultApi->apiV1DeleteNameDelete: $@\n";
+}</code></pre>
+                            </div>
+
+                            <div class="tab-pane" id="examples-Default-apiV1DeleteNameDelete-0-python">
+                              <pre class="prettyprint"><code class="language-python">from __future__ import print_statement
+import time
+import swagger_client
+from swagger_client.rest import ApiException
+from pprint import pprint
+
+# create an instance of the API class
+api_instance = swagger_client.DefaultApi()
+apikey = apikey_example # String |  (optional)
+
+try: 
+    api_response = api_instance.api_v1_delete_name_delete(apikey=apikey)
+    pprint(api_response)
+except ApiException as e:
+    print("Exception when calling DefaultApi->apiV1DeleteNameDelete: %s\n" % e)</code></pre>
+                            </div>
+                          </div>
+
+                          <h2>Parameters</h2>
+
+
+
+
+
+                            <div class="methodsubtabletitle">Query parameters</div>
+                            <table id="methodsubtable">
+                              <tr>
+                                <th width="150px">Name</th>
+                                <th>Description</th>
+                              </tr>
+                                <tr><td style="width:150px;">apikey</td>
+                                <td>
+                                
+                                
+                                    <div id="d2e199_apiV1DeleteNameDelete_apikey">
+                                        <div class="json-schema-view">
+                                            <div class="primitive">
+                                                <span class="type">
+                                                    String
+                                                </span>
+                                
+                                            </div>
+                                        </div>
+                                    </div>
+                                </td>
+                                </tr>
+                            </table>
+
+                          <h2>Responses</h2>
+                            <h3> Status: 200 - Successfully deleted a workout </h3>
+
+                            <ul class="nav nav-tabs nav-tabs-examples" >
+                                <li class="active">
+                                  <a data-toggle="tab" href="#responses-apiV1DeleteNameDelete-200-schema">Schema</a>
+                                </li>
+
+                            </ul>
+
+                            <div class="tab-content" style='margin-bottom: 10px;'>
+                                <div class="tab-pane active" id="responses-apiV1DeleteNameDelete-200-schema">
+                                  <div id='responses-apiV1DeleteNameDelete-200-schema-200' style="padding: 30px; border-left: 1px solid #eee; border-right: 1px solid #eee; border-bottom: 1px solid #eee;">
+                                    <script>
+                                      $(document).ready(function() {
+                                        var schemaWrapper = {
+  "description" : "Successfully deleted a workout",
+  "content" : {
+    "application/json; charset=utf-8" : {
+      "schema" : {
+        "type" : "string",
+        "x-content-type" : "application/json; charset=utf-8"
+      },
+      "examples" : { }
+    }
+  }
+};
+                                        var schema = schemaWrapper.content["application/json; charset&#x3D;utf-8"].schema;
+                                        if (schema.$ref != null) {
+                                          schema = defsParser.$refs.get(schema.$ref);
+                                        } else {
+                                          schemaWrapper.components = {};
+                                          schemaWrapper.components.schemas = Object.assign({}, defs);
+                                          $RefParser.dereference(schemaWrapper).catch(function(err) {
+                                            console.log(err);
+                                          });
+                                        }
+
+                                        //console.log(JSON.stringify(schema));
+                                        var view = new JSONSchemaView(schema, 3);
+                                        $('#responses-apiV1DeleteNameDelete-200-schema-data').val(stringify(schema));
+                                        var result = $('#responses-apiV1DeleteNameDelete-200-schema-200');
+                                        result.empty();
+                                        result.append(view.render());
+                                      });
+                                    </script>
+                                  </div>
+                                  <input id='responses-apiV1DeleteNameDelete-200-schema-data' type='hidden' value=''></input>
+                                </div>
+                            </div>
+
+                        </article>
+                      </div>
+                      <hr>
+                    <div id="api-Default-apiV1DeleteSessionNameDelete">
+                      <article id="api-Default-apiV1DeleteSessionNameDelete-0" data-group="User" data-name="apiV1DeleteSessionNameDelete" data-version="0">
+                        <div class="pull-left">
+                          <h1>apiV1DeleteSessionNameDelete</h1>
+                          <p></p>
+                        </div>
+                        <div class="pull-right"></div>
+                        <div class="clearfix"></div>
+                        <p></p>
+                        <p class="marked">Delete a session</p>
+                        <p></p>
+                        <br />
+                        <pre class="prettyprint language-html prettyprinted" data-type="delete"><code><span class="pln">/api/v1/delete_session/name:</span></code></pre>
+                        <p>
+                          <h3>Usage and SDK Samples</h3>
+                        </p>
+                        <ul class="nav nav-tabs nav-tabs-examples">
+                          <li class="active"><a href="#examples-Default-apiV1DeleteSessionNameDelete-0-curl">Curl</a></li>
+                          <li class=""><a href="#examples-Default-apiV1DeleteSessionNameDelete-0-java">Java</a></li>
+                          <li class=""><a href="#examples-Default-apiV1DeleteSessionNameDelete-0-android">Android</a></li>
+                          <!--<li class=""><a href="#examples-Default-apiV1DeleteSessionNameDelete-0-groovy">Groovy</a></li>-->
+                          <li class=""><a href="#examples-Default-apiV1DeleteSessionNameDelete-0-objc">Obj-C</a></li>
+                          <li class=""><a href="#examples-Default-apiV1DeleteSessionNameDelete-0-javascript">JavaScript</a></li>
+                          <!--<li class=""><a href="#examples-Default-apiV1DeleteSessionNameDelete-0-angular">Angular</a></li>-->
+                          <li class=""><a href="#examples-Default-apiV1DeleteSessionNameDelete-0-csharp">C#</a></li>
+                          <li class=""><a href="#examples-Default-apiV1DeleteSessionNameDelete-0-php">PHP</a></li>
+                          <li class=""><a href="#examples-Default-apiV1DeleteSessionNameDelete-0-perl">Perl</a></li>
+                          <li class=""><a href="#examples-Default-apiV1DeleteSessionNameDelete-0-python">Python</a></li>
+                        </ul>
+
+                        <div class="tab-content">
+                          <div class="tab-pane active" id="examples-Default-apiV1DeleteSessionNameDelete-0-curl">
+                           <pre class="prettyprint"><code class="language-bsh">curl -X DELETE\
+-H "Accept: application/json; charset=utf-8"\
+"https://g11-workout-server.herokuapp.com/api/v1/delete_session/name:?apikey="</code></pre>
+                          </div>
+                          <div class="tab-pane" id="examples-Default-apiV1DeleteSessionNameDelete-0-java">
+                            <pre class="prettyprint"><code class="language-java">import io.swagger.client.*;
+import io.swagger.client.auth.*;
+import io.swagger.client.model.*;
+import io.swagger.client.api.DefaultApi;
+
+import java.io.File;
+import java.util.*;
+
+public class DefaultApiExample {
+
+    public static void main(String[] args) {
+        
+        DefaultApi apiInstance = new DefaultApi();
+        String apikey = apikey_example; // String | 
+        try {
+            'String' result = apiInstance.apiV1DeleteSessionNameDelete(apikey);
+            System.out.println(result);
+        } catch (ApiException e) {
+            System.err.println("Exception when calling DefaultApi#apiV1DeleteSessionNameDelete");
+            e.printStackTrace();
+        }
+    }
+}</code></pre>
+                          </div>
+
+                          <div class="tab-pane" id="examples-Default-apiV1DeleteSessionNameDelete-0-android">
+                            <pre class="prettyprint"><code class="language-java">import io.swagger.client.api.DefaultApi;
+
+public class DefaultApiExample {
+
+    public static void main(String[] args) {
+        DefaultApi apiInstance = new DefaultApi();
+        String apikey = apikey_example; // String | 
+        try {
+            'String' result = apiInstance.apiV1DeleteSessionNameDelete(apikey);
+            System.out.println(result);
+        } catch (ApiException e) {
+            System.err.println("Exception when calling DefaultApi#apiV1DeleteSessionNameDelete");
+            e.printStackTrace();
+        }
+    }
+}</code></pre>
+                          </div>
+  <!--
+  <div class="tab-pane" id="examples-Default-apiV1DeleteSessionNameDelete-0-groovy">
+  <pre class="prettyprint language-json prettyprinted" data-type="json"><code>Coming Soon!</code></pre>
+  </div> -->
+                            <div class="tab-pane" id="examples-Default-apiV1DeleteSessionNameDelete-0-objc">
+                              <pre class="prettyprint"><code class="language-cpp">String *apikey = apikey_example; //  (optional)
+
+DefaultApi *apiInstance = [[DefaultApi alloc] init];
+
+[apiInstance apiV1DeleteSessionNameDeleteWith:apikey
+              completionHandler: ^('String' output, NSError* error) {
+                            if (output) {
+                                NSLog(@"%@", output);
+                            }
+                            if (error) {
+                                NSLog(@"Error: %@", error);
+                            }
+                        }];
+</code></pre>
+                            </div>
+
+                            <div class="tab-pane" id="examples-Default-apiV1DeleteSessionNameDelete-0-javascript">
+                              <pre class="prettyprint"><code class="language-js">var WorkoutRecorder = require('workout_recorder');
+
+var api = new WorkoutRecorder.DefaultApi()
+var opts = { 
+  'apikey': apikey_example // {{String}} 
+};
+var callback = function(error, data, response) {
+  if (error) {
+    console.error(error);
+  } else {
+    console.log('API called successfully. Returned data: ' + data);
+  }
+};
+api.apiV1DeleteSessionNameDelete(opts, callback);
+</code></pre>
+                            </div>
+
+                            <!--<div class="tab-pane" id="examples-Default-apiV1DeleteSessionNameDelete-0-angular">
+              <pre class="prettyprint language-json prettyprinted" data-type="json"><code>Coming Soon!</code></pre>
+            </div>-->
+                            <div class="tab-pane" id="examples-Default-apiV1DeleteSessionNameDelete-0-csharp">
+                              <pre class="prettyprint"><code class="language-cs">using System;
+using System.Diagnostics;
+using IO.Swagger.Api;
+using IO.Swagger.Client;
+using IO.Swagger.Model;
+
+namespace Example
+{
+    public class apiV1DeleteSessionNameDeleteExample
+    {
+        public void main()
+        {
+
+            var apiInstance = new DefaultApi();
+            var apikey = apikey_example;  // String |  (optional) 
+
+            try
+            {
+                'String' result = apiInstance.apiV1DeleteSessionNameDelete(apikey);
+                Debug.WriteLine(result);
+            }
+            catch (Exception e)
+            {
+                Debug.Print("Exception when calling DefaultApi.apiV1DeleteSessionNameDelete: " + e.Message );
+            }
+        }
+    }
+}
+</code></pre>
+                            </div>
+
+                            <div class="tab-pane" id="examples-Default-apiV1DeleteSessionNameDelete-0-php">
+                              <pre class="prettyprint"><code class="language-php"><&#63;php
+require_once(__DIR__ . '/vendor/autoload.php');
+
+$api_instance = new Swagger\Client\ApiDefaultApi();
+$apikey = apikey_example; // String | 
+
+try {
+    $result = $api_instance->apiV1DeleteSessionNameDelete($apikey);
+    print_r($result);
+} catch (Exception $e) {
+    echo 'Exception when calling DefaultApi->apiV1DeleteSessionNameDelete: ', $e->getMessage(), PHP_EOL;
+}
+?></code></pre>
+                            </div>
+
+                            <div class="tab-pane" id="examples-Default-apiV1DeleteSessionNameDelete-0-perl">
+                              <pre class="prettyprint"><code class="language-perl">use Data::Dumper;
+use WWW::SwaggerClient::Configuration;
+use WWW::SwaggerClient::DefaultApi;
+
+my $api_instance = WWW::SwaggerClient::DefaultApi->new();
+my $apikey = apikey_example; # String | 
+
+eval { 
+    my $result = $api_instance->apiV1DeleteSessionNameDelete(apikey => $apikey);
+    print Dumper($result);
+};
+if ($@) {
+    warn "Exception when calling DefaultApi->apiV1DeleteSessionNameDelete: $@\n";
+}</code></pre>
+                            </div>
+
+                            <div class="tab-pane" id="examples-Default-apiV1DeleteSessionNameDelete-0-python">
+                              <pre class="prettyprint"><code class="language-python">from __future__ import print_statement
+import time
+import swagger_client
+from swagger_client.rest import ApiException
+from pprint import pprint
+
+# create an instance of the API class
+api_instance = swagger_client.DefaultApi()
+apikey = apikey_example # String |  (optional)
+
+try: 
+    api_response = api_instance.api_v1_delete_session_name_delete(apikey=apikey)
+    pprint(api_response)
+except ApiException as e:
+    print("Exception when calling DefaultApi->apiV1DeleteSessionNameDelete: %s\n" % e)</code></pre>
+                            </div>
+                          </div>
+
+                          <h2>Parameters</h2>
+
+
+
+
+
+                            <div class="methodsubtabletitle">Query parameters</div>
+                            <table id="methodsubtable">
+                              <tr>
+                                <th width="150px">Name</th>
+                                <th>Description</th>
+                              </tr>
+                                <tr><td style="width:150px;">apikey</td>
+                                <td>
+                                
+                                
+                                    <div id="d2e199_apiV1DeleteSessionNameDelete_apikey">
+                                        <div class="json-schema-view">
+                                            <div class="primitive">
+                                                <span class="type">
+                                                    String
+                                                </span>
+                                
+                                            </div>
+                                        </div>
+                                    </div>
+                                </td>
+                                </tr>
+                            </table>
+
+                          <h2>Responses</h2>
+                            <h3> Status: 200 - Successfully deleted session </h3>
+
+                            <ul class="nav nav-tabs nav-tabs-examples" >
+                                <li class="active">
+                                  <a data-toggle="tab" href="#responses-apiV1DeleteSessionNameDelete-200-schema">Schema</a>
+                                </li>
+
+                            </ul>
+
+                            <div class="tab-content" style='margin-bottom: 10px;'>
+                                <div class="tab-pane active" id="responses-apiV1DeleteSessionNameDelete-200-schema">
+                                  <div id='responses-apiV1DeleteSessionNameDelete-200-schema-200' style="padding: 30px; border-left: 1px solid #eee; border-right: 1px solid #eee; border-bottom: 1px solid #eee;">
+                                    <script>
+                                      $(document).ready(function() {
+                                        var schemaWrapper = {
+  "description" : "Successfully deleted session",
+  "content" : {
+    "application/json; charset=utf-8" : {
+      "schema" : {
+        "type" : "string",
+        "x-content-type" : "application/json; charset=utf-8"
+      },
+      "examples" : { }
+    }
+  }
+};
+                                        var schema = schemaWrapper.content["application/json; charset&#x3D;utf-8"].schema;
+                                        if (schema.$ref != null) {
+                                          schema = defsParser.$refs.get(schema.$ref);
+                                        } else {
+                                          schemaWrapper.components = {};
+                                          schemaWrapper.components.schemas = Object.assign({}, defs);
+                                          $RefParser.dereference(schemaWrapper).catch(function(err) {
+                                            console.log(err);
+                                          });
+                                        }
+
+                                        //console.log(JSON.stringify(schema));
+                                        var view = new JSONSchemaView(schema, 3);
+                                        $('#responses-apiV1DeleteSessionNameDelete-200-schema-data').val(stringify(schema));
+                                        var result = $('#responses-apiV1DeleteSessionNameDelete-200-schema-200');
+                                        result.empty();
+                                        result.append(view.render());
+                                      });
+                                    </script>
+                                  </div>
+                                  <input id='responses-apiV1DeleteSessionNameDelete-200-schema-data' type='hidden' value=''></input>
+                                </div>
+                            </div>
+
+                        </article>
+                      </div>
+                      <hr>
+                    <div id="api-Default-apiV1RandomGet">
+                      <article id="api-Default-apiV1RandomGet-0" data-group="User" data-name="apiV1RandomGet" data-version="0">
+                        <div class="pull-left">
+                          <h1>apiV1RandomGet</h1>
+                          <p></p>
+                        </div>
+                        <div class="pull-right"></div>
+                        <div class="clearfix"></div>
+                        <p></p>
+                        <p class="marked">Retrieve a random workout from the database</p>
+                        <p></p>
+                        <br />
+                        <pre class="prettyprint language-html prettyprinted" data-type="get"><code><span class="pln">/api/v1/random/</span></code></pre>
+                        <p>
+                          <h3>Usage and SDK Samples</h3>
+                        </p>
+                        <ul class="nav nav-tabs nav-tabs-examples">
+                          <li class="active"><a href="#examples-Default-apiV1RandomGet-0-curl">Curl</a></li>
+                          <li class=""><a href="#examples-Default-apiV1RandomGet-0-java">Java</a></li>
+                          <li class=""><a href="#examples-Default-apiV1RandomGet-0-android">Android</a></li>
+                          <!--<li class=""><a href="#examples-Default-apiV1RandomGet-0-groovy">Groovy</a></li>-->
+                          <li class=""><a href="#examples-Default-apiV1RandomGet-0-objc">Obj-C</a></li>
+                          <li class=""><a href="#examples-Default-apiV1RandomGet-0-javascript">JavaScript</a></li>
+                          <!--<li class=""><a href="#examples-Default-apiV1RandomGet-0-angular">Angular</a></li>-->
+                          <li class=""><a href="#examples-Default-apiV1RandomGet-0-csharp">C#</a></li>
+                          <li class=""><a href="#examples-Default-apiV1RandomGet-0-php">PHP</a></li>
+                          <li class=""><a href="#examples-Default-apiV1RandomGet-0-perl">Perl</a></li>
+                          <li class=""><a href="#examples-Default-apiV1RandomGet-0-python">Python</a></li>
+                        </ul>
+
+                        <div class="tab-content">
+                          <div class="tab-pane active" id="examples-Default-apiV1RandomGet-0-curl">
+                           <pre class="prettyprint"><code class="language-bsh">curl -X GET\
+-H "Accept: text/html; charset=utf-8"\
+"https://g11-workout-server.herokuapp.com/api/v1/random/?apikey="</code></pre>
+                          </div>
+                          <div class="tab-pane" id="examples-Default-apiV1RandomGet-0-java">
+                            <pre class="prettyprint"><code class="language-java">import io.swagger.client.*;
+import io.swagger.client.auth.*;
+import io.swagger.client.model.*;
+import io.swagger.client.api.DefaultApi;
+
+import java.io.File;
+import java.util.*;
+
+public class DefaultApiExample {
+
+    public static void main(String[] args) {
+        
+        DefaultApi apiInstance = new DefaultApi();
+        String apikey = apikey_example; // String | 
+        try {
+            inline_response_200 result = apiInstance.apiV1RandomGet(apikey);
+            System.out.println(result);
+        } catch (ApiException e) {
+            System.err.println("Exception when calling DefaultApi#apiV1RandomGet");
+            e.printStackTrace();
+        }
+    }
+}</code></pre>
+                          </div>
+
+                          <div class="tab-pane" id="examples-Default-apiV1RandomGet-0-android">
+                            <pre class="prettyprint"><code class="language-java">import io.swagger.client.api.DefaultApi;
+
+public class DefaultApiExample {
+
+    public static void main(String[] args) {
+        DefaultApi apiInstance = new DefaultApi();
+        String apikey = apikey_example; // String | 
+        try {
+            inline_response_200 result = apiInstance.apiV1RandomGet(apikey);
+            System.out.println(result);
+        } catch (ApiException e) {
+            System.err.println("Exception when calling DefaultApi#apiV1RandomGet");
+            e.printStackTrace();
+        }
+    }
+}</code></pre>
+                          </div>
+  <!--
+  <div class="tab-pane" id="examples-Default-apiV1RandomGet-0-groovy">
+  <pre class="prettyprint language-json prettyprinted" data-type="json"><code>Coming Soon!</code></pre>
+  </div> -->
+                            <div class="tab-pane" id="examples-Default-apiV1RandomGet-0-objc">
+                              <pre class="prettyprint"><code class="language-cpp">String *apikey = apikey_example; //  (optional)
+
+DefaultApi *apiInstance = [[DefaultApi alloc] init];
+
+[apiInstance apiV1RandomGetWith:apikey
+              completionHandler: ^(inline_response_200 output, NSError* error) {
+                            if (output) {
+                                NSLog(@"%@", output);
+                            }
+                            if (error) {
+                                NSLog(@"Error: %@", error);
+                            }
+                        }];
+</code></pre>
+                            </div>
+
+                            <div class="tab-pane" id="examples-Default-apiV1RandomGet-0-javascript">
+                              <pre class="prettyprint"><code class="language-js">var WorkoutRecorder = require('workout_recorder');
+
+var api = new WorkoutRecorder.DefaultApi()
+var opts = { 
+  'apikey': apikey_example // {{String}} 
+};
+var callback = function(error, data, response) {
+  if (error) {
+    console.error(error);
+  } else {
+    console.log('API called successfully. Returned data: ' + data);
+  }
+};
+api.apiV1RandomGet(opts, callback);
+</code></pre>
+                            </div>
+
+                            <!--<div class="tab-pane" id="examples-Default-apiV1RandomGet-0-angular">
+              <pre class="prettyprint language-json prettyprinted" data-type="json"><code>Coming Soon!</code></pre>
+            </div>-->
+                            <div class="tab-pane" id="examples-Default-apiV1RandomGet-0-csharp">
+                              <pre class="prettyprint"><code class="language-cs">using System;
+using System.Diagnostics;
+using IO.Swagger.Api;
+using IO.Swagger.Client;
+using IO.Swagger.Model;
+
+namespace Example
+{
+    public class apiV1RandomGetExample
+    {
+        public void main()
+        {
+
+            var apiInstance = new DefaultApi();
+            var apikey = apikey_example;  // String |  (optional) 
+
+            try
+            {
+                inline_response_200 result = apiInstance.apiV1RandomGet(apikey);
+                Debug.WriteLine(result);
+            }
+            catch (Exception e)
+            {
+                Debug.Print("Exception when calling DefaultApi.apiV1RandomGet: " + e.Message );
+            }
+        }
+    }
+}
+</code></pre>
+                            </div>
+
+                            <div class="tab-pane" id="examples-Default-apiV1RandomGet-0-php">
+                              <pre class="prettyprint"><code class="language-php"><&#63;php
+require_once(__DIR__ . '/vendor/autoload.php');
+
+$api_instance = new Swagger\Client\ApiDefaultApi();
+$apikey = apikey_example; // String | 
+
+try {
+    $result = $api_instance->apiV1RandomGet($apikey);
+    print_r($result);
+} catch (Exception $e) {
+    echo 'Exception when calling DefaultApi->apiV1RandomGet: ', $e->getMessage(), PHP_EOL;
+}
+?></code></pre>
+                            </div>
+
+                            <div class="tab-pane" id="examples-Default-apiV1RandomGet-0-perl">
+                              <pre class="prettyprint"><code class="language-perl">use Data::Dumper;
+use WWW::SwaggerClient::Configuration;
+use WWW::SwaggerClient::DefaultApi;
+
+my $api_instance = WWW::SwaggerClient::DefaultApi->new();
+my $apikey = apikey_example; # String | 
+
+eval { 
+    my $result = $api_instance->apiV1RandomGet(apikey => $apikey);
+    print Dumper($result);
+};
+if ($@) {
+    warn "Exception when calling DefaultApi->apiV1RandomGet: $@\n";
+}</code></pre>
+                            </div>
+
+                            <div class="tab-pane" id="examples-Default-apiV1RandomGet-0-python">
+                              <pre class="prettyprint"><code class="language-python">from __future__ import print_statement
+import time
+import swagger_client
+from swagger_client.rest import ApiException
+from pprint import pprint
+
+# create an instance of the API class
+api_instance = swagger_client.DefaultApi()
+apikey = apikey_example # String |  (optional)
+
+try: 
+    api_response = api_instance.api_v1_random_get(apikey=apikey)
+    pprint(api_response)
+except ApiException as e:
+    print("Exception when calling DefaultApi->apiV1RandomGet: %s\n" % e)</code></pre>
+                            </div>
+                          </div>
+
+                          <h2>Parameters</h2>
+
+
+
+
+
+                            <div class="methodsubtabletitle">Query parameters</div>
+                            <table id="methodsubtable">
+                              <tr>
+                                <th width="150px">Name</th>
+                                <th>Description</th>
+                              </tr>
+                                <tr><td style="width:150px;">apikey</td>
+                                <td>
+                                
+                                
+                                    <div id="d2e199_apiV1RandomGet_apikey">
+                                        <div class="json-schema-view">
+                                            <div class="primitive">
+                                                <span class="type">
+                                                    String
+                                                </span>
+                                
+                                            </div>
+                                        </div>
+                                    </div>
+                                </td>
+                                </tr>
+                            </table>
+
+                          <h2>Responses</h2>
+                            <h3> Status: 200 - Successfully retrieved a workout </h3>
+
+                            <ul class="nav nav-tabs nav-tabs-examples" >
+                                <li class="active">
+                                  <a data-toggle="tab" href="#responses-apiV1RandomGet-200-schema">Schema</a>
+                                </li>
+
+                            </ul>
+
+                            <div class="tab-content" style='margin-bottom: 10px;'>
+                                <div class="tab-pane active" id="responses-apiV1RandomGet-200-schema">
+                                  <div id='responses-apiV1RandomGet-200-schema-200' style="padding: 30px; border-left: 1px solid #eee; border-right: 1px solid #eee; border-bottom: 1px solid #eee;">
+                                    <script>
+                                      $(document).ready(function() {
+                                        var schemaWrapper = {
+  "description" : "Successfully retrieved a workout",
+  "content" : {
+    "text/html; charset=utf-8" : {
+      "schema" : {
+        "$ref" : "#/components/schemas/inline_response_200"
+      },
+      "examples" : { }
+    }
+  }
+};
+                                        var schema = schemaWrapper.content["text/html; charset&#x3D;utf-8"].schema;
+                                        if (schema.$ref != null) {
+                                          schema = defsParser.$refs.get(schema.$ref);
+                                        } else {
+                                          schemaWrapper.components = {};
+                                          schemaWrapper.components.schemas = Object.assign({}, defs);
+                                          $RefParser.dereference(schemaWrapper).catch(function(err) {
+                                            console.log(err);
+                                          });
+                                        }
+
+                                        //console.log(JSON.stringify(schema));
+                                        var view = new JSONSchemaView(schema, 3);
+                                        $('#responses-apiV1RandomGet-200-schema-data').val(stringify(schema));
+                                        var result = $('#responses-apiV1RandomGet-200-schema-200');
+                                        result.empty();
+                                        result.append(view.render());
+                                      });
+                                    </script>
+                                  </div>
+                                  <input id='responses-apiV1RandomGet-200-schema-data' type='hidden' value=''></input>
+                                </div>
+                            </div>
+
+                        </article>
+                      </div>
+                      <hr>
+                    <div id="api-Default-apiV1SearchFletterLetterPost">
+                      <article id="api-Default-apiV1SearchFletterLetterPost-0" data-group="User" data-name="apiV1SearchFletterLetterPost" data-version="0">
+                        <div class="pull-left">
+                          <h1>apiV1SearchFletterLetterPost</h1>
+                          <p></p>
+                        </div>
+                        <div class="pull-right"></div>
+                        <div class="clearfix"></div>
+                        <p></p>
+                        <p class="marked">Search for workout by first letter</p>
+                        <p></p>
+                        <br />
+                        <pre class="prettyprint language-html prettyprinted" data-type="post"><code><span class="pln">/api/v1/search_fletter/letter:</span></code></pre>
+                        <p>
+                          <h3>Usage and SDK Samples</h3>
+                        </p>
+                        <ul class="nav nav-tabs nav-tabs-examples">
+                          <li class="active"><a href="#examples-Default-apiV1SearchFletterLetterPost-0-curl">Curl</a></li>
+                          <li class=""><a href="#examples-Default-apiV1SearchFletterLetterPost-0-java">Java</a></li>
+                          <li class=""><a href="#examples-Default-apiV1SearchFletterLetterPost-0-android">Android</a></li>
+                          <!--<li class=""><a href="#examples-Default-apiV1SearchFletterLetterPost-0-groovy">Groovy</a></li>-->
+                          <li class=""><a href="#examples-Default-apiV1SearchFletterLetterPost-0-objc">Obj-C</a></li>
+                          <li class=""><a href="#examples-Default-apiV1SearchFletterLetterPost-0-javascript">JavaScript</a></li>
+                          <!--<li class=""><a href="#examples-Default-apiV1SearchFletterLetterPost-0-angular">Angular</a></li>-->
+                          <li class=""><a href="#examples-Default-apiV1SearchFletterLetterPost-0-csharp">C#</a></li>
+                          <li class=""><a href="#examples-Default-apiV1SearchFletterLetterPost-0-php">PHP</a></li>
+                          <li class=""><a href="#examples-Default-apiV1SearchFletterLetterPost-0-perl">Perl</a></li>
+                          <li class=""><a href="#examples-Default-apiV1SearchFletterLetterPost-0-python">Python</a></li>
+                        </ul>
+
+                        <div class="tab-content">
+                          <div class="tab-pane active" id="examples-Default-apiV1SearchFletterLetterPost-0-curl">
+                           <pre class="prettyprint"><code class="language-bsh">curl -X POST\
+-H "Accept: text/html; charset=utf-8"\
+"https://g11-workout-server.herokuapp.com/api/v1/search_fletter/letter:?apikey="</code></pre>
+                          </div>
+                          <div class="tab-pane" id="examples-Default-apiV1SearchFletterLetterPost-0-java">
+                            <pre class="prettyprint"><code class="language-java">import io.swagger.client.*;
+import io.swagger.client.auth.*;
+import io.swagger.client.model.*;
+import io.swagger.client.api.DefaultApi;
+
+import java.io.File;
+import java.util.*;
+
+public class DefaultApiExample {
+
+    public static void main(String[] args) {
+        
+        DefaultApi apiInstance = new DefaultApi();
+        String apikey = apikey_example; // String | 
+        try {
+            inline_response_200 result = apiInstance.apiV1SearchFletterLetterPost(apikey);
+            System.out.println(result);
+        } catch (ApiException e) {
+            System.err.println("Exception when calling DefaultApi#apiV1SearchFletterLetterPost");
+            e.printStackTrace();
+        }
+    }
+}</code></pre>
+                          </div>
+
+                          <div class="tab-pane" id="examples-Default-apiV1SearchFletterLetterPost-0-android">
+                            <pre class="prettyprint"><code class="language-java">import io.swagger.client.api.DefaultApi;
+
+public class DefaultApiExample {
+
+    public static void main(String[] args) {
+        DefaultApi apiInstance = new DefaultApi();
+        String apikey = apikey_example; // String | 
+        try {
+            inline_response_200 result = apiInstance.apiV1SearchFletterLetterPost(apikey);
+            System.out.println(result);
+        } catch (ApiException e) {
+            System.err.println("Exception when calling DefaultApi#apiV1SearchFletterLetterPost");
+            e.printStackTrace();
+        }
+    }
+}</code></pre>
+                          </div>
+  <!--
+  <div class="tab-pane" id="examples-Default-apiV1SearchFletterLetterPost-0-groovy">
+  <pre class="prettyprint language-json prettyprinted" data-type="json"><code>Coming Soon!</code></pre>
+  </div> -->
+                            <div class="tab-pane" id="examples-Default-apiV1SearchFletterLetterPost-0-objc">
+                              <pre class="prettyprint"><code class="language-cpp">String *apikey = apikey_example; //  (optional)
+
+DefaultApi *apiInstance = [[DefaultApi alloc] init];
+
+[apiInstance apiV1SearchFletterLetterPostWith:apikey
+              completionHandler: ^(inline_response_200 output, NSError* error) {
+                            if (output) {
+                                NSLog(@"%@", output);
+                            }
+                            if (error) {
+                                NSLog(@"Error: %@", error);
+                            }
+                        }];
+</code></pre>
+                            </div>
+
+                            <div class="tab-pane" id="examples-Default-apiV1SearchFletterLetterPost-0-javascript">
+                              <pre class="prettyprint"><code class="language-js">var WorkoutRecorder = require('workout_recorder');
+
+var api = new WorkoutRecorder.DefaultApi()
+var opts = { 
+  'apikey': apikey_example // {{String}} 
+};
+var callback = function(error, data, response) {
+  if (error) {
+    console.error(error);
+  } else {
+    console.log('API called successfully. Returned data: ' + data);
+  }
+};
+api.apiV1SearchFletterLetterPost(opts, callback);
+</code></pre>
+                            </div>
+
+                            <!--<div class="tab-pane" id="examples-Default-apiV1SearchFletterLetterPost-0-angular">
+              <pre class="prettyprint language-json prettyprinted" data-type="json"><code>Coming Soon!</code></pre>
+            </div>-->
+                            <div class="tab-pane" id="examples-Default-apiV1SearchFletterLetterPost-0-csharp">
+                              <pre class="prettyprint"><code class="language-cs">using System;
+using System.Diagnostics;
+using IO.Swagger.Api;
+using IO.Swagger.Client;
+using IO.Swagger.Model;
+
+namespace Example
+{
+    public class apiV1SearchFletterLetterPostExample
+    {
+        public void main()
+        {
+
+            var apiInstance = new DefaultApi();
+            var apikey = apikey_example;  // String |  (optional) 
+
+            try
+            {
+                inline_response_200 result = apiInstance.apiV1SearchFletterLetterPost(apikey);
+                Debug.WriteLine(result);
+            }
+            catch (Exception e)
+            {
+                Debug.Print("Exception when calling DefaultApi.apiV1SearchFletterLetterPost: " + e.Message );
+            }
+        }
+    }
+}
+</code></pre>
+                            </div>
+
+                            <div class="tab-pane" id="examples-Default-apiV1SearchFletterLetterPost-0-php">
+                              <pre class="prettyprint"><code class="language-php"><&#63;php
+require_once(__DIR__ . '/vendor/autoload.php');
+
+$api_instance = new Swagger\Client\ApiDefaultApi();
+$apikey = apikey_example; // String | 
+
+try {
+    $result = $api_instance->apiV1SearchFletterLetterPost($apikey);
+    print_r($result);
+} catch (Exception $e) {
+    echo 'Exception when calling DefaultApi->apiV1SearchFletterLetterPost: ', $e->getMessage(), PHP_EOL;
+}
+?></code></pre>
+                            </div>
+
+                            <div class="tab-pane" id="examples-Default-apiV1SearchFletterLetterPost-0-perl">
+                              <pre class="prettyprint"><code class="language-perl">use Data::Dumper;
+use WWW::SwaggerClient::Configuration;
+use WWW::SwaggerClient::DefaultApi;
+
+my $api_instance = WWW::SwaggerClient::DefaultApi->new();
+my $apikey = apikey_example; # String | 
+
+eval { 
+    my $result = $api_instance->apiV1SearchFletterLetterPost(apikey => $apikey);
+    print Dumper($result);
+};
+if ($@) {
+    warn "Exception when calling DefaultApi->apiV1SearchFletterLetterPost: $@\n";
+}</code></pre>
+                            </div>
+
+                            <div class="tab-pane" id="examples-Default-apiV1SearchFletterLetterPost-0-python">
+                              <pre class="prettyprint"><code class="language-python">from __future__ import print_statement
+import time
+import swagger_client
+from swagger_client.rest import ApiException
+from pprint import pprint
+
+# create an instance of the API class
+api_instance = swagger_client.DefaultApi()
+apikey = apikey_example # String |  (optional)
+
+try: 
+    api_response = api_instance.api_v1_search_fletter_letter_post(apikey=apikey)
+    pprint(api_response)
+except ApiException as e:
+    print("Exception when calling DefaultApi->apiV1SearchFletterLetterPost: %s\n" % e)</code></pre>
+                            </div>
+                          </div>
+
+                          <h2>Parameters</h2>
+
+
+
+
+
+                            <div class="methodsubtabletitle">Query parameters</div>
+                            <table id="methodsubtable">
+                              <tr>
+                                <th width="150px">Name</th>
+                                <th>Description</th>
+                              </tr>
+                                <tr><td style="width:150px;">apikey</td>
+                                <td>
+                                
+                                
+                                    <div id="d2e199_apiV1SearchFletterLetterPost_apikey">
+                                        <div class="json-schema-view">
+                                            <div class="primitive">
+                                                <span class="type">
+                                                    String
+                                                </span>
+                                
+                                            </div>
+                                        </div>
+                                    </div>
+                                </td>
+                                </tr>
+                            </table>
+
+                          <h2>Responses</h2>
+                            <h3> Status: 200 - Successfully retrieved workouts starting with the letter </h3>
+
+                            <ul class="nav nav-tabs nav-tabs-examples" >
+                                <li class="active">
+                                  <a data-toggle="tab" href="#responses-apiV1SearchFletterLetterPost-200-schema">Schema</a>
+                                </li>
+
+                            </ul>
+
+                            <div class="tab-content" style='margin-bottom: 10px;'>
+                                <div class="tab-pane active" id="responses-apiV1SearchFletterLetterPost-200-schema">
+                                  <div id='responses-apiV1SearchFletterLetterPost-200-schema-200' style="padding: 30px; border-left: 1px solid #eee; border-right: 1px solid #eee; border-bottom: 1px solid #eee;">
+                                    <script>
+                                      $(document).ready(function() {
+                                        var schemaWrapper = {
+  "description" : "Successfully retrieved workouts starting with the letter",
+  "content" : {
+    "text/html; charset=utf-8" : {
+      "schema" : {
+        "$ref" : "#/components/schemas/inline_response_200"
+      },
+      "examples" : { }
+    }
+  }
+};
+                                        var schema = schemaWrapper.content["text/html; charset&#x3D;utf-8"].schema;
+                                        if (schema.$ref != null) {
+                                          schema = defsParser.$refs.get(schema.$ref);
+                                        } else {
+                                          schemaWrapper.components = {};
+                                          schemaWrapper.components.schemas = Object.assign({}, defs);
+                                          $RefParser.dereference(schemaWrapper).catch(function(err) {
+                                            console.log(err);
+                                          });
+                                        }
+
+                                        //console.log(JSON.stringify(schema));
+                                        var view = new JSONSchemaView(schema, 3);
+                                        $('#responses-apiV1SearchFletterLetterPost-200-schema-data').val(stringify(schema));
+                                        var result = $('#responses-apiV1SearchFletterLetterPost-200-schema-200');
+                                        result.empty();
+                                        result.append(view.render());
+                                      });
+                                    </script>
+                                  </div>
+                                  <input id='responses-apiV1SearchFletterLetterPost-200-schema-data' type='hidden' value=''></input>
+                                </div>
+                            </div>
+
+                        </article>
+                      </div>
+                      <hr>
+                    <div id="api-Default-apiV1SearchIdIdPost">
+                      <article id="api-Default-apiV1SearchIdIdPost-0" data-group="User" data-name="apiV1SearchIdIdPost" data-version="0">
+                        <div class="pull-left">
+                          <h1>apiV1SearchIdIdPost</h1>
+                          <p></p>
+                        </div>
+                        <div class="pull-right"></div>
+                        <div class="clearfix"></div>
+                        <p></p>
+                        <p class="marked">Search for a workout by the id number</p>
+                        <p></p>
+                        <br />
+                        <pre class="prettyprint language-html prettyprinted" data-type="post"><code><span class="pln">/api/v1/search_id/id:</span></code></pre>
+                        <p>
+                          <h3>Usage and SDK Samples</h3>
+                        </p>
+                        <ul class="nav nav-tabs nav-tabs-examples">
+                          <li class="active"><a href="#examples-Default-apiV1SearchIdIdPost-0-curl">Curl</a></li>
+                          <li class=""><a href="#examples-Default-apiV1SearchIdIdPost-0-java">Java</a></li>
+                          <li class=""><a href="#examples-Default-apiV1SearchIdIdPost-0-android">Android</a></li>
+                          <!--<li class=""><a href="#examples-Default-apiV1SearchIdIdPost-0-groovy">Groovy</a></li>-->
+                          <li class=""><a href="#examples-Default-apiV1SearchIdIdPost-0-objc">Obj-C</a></li>
+                          <li class=""><a href="#examples-Default-apiV1SearchIdIdPost-0-javascript">JavaScript</a></li>
+                          <!--<li class=""><a href="#examples-Default-apiV1SearchIdIdPost-0-angular">Angular</a></li>-->
+                          <li class=""><a href="#examples-Default-apiV1SearchIdIdPost-0-csharp">C#</a></li>
+                          <li class=""><a href="#examples-Default-apiV1SearchIdIdPost-0-php">PHP</a></li>
+                          <li class=""><a href="#examples-Default-apiV1SearchIdIdPost-0-perl">Perl</a></li>
+                          <li class=""><a href="#examples-Default-apiV1SearchIdIdPost-0-python">Python</a></li>
+                        </ul>
+
+                        <div class="tab-content">
+                          <div class="tab-pane active" id="examples-Default-apiV1SearchIdIdPost-0-curl">
+                           <pre class="prettyprint"><code class="language-bsh">curl -X POST\
+-H "Accept: text/html; charset=utf-8"\
+"https://g11-workout-server.herokuapp.com/api/v1/search_id/id:?apikey="</code></pre>
+                          </div>
+                          <div class="tab-pane" id="examples-Default-apiV1SearchIdIdPost-0-java">
+                            <pre class="prettyprint"><code class="language-java">import io.swagger.client.*;
+import io.swagger.client.auth.*;
+import io.swagger.client.model.*;
+import io.swagger.client.api.DefaultApi;
+
+import java.io.File;
+import java.util.*;
+
+public class DefaultApiExample {
+
+    public static void main(String[] args) {
+        
+        DefaultApi apiInstance = new DefaultApi();
+        String apikey = apikey_example; // String | 
+        try {
+            body_2 result = apiInstance.apiV1SearchIdIdPost(apikey);
+            System.out.println(result);
+        } catch (ApiException e) {
+            System.err.println("Exception when calling DefaultApi#apiV1SearchIdIdPost");
+            e.printStackTrace();
+        }
+    }
+}</code></pre>
+                          </div>
+
+                          <div class="tab-pane" id="examples-Default-apiV1SearchIdIdPost-0-android">
+                            <pre class="prettyprint"><code class="language-java">import io.swagger.client.api.DefaultApi;
+
+public class DefaultApiExample {
+
+    public static void main(String[] args) {
+        DefaultApi apiInstance = new DefaultApi();
+        String apikey = apikey_example; // String | 
+        try {
+            body_2 result = apiInstance.apiV1SearchIdIdPost(apikey);
+            System.out.println(result);
+        } catch (ApiException e) {
+            System.err.println("Exception when calling DefaultApi#apiV1SearchIdIdPost");
+            e.printStackTrace();
+        }
+    }
+}</code></pre>
+                          </div>
+  <!--
+  <div class="tab-pane" id="examples-Default-apiV1SearchIdIdPost-0-groovy">
+  <pre class="prettyprint language-json prettyprinted" data-type="json"><code>Coming Soon!</code></pre>
+  </div> -->
+                            <div class="tab-pane" id="examples-Default-apiV1SearchIdIdPost-0-objc">
+                              <pre class="prettyprint"><code class="language-cpp">String *apikey = apikey_example; //  (optional)
+
+DefaultApi *apiInstance = [[DefaultApi alloc] init];
+
+[apiInstance apiV1SearchIdIdPostWith:apikey
+              completionHandler: ^(body_2 output, NSError* error) {
+                            if (output) {
+                                NSLog(@"%@", output);
+                            }
+                            if (error) {
+                                NSLog(@"Error: %@", error);
+                            }
+                        }];
+</code></pre>
+                            </div>
+
+                            <div class="tab-pane" id="examples-Default-apiV1SearchIdIdPost-0-javascript">
+                              <pre class="prettyprint"><code class="language-js">var WorkoutRecorder = require('workout_recorder');
+
+var api = new WorkoutRecorder.DefaultApi()
+var opts = { 
+  'apikey': apikey_example // {{String}} 
+};
+var callback = function(error, data, response) {
+  if (error) {
+    console.error(error);
+  } else {
+    console.log('API called successfully. Returned data: ' + data);
+  }
+};
+api.apiV1SearchIdIdPost(opts, callback);
+</code></pre>
+                            </div>
+
+                            <!--<div class="tab-pane" id="examples-Default-apiV1SearchIdIdPost-0-angular">
+              <pre class="prettyprint language-json prettyprinted" data-type="json"><code>Coming Soon!</code></pre>
+            </div>-->
+                            <div class="tab-pane" id="examples-Default-apiV1SearchIdIdPost-0-csharp">
+                              <pre class="prettyprint"><code class="language-cs">using System;
+using System.Diagnostics;
+using IO.Swagger.Api;
+using IO.Swagger.Client;
+using IO.Swagger.Model;
+
+namespace Example
+{
+    public class apiV1SearchIdIdPostExample
+    {
+        public void main()
+        {
+
+            var apiInstance = new DefaultApi();
+            var apikey = apikey_example;  // String |  (optional) 
+
+            try
+            {
+                body_2 result = apiInstance.apiV1SearchIdIdPost(apikey);
+                Debug.WriteLine(result);
+            }
+            catch (Exception e)
+            {
+                Debug.Print("Exception when calling DefaultApi.apiV1SearchIdIdPost: " + e.Message );
+            }
+        }
+    }
+}
+</code></pre>
+                            </div>
+
+                            <div class="tab-pane" id="examples-Default-apiV1SearchIdIdPost-0-php">
+                              <pre class="prettyprint"><code class="language-php"><&#63;php
+require_once(__DIR__ . '/vendor/autoload.php');
+
+$api_instance = new Swagger\Client\ApiDefaultApi();
+$apikey = apikey_example; // String | 
+
+try {
+    $result = $api_instance->apiV1SearchIdIdPost($apikey);
+    print_r($result);
+} catch (Exception $e) {
+    echo 'Exception when calling DefaultApi->apiV1SearchIdIdPost: ', $e->getMessage(), PHP_EOL;
+}
+?></code></pre>
+                            </div>
+
+                            <div class="tab-pane" id="examples-Default-apiV1SearchIdIdPost-0-perl">
+                              <pre class="prettyprint"><code class="language-perl">use Data::Dumper;
+use WWW::SwaggerClient::Configuration;
+use WWW::SwaggerClient::DefaultApi;
+
+my $api_instance = WWW::SwaggerClient::DefaultApi->new();
+my $apikey = apikey_example; # String | 
+
+eval { 
+    my $result = $api_instance->apiV1SearchIdIdPost(apikey => $apikey);
+    print Dumper($result);
+};
+if ($@) {
+    warn "Exception when calling DefaultApi->apiV1SearchIdIdPost: $@\n";
+}</code></pre>
+                            </div>
+
+                            <div class="tab-pane" id="examples-Default-apiV1SearchIdIdPost-0-python">
+                              <pre class="prettyprint"><code class="language-python">from __future__ import print_statement
+import time
+import swagger_client
+from swagger_client.rest import ApiException
+from pprint import pprint
+
+# create an instance of the API class
+api_instance = swagger_client.DefaultApi()
+apikey = apikey_example # String |  (optional)
+
+try: 
+    api_response = api_instance.api_v1_search_id_id_post(apikey=apikey)
+    pprint(api_response)
+except ApiException as e:
+    print("Exception when calling DefaultApi->apiV1SearchIdIdPost: %s\n" % e)</code></pre>
+                            </div>
+                          </div>
+
+                          <h2>Parameters</h2>
+
+
+
+
+
+                            <div class="methodsubtabletitle">Query parameters</div>
+                            <table id="methodsubtable">
+                              <tr>
+                                <th width="150px">Name</th>
+                                <th>Description</th>
+                              </tr>
+                                <tr><td style="width:150px;">apikey</td>
+                                <td>
+                                
+                                
+                                    <div id="d2e199_apiV1SearchIdIdPost_apikey">
+                                        <div class="json-schema-view">
+                                            <div class="primitive">
+                                                <span class="type">
+                                                    String
+                                                </span>
+                                
+                                            </div>
+                                        </div>
+                                    </div>
+                                </td>
+                                </tr>
+                            </table>
+
+                          <h2>Responses</h2>
+                            <h3> Status: 200 - Successfully retrieved workout </h3>
+
+                            <ul class="nav nav-tabs nav-tabs-examples" >
+                                <li class="active">
+                                  <a data-toggle="tab" href="#responses-apiV1SearchIdIdPost-200-schema">Schema</a>
+                                </li>
+
+                            </ul>
+
+                            <div class="tab-content" style='margin-bottom: 10px;'>
+                                <div class="tab-pane active" id="responses-apiV1SearchIdIdPost-200-schema">
+                                  <div id='responses-apiV1SearchIdIdPost-200-schema-200' style="padding: 30px; border-left: 1px solid #eee; border-right: 1px solid #eee; border-bottom: 1px solid #eee;">
+                                    <script>
+                                      $(document).ready(function() {
+                                        var schemaWrapper = {
+  "description" : "Successfully retrieved workout",
+  "content" : {
+    "text/html; charset=utf-8" : {
+      "schema" : {
+        "$ref" : "#/components/schemas/body_2"
+      },
+      "examples" : { }
+    }
+  }
+};
+                                        var schema = schemaWrapper.content["text/html; charset&#x3D;utf-8"].schema;
+                                        if (schema.$ref != null) {
+                                          schema = defsParser.$refs.get(schema.$ref);
+                                        } else {
+                                          schemaWrapper.components = {};
+                                          schemaWrapper.components.schemas = Object.assign({}, defs);
+                                          $RefParser.dereference(schemaWrapper).catch(function(err) {
+                                            console.log(err);
+                                          });
+                                        }
+
+                                        //console.log(JSON.stringify(schema));
+                                        var view = new JSONSchemaView(schema, 3);
+                                        $('#responses-apiV1SearchIdIdPost-200-schema-data').val(stringify(schema));
+                                        var result = $('#responses-apiV1SearchIdIdPost-200-schema-200');
+                                        result.empty();
+                                        result.append(view.render());
+                                      });
+                                    </script>
+                                  </div>
+                                  <input id='responses-apiV1SearchIdIdPost-200-schema-data' type='hidden' value=''></input>
+                                </div>
+                            </div>
+
+                        </article>
+                      </div>
+                      <hr>
+                    <div id="api-Default-apiV1SearchNameNameGet">
+                      <article id="api-Default-apiV1SearchNameNameGet-0" data-group="User" data-name="apiV1SearchNameNameGet" data-version="0">
+                        <div class="pull-left">
+                          <h1>apiV1SearchNameNameGet</h1>
+                          <p></p>
+                        </div>
+                        <div class="pull-right"></div>
+                        <div class="clearfix"></div>
+                        <p></p>
+                        <p class="marked">Search for a workout by name</p>
+                        <p></p>
+                        <br />
+                        <pre class="prettyprint language-html prettyprinted" data-type="get"><code><span class="pln">/api/v1/search_name/name:</span></code></pre>
+                        <p>
+                          <h3>Usage and SDK Samples</h3>
+                        </p>
+                        <ul class="nav nav-tabs nav-tabs-examples">
+                          <li class="active"><a href="#examples-Default-apiV1SearchNameNameGet-0-curl">Curl</a></li>
+                          <li class=""><a href="#examples-Default-apiV1SearchNameNameGet-0-java">Java</a></li>
+                          <li class=""><a href="#examples-Default-apiV1SearchNameNameGet-0-android">Android</a></li>
+                          <!--<li class=""><a href="#examples-Default-apiV1SearchNameNameGet-0-groovy">Groovy</a></li>-->
+                          <li class=""><a href="#examples-Default-apiV1SearchNameNameGet-0-objc">Obj-C</a></li>
+                          <li class=""><a href="#examples-Default-apiV1SearchNameNameGet-0-javascript">JavaScript</a></li>
+                          <!--<li class=""><a href="#examples-Default-apiV1SearchNameNameGet-0-angular">Angular</a></li>-->
+                          <li class=""><a href="#examples-Default-apiV1SearchNameNameGet-0-csharp">C#</a></li>
+                          <li class=""><a href="#examples-Default-apiV1SearchNameNameGet-0-php">PHP</a></li>
+                          <li class=""><a href="#examples-Default-apiV1SearchNameNameGet-0-perl">Perl</a></li>
+                          <li class=""><a href="#examples-Default-apiV1SearchNameNameGet-0-python">Python</a></li>
+                        </ul>
+
+                        <div class="tab-content">
+                          <div class="tab-pane active" id="examples-Default-apiV1SearchNameNameGet-0-curl">
+                           <pre class="prettyprint"><code class="language-bsh">curl -X GET\
+-H "Accept: text/html; charset=utf-8"\
+"https://g11-workout-server.herokuapp.com/api/v1/search_name/name:?apikey="</code></pre>
+                          </div>
+                          <div class="tab-pane" id="examples-Default-apiV1SearchNameNameGet-0-java">
+                            <pre class="prettyprint"><code class="language-java">import io.swagger.client.*;
+import io.swagger.client.auth.*;
+import io.swagger.client.model.*;
+import io.swagger.client.api.DefaultApi;
+
+import java.io.File;
+import java.util.*;
+
+public class DefaultApiExample {
+
+    public static void main(String[] args) {
+        
+        DefaultApi apiInstance = new DefaultApi();
+        String apikey = apikey_example; // String | 
+        try {
+            inline_response_200 result = apiInstance.apiV1SearchNameNameGet(apikey);
+            System.out.println(result);
+        } catch (ApiException e) {
+            System.err.println("Exception when calling DefaultApi#apiV1SearchNameNameGet");
+            e.printStackTrace();
+        }
+    }
+}</code></pre>
+                          </div>
+
+                          <div class="tab-pane" id="examples-Default-apiV1SearchNameNameGet-0-android">
+                            <pre class="prettyprint"><code class="language-java">import io.swagger.client.api.DefaultApi;
+
+public class DefaultApiExample {
+
+    public static void main(String[] args) {
+        DefaultApi apiInstance = new DefaultApi();
+        String apikey = apikey_example; // String | 
+        try {
+            inline_response_200 result = apiInstance.apiV1SearchNameNameGet(apikey);
+            System.out.println(result);
+        } catch (ApiException e) {
+            System.err.println("Exception when calling DefaultApi#apiV1SearchNameNameGet");
+            e.printStackTrace();
+        }
+    }
+}</code></pre>
+                          </div>
+  <!--
+  <div class="tab-pane" id="examples-Default-apiV1SearchNameNameGet-0-groovy">
+  <pre class="prettyprint language-json prettyprinted" data-type="json"><code>Coming Soon!</code></pre>
+  </div> -->
+                            <div class="tab-pane" id="examples-Default-apiV1SearchNameNameGet-0-objc">
+                              <pre class="prettyprint"><code class="language-cpp">String *apikey = apikey_example; //  (optional)
+
+DefaultApi *apiInstance = [[DefaultApi alloc] init];
+
+[apiInstance apiV1SearchNameNameGetWith:apikey
+              completionHandler: ^(inline_response_200 output, NSError* error) {
+                            if (output) {
+                                NSLog(@"%@", output);
+                            }
+                            if (error) {
+                                NSLog(@"Error: %@", error);
+                            }
+                        }];
+</code></pre>
+                            </div>
+
+                            <div class="tab-pane" id="examples-Default-apiV1SearchNameNameGet-0-javascript">
+                              <pre class="prettyprint"><code class="language-js">var WorkoutRecorder = require('workout_recorder');
+
+var api = new WorkoutRecorder.DefaultApi()
+var opts = { 
+  'apikey': apikey_example // {{String}} 
+};
+var callback = function(error, data, response) {
+  if (error) {
+    console.error(error);
+  } else {
+    console.log('API called successfully. Returned data: ' + data);
+  }
+};
+api.apiV1SearchNameNameGet(opts, callback);
+</code></pre>
+                            </div>
+
+                            <!--<div class="tab-pane" id="examples-Default-apiV1SearchNameNameGet-0-angular">
+              <pre class="prettyprint language-json prettyprinted" data-type="json"><code>Coming Soon!</code></pre>
+            </div>-->
+                            <div class="tab-pane" id="examples-Default-apiV1SearchNameNameGet-0-csharp">
+                              <pre class="prettyprint"><code class="language-cs">using System;
+using System.Diagnostics;
+using IO.Swagger.Api;
+using IO.Swagger.Client;
+using IO.Swagger.Model;
+
+namespace Example
+{
+    public class apiV1SearchNameNameGetExample
+    {
+        public void main()
+        {
+
+            var apiInstance = new DefaultApi();
+            var apikey = apikey_example;  // String |  (optional) 
+
+            try
+            {
+                inline_response_200 result = apiInstance.apiV1SearchNameNameGet(apikey);
+                Debug.WriteLine(result);
+            }
+            catch (Exception e)
+            {
+                Debug.Print("Exception when calling DefaultApi.apiV1SearchNameNameGet: " + e.Message );
+            }
+        }
+    }
+}
+</code></pre>
+                            </div>
+
+                            <div class="tab-pane" id="examples-Default-apiV1SearchNameNameGet-0-php">
+                              <pre class="prettyprint"><code class="language-php"><&#63;php
+require_once(__DIR__ . '/vendor/autoload.php');
+
+$api_instance = new Swagger\Client\ApiDefaultApi();
+$apikey = apikey_example; // String | 
+
+try {
+    $result = $api_instance->apiV1SearchNameNameGet($apikey);
+    print_r($result);
+} catch (Exception $e) {
+    echo 'Exception when calling DefaultApi->apiV1SearchNameNameGet: ', $e->getMessage(), PHP_EOL;
+}
+?></code></pre>
+                            </div>
+
+                            <div class="tab-pane" id="examples-Default-apiV1SearchNameNameGet-0-perl">
+                              <pre class="prettyprint"><code class="language-perl">use Data::Dumper;
+use WWW::SwaggerClient::Configuration;
+use WWW::SwaggerClient::DefaultApi;
+
+my $api_instance = WWW::SwaggerClient::DefaultApi->new();
+my $apikey = apikey_example; # String | 
+
+eval { 
+    my $result = $api_instance->apiV1SearchNameNameGet(apikey => $apikey);
+    print Dumper($result);
+};
+if ($@) {
+    warn "Exception when calling DefaultApi->apiV1SearchNameNameGet: $@\n";
+}</code></pre>
+                            </div>
+
+                            <div class="tab-pane" id="examples-Default-apiV1SearchNameNameGet-0-python">
+                              <pre class="prettyprint"><code class="language-python">from __future__ import print_statement
+import time
+import swagger_client
+from swagger_client.rest import ApiException
+from pprint import pprint
+
+# create an instance of the API class
+api_instance = swagger_client.DefaultApi()
+apikey = apikey_example # String |  (optional)
+
+try: 
+    api_response = api_instance.api_v1_search_name_name_get(apikey=apikey)
+    pprint(api_response)
+except ApiException as e:
+    print("Exception when calling DefaultApi->apiV1SearchNameNameGet: %s\n" % e)</code></pre>
+                            </div>
+                          </div>
+
+                          <h2>Parameters</h2>
+
+
+
+
+
+                            <div class="methodsubtabletitle">Query parameters</div>
+                            <table id="methodsubtable">
+                              <tr>
+                                <th width="150px">Name</th>
+                                <th>Description</th>
+                              </tr>
+                                <tr><td style="width:150px;">apikey</td>
+                                <td>
+                                
+                                
+                                    <div id="d2e199_apiV1SearchNameNameGet_apikey">
+                                        <div class="json-schema-view">
+                                            <div class="primitive">
+                                                <span class="type">
+                                                    String
+                                                </span>
+                                
+                                            </div>
+                                        </div>
+                                    </div>
+                                </td>
+                                </tr>
+                            </table>
+
+                          <h2>Responses</h2>
+                            <h3> Status: 200 - Successfully retrieved workout </h3>
+
+                            <ul class="nav nav-tabs nav-tabs-examples" >
+                                <li class="active">
+                                  <a data-toggle="tab" href="#responses-apiV1SearchNameNameGet-200-schema">Schema</a>
+                                </li>
+
+                            </ul>
+
+                            <div class="tab-content" style='margin-bottom: 10px;'>
+                                <div class="tab-pane active" id="responses-apiV1SearchNameNameGet-200-schema">
+                                  <div id='responses-apiV1SearchNameNameGet-200-schema-200' style="padding: 30px; border-left: 1px solid #eee; border-right: 1px solid #eee; border-bottom: 1px solid #eee;">
+                                    <script>
+                                      $(document).ready(function() {
+                                        var schemaWrapper = {
+  "description" : "Successfully retrieved workout",
+  "content" : {
+    "text/html; charset=utf-8" : {
+      "schema" : {
+        "$ref" : "#/components/schemas/inline_response_200"
+      },
+      "examples" : { }
+    }
+  }
+};
+                                        var schema = schemaWrapper.content["text/html; charset&#x3D;utf-8"].schema;
+                                        if (schema.$ref != null) {
+                                          schema = defsParser.$refs.get(schema.$ref);
+                                        } else {
+                                          schemaWrapper.components = {};
+                                          schemaWrapper.components.schemas = Object.assign({}, defs);
+                                          $RefParser.dereference(schemaWrapper).catch(function(err) {
+                                            console.log(err);
+                                          });
+                                        }
+
+                                        //console.log(JSON.stringify(schema));
+                                        var view = new JSONSchemaView(schema, 3);
+                                        $('#responses-apiV1SearchNameNameGet-200-schema-data').val(stringify(schema));
+                                        var result = $('#responses-apiV1SearchNameNameGet-200-schema-200');
+                                        result.empty();
+                                        result.append(view.render());
+                                      });
+                                    </script>
+                                  </div>
+                                  <input id='responses-apiV1SearchNameNameGet-200-schema-data' type='hidden' value=''></input>
+                                </div>
+                            </div>
+
+                        </article>
+                      </div>
+                      <hr>
+                    <div id="api-Default-apiV1SessionsGet">
+                      <article id="api-Default-apiV1SessionsGet-0" data-group="User" data-name="apiV1SessionsGet" data-version="0">
+                        <div class="pull-left">
+                          <h1>apiV1SessionsGet</h1>
+                          <p></p>
+                        </div>
+                        <div class="pull-right"></div>
+                        <div class="clearfix"></div>
+                        <p></p>
+                        <p class="marked">Retrieve all sessions</p>
+                        <p></p>
+                        <br />
+                        <pre class="prettyprint language-html prettyprinted" data-type="get"><code><span class="pln">/api/v1/sessions/</span></code></pre>
+                        <p>
+                          <h3>Usage and SDK Samples</h3>
+                        </p>
+                        <ul class="nav nav-tabs nav-tabs-examples">
+                          <li class="active"><a href="#examples-Default-apiV1SessionsGet-0-curl">Curl</a></li>
+                          <li class=""><a href="#examples-Default-apiV1SessionsGet-0-java">Java</a></li>
+                          <li class=""><a href="#examples-Default-apiV1SessionsGet-0-android">Android</a></li>
+                          <!--<li class=""><a href="#examples-Default-apiV1SessionsGet-0-groovy">Groovy</a></li>-->
+                          <li class=""><a href="#examples-Default-apiV1SessionsGet-0-objc">Obj-C</a></li>
+                          <li class=""><a href="#examples-Default-apiV1SessionsGet-0-javascript">JavaScript</a></li>
+                          <!--<li class=""><a href="#examples-Default-apiV1SessionsGet-0-angular">Angular</a></li>-->
+                          <li class=""><a href="#examples-Default-apiV1SessionsGet-0-csharp">C#</a></li>
+                          <li class=""><a href="#examples-Default-apiV1SessionsGet-0-php">PHP</a></li>
+                          <li class=""><a href="#examples-Default-apiV1SessionsGet-0-perl">Perl</a></li>
+                          <li class=""><a href="#examples-Default-apiV1SessionsGet-0-python">Python</a></li>
+                        </ul>
+
+                        <div class="tab-content">
+                          <div class="tab-pane active" id="examples-Default-apiV1SessionsGet-0-curl">
+                           <pre class="prettyprint"><code class="language-bsh">curl -X GET\
+-H "Accept: text/html; charset=utf-8"\
+"https://g11-workout-server.herokuapp.com/api/v1/sessions/?apikey="</code></pre>
+                          </div>
+                          <div class="tab-pane" id="examples-Default-apiV1SessionsGet-0-java">
+                            <pre class="prettyprint"><code class="language-java">import io.swagger.client.*;
+import io.swagger.client.auth.*;
+import io.swagger.client.model.*;
+import io.swagger.client.api.DefaultApi;
+
+import java.io.File;
+import java.util.*;
+
+public class DefaultApiExample {
+
+    public static void main(String[] args) {
+        
+        DefaultApi apiInstance = new DefaultApi();
+        String apikey = apikey_example; // String | 
+        try {
+            body result = apiInstance.apiV1SessionsGet(apikey);
+            System.out.println(result);
+        } catch (ApiException e) {
+            System.err.println("Exception when calling DefaultApi#apiV1SessionsGet");
+            e.printStackTrace();
+        }
+    }
+}</code></pre>
+                          </div>
+
+                          <div class="tab-pane" id="examples-Default-apiV1SessionsGet-0-android">
+                            <pre class="prettyprint"><code class="language-java">import io.swagger.client.api.DefaultApi;
+
+public class DefaultApiExample {
+
+    public static void main(String[] args) {
+        DefaultApi apiInstance = new DefaultApi();
+        String apikey = apikey_example; // String | 
+        try {
+            body result = apiInstance.apiV1SessionsGet(apikey);
+            System.out.println(result);
+        } catch (ApiException e) {
+            System.err.println("Exception when calling DefaultApi#apiV1SessionsGet");
+            e.printStackTrace();
+        }
+    }
+}</code></pre>
+                          </div>
+  <!--
+  <div class="tab-pane" id="examples-Default-apiV1SessionsGet-0-groovy">
+  <pre class="prettyprint language-json prettyprinted" data-type="json"><code>Coming Soon!</code></pre>
+  </div> -->
+                            <div class="tab-pane" id="examples-Default-apiV1SessionsGet-0-objc">
+                              <pre class="prettyprint"><code class="language-cpp">String *apikey = apikey_example; //  (optional)
+
+DefaultApi *apiInstance = [[DefaultApi alloc] init];
+
+[apiInstance apiV1SessionsGetWith:apikey
+              completionHandler: ^(body output, NSError* error) {
+                            if (output) {
+                                NSLog(@"%@", output);
+                            }
+                            if (error) {
+                                NSLog(@"Error: %@", error);
+                            }
+                        }];
+</code></pre>
+                            </div>
+
+                            <div class="tab-pane" id="examples-Default-apiV1SessionsGet-0-javascript">
+                              <pre class="prettyprint"><code class="language-js">var WorkoutRecorder = require('workout_recorder');
+
+var api = new WorkoutRecorder.DefaultApi()
+var opts = { 
+  'apikey': apikey_example // {{String}} 
+};
+var callback = function(error, data, response) {
+  if (error) {
+    console.error(error);
+  } else {
+    console.log('API called successfully. Returned data: ' + data);
+  }
+};
+api.apiV1SessionsGet(opts, callback);
+</code></pre>
+                            </div>
+
+                            <!--<div class="tab-pane" id="examples-Default-apiV1SessionsGet-0-angular">
+              <pre class="prettyprint language-json prettyprinted" data-type="json"><code>Coming Soon!</code></pre>
+            </div>-->
+                            <div class="tab-pane" id="examples-Default-apiV1SessionsGet-0-csharp">
+                              <pre class="prettyprint"><code class="language-cs">using System;
+using System.Diagnostics;
+using IO.Swagger.Api;
+using IO.Swagger.Client;
+using IO.Swagger.Model;
+
+namespace Example
+{
+    public class apiV1SessionsGetExample
+    {
+        public void main()
+        {
+
+            var apiInstance = new DefaultApi();
+            var apikey = apikey_example;  // String |  (optional) 
+
+            try
+            {
+                body result = apiInstance.apiV1SessionsGet(apikey);
+                Debug.WriteLine(result);
+            }
+            catch (Exception e)
+            {
+                Debug.Print("Exception when calling DefaultApi.apiV1SessionsGet: " + e.Message );
+            }
+        }
+    }
+}
+</code></pre>
+                            </div>
+
+                            <div class="tab-pane" id="examples-Default-apiV1SessionsGet-0-php">
+                              <pre class="prettyprint"><code class="language-php"><&#63;php
+require_once(__DIR__ . '/vendor/autoload.php');
+
+$api_instance = new Swagger\Client\ApiDefaultApi();
+$apikey = apikey_example; // String | 
+
+try {
+    $result = $api_instance->apiV1SessionsGet($apikey);
+    print_r($result);
+} catch (Exception $e) {
+    echo 'Exception when calling DefaultApi->apiV1SessionsGet: ', $e->getMessage(), PHP_EOL;
+}
+?></code></pre>
+                            </div>
+
+                            <div class="tab-pane" id="examples-Default-apiV1SessionsGet-0-perl">
+                              <pre class="prettyprint"><code class="language-perl">use Data::Dumper;
+use WWW::SwaggerClient::Configuration;
+use WWW::SwaggerClient::DefaultApi;
+
+my $api_instance = WWW::SwaggerClient::DefaultApi->new();
+my $apikey = apikey_example; # String | 
+
+eval { 
+    my $result = $api_instance->apiV1SessionsGet(apikey => $apikey);
+    print Dumper($result);
+};
+if ($@) {
+    warn "Exception when calling DefaultApi->apiV1SessionsGet: $@\n";
+}</code></pre>
+                            </div>
+
+                            <div class="tab-pane" id="examples-Default-apiV1SessionsGet-0-python">
+                              <pre class="prettyprint"><code class="language-python">from __future__ import print_statement
+import time
+import swagger_client
+from swagger_client.rest import ApiException
+from pprint import pprint
+
+# create an instance of the API class
+api_instance = swagger_client.DefaultApi()
+apikey = apikey_example # String |  (optional)
+
+try: 
+    api_response = api_instance.api_v1_sessions_get(apikey=apikey)
+    pprint(api_response)
+except ApiException as e:
+    print("Exception when calling DefaultApi->apiV1SessionsGet: %s\n" % e)</code></pre>
+                            </div>
+                          </div>
+
+                          <h2>Parameters</h2>
+
+
+
+
+
+                            <div class="methodsubtabletitle">Query parameters</div>
+                            <table id="methodsubtable">
+                              <tr>
+                                <th width="150px">Name</th>
+                                <th>Description</th>
+                              </tr>
+                                <tr><td style="width:150px;">apikey</td>
+                                <td>
+                                
+                                
+                                    <div id="d2e199_apiV1SessionsGet_apikey">
+                                        <div class="json-schema-view">
+                                            <div class="primitive">
+                                                <span class="type">
+                                                    String
+                                                </span>
+                                
+                                            </div>
+                                        </div>
+                                    </div>
+                                </td>
+                                </tr>
+                            </table>
+
+                          <h2>Responses</h2>
+                            <h3> Status: 200 - Successfully retrieved all sessions </h3>
+
+                            <ul class="nav nav-tabs nav-tabs-examples" >
+                                <li class="active">
+                                  <a data-toggle="tab" href="#responses-apiV1SessionsGet-200-schema">Schema</a>
+                                </li>
+
+                            </ul>
+
+                            <div class="tab-content" style='margin-bottom: 10px;'>
+                                <div class="tab-pane active" id="responses-apiV1SessionsGet-200-schema">
+                                  <div id='responses-apiV1SessionsGet-200-schema-200' style="padding: 30px; border-left: 1px solid #eee; border-right: 1px solid #eee; border-bottom: 1px solid #eee;">
+                                    <script>
+                                      $(document).ready(function() {
+                                        var schemaWrapper = {
+  "description" : "Successfully retrieved all sessions",
+  "content" : {
+    "text/html; charset=utf-8" : {
+      "schema" : {
+        "$ref" : "#/components/schemas/body"
+      },
+      "examples" : { }
+    }
+  }
+};
+                                        var schema = schemaWrapper.content["text/html; charset&#x3D;utf-8"].schema;
+                                        if (schema.$ref != null) {
+                                          schema = defsParser.$refs.get(schema.$ref);
+                                        } else {
+                                          schemaWrapper.components = {};
+                                          schemaWrapper.components.schemas = Object.assign({}, defs);
+                                          $RefParser.dereference(schemaWrapper).catch(function(err) {
+                                            console.log(err);
+                                          });
+                                        }
+
+                                        //console.log(JSON.stringify(schema));
+                                        var view = new JSONSchemaView(schema, 3);
+                                        $('#responses-apiV1SessionsGet-200-schema-data').val(stringify(schema));
+                                        var result = $('#responses-apiV1SessionsGet-200-schema-200');
+                                        result.empty();
+                                        result.append(view.render());
+                                      });
+                                    </script>
+                                  </div>
+                                  <input id='responses-apiV1SessionsGet-200-schema-data' type='hidden' value=''></input>
+                                </div>
+                            </div>
+
+                        </article>
+                      </div>
+                      <hr>
+                    <div id="api-Default-apiV1UpdatePut">
+                      <article id="api-Default-apiV1UpdatePut-0" data-group="User" data-name="apiV1UpdatePut" data-version="0">
+                        <div class="pull-left">
+                          <h1>apiV1UpdatePut</h1>
+                          <p></p>
+                        </div>
+                        <div class="pull-right"></div>
+                        <div class="clearfix"></div>
+                        <p></p>
+                        <p class="marked">Edit the name of a workout</p>
+                        <p></p>
+                        <br />
+                        <pre class="prettyprint language-html prettyprinted" data-type="put"><code><span class="pln">/api/v1/update/</span></code></pre>
+                        <p>
+                          <h3>Usage and SDK Samples</h3>
+                        </p>
+                        <ul class="nav nav-tabs nav-tabs-examples">
+                          <li class="active"><a href="#examples-Default-apiV1UpdatePut-0-curl">Curl</a></li>
+                          <li class=""><a href="#examples-Default-apiV1UpdatePut-0-java">Java</a></li>
+                          <li class=""><a href="#examples-Default-apiV1UpdatePut-0-android">Android</a></li>
+                          <!--<li class=""><a href="#examples-Default-apiV1UpdatePut-0-groovy">Groovy</a></li>-->
+                          <li class=""><a href="#examples-Default-apiV1UpdatePut-0-objc">Obj-C</a></li>
+                          <li class=""><a href="#examples-Default-apiV1UpdatePut-0-javascript">JavaScript</a></li>
+                          <!--<li class=""><a href="#examples-Default-apiV1UpdatePut-0-angular">Angular</a></li>-->
+                          <li class=""><a href="#examples-Default-apiV1UpdatePut-0-csharp">C#</a></li>
+                          <li class=""><a href="#examples-Default-apiV1UpdatePut-0-php">PHP</a></li>
+                          <li class=""><a href="#examples-Default-apiV1UpdatePut-0-perl">Perl</a></li>
+                          <li class=""><a href="#examples-Default-apiV1UpdatePut-0-python">Python</a></li>
+                        </ul>
+
+                        <div class="tab-content">
+                          <div class="tab-pane active" id="examples-Default-apiV1UpdatePut-0-curl">
+                           <pre class="prettyprint"><code class="language-bsh">curl -X PUT\
+-H "Accept: application/json; charset=utf-8"\
+-H "Content-Type: application/json"\
+"https://g11-workout-server.herokuapp.com/api/v1/update/?apikey="</code></pre>
+                          </div>
+                          <div class="tab-pane" id="examples-Default-apiV1UpdatePut-0-java">
+                            <pre class="prettyprint"><code class="language-java">import io.swagger.client.*;
+import io.swagger.client.auth.*;
+import io.swagger.client.model.*;
+import io.swagger.client.api.DefaultApi;
+
+import java.io.File;
+import java.util.*;
+
+public class DefaultApiExample {
+
+    public static void main(String[] args) {
+        
+        DefaultApi apiInstance = new DefaultApi();
+        Body_3 body = {
+  "value" : "{\r\n    \"oldName\": \"deadlift\",\r\n    \"newName\": \"deadlift2\"\r\n}\r\n"
+}; // Body_3 | 
+        String apikey = apikey_example; // String | 
+        try {
+            'String' result = apiInstance.apiV1UpdatePut(body, apikey);
+            System.out.println(result);
+        } catch (ApiException e) {
+            System.err.println("Exception when calling DefaultApi#apiV1UpdatePut");
+            e.printStackTrace();
+        }
+    }
+}</code></pre>
+                          </div>
+
+                          <div class="tab-pane" id="examples-Default-apiV1UpdatePut-0-android">
+                            <pre class="prettyprint"><code class="language-java">import io.swagger.client.api.DefaultApi;
+
+public class DefaultApiExample {
+
+    public static void main(String[] args) {
+        DefaultApi apiInstance = new DefaultApi();
+        Body_3 body = {
+  "value" : "{\r\n    \"oldName\": \"deadlift\",\r\n    \"newName\": \"deadlift2\"\r\n}\r\n"
+}; // Body_3 | 
+        String apikey = apikey_example; // String | 
+        try {
+            'String' result = apiInstance.apiV1UpdatePut(body, apikey);
+            System.out.println(result);
+        } catch (ApiException e) {
+            System.err.println("Exception when calling DefaultApi#apiV1UpdatePut");
+            e.printStackTrace();
+        }
+    }
+}</code></pre>
+                          </div>
+  <!--
+  <div class="tab-pane" id="examples-Default-apiV1UpdatePut-0-groovy">
+  <pre class="prettyprint language-json prettyprinted" data-type="json"><code>Coming Soon!</code></pre>
+  </div> -->
+                            <div class="tab-pane" id="examples-Default-apiV1UpdatePut-0-objc">
+                              <pre class="prettyprint"><code class="language-cpp">Body_3 *body = {
+  "value" : "{\r\n    \"oldName\": \"deadlift\",\r\n    \"newName\": \"deadlift2\"\r\n}\r\n"
+}; //  (optional)
+String *apikey = apikey_example; //  (optional)
+
+DefaultApi *apiInstance = [[DefaultApi alloc] init];
+
+[apiInstance apiV1UpdatePutWith:body
+    apikey:apikey
+              completionHandler: ^('String' output, NSError* error) {
+                            if (output) {
+                                NSLog(@"%@", output);
+                            }
+                            if (error) {
+                                NSLog(@"Error: %@", error);
+                            }
+                        }];
+</code></pre>
+                            </div>
+
+                            <div class="tab-pane" id="examples-Default-apiV1UpdatePut-0-javascript">
+                              <pre class="prettyprint"><code class="language-js">var WorkoutRecorder = require('workout_recorder');
+
+var api = new WorkoutRecorder.DefaultApi()
+var opts = { 
+  'body': {
+  "value" : "{\r\n    \"oldName\": \"deadlift\",\r\n    \"newName\": \"deadlift2\"\r\n}\r\n"
+} // {{Body_3}} 
+  'apikey': apikey_example // {{String}} 
+};
+var callback = function(error, data, response) {
+  if (error) {
+    console.error(error);
+  } else {
+    console.log('API called successfully. Returned data: ' + data);
+  }
+};
+api.apiV1UpdatePut(opts, callback);
+</code></pre>
+                            </div>
+
+                            <!--<div class="tab-pane" id="examples-Default-apiV1UpdatePut-0-angular">
+              <pre class="prettyprint language-json prettyprinted" data-type="json"><code>Coming Soon!</code></pre>
+            </div>-->
+                            <div class="tab-pane" id="examples-Default-apiV1UpdatePut-0-csharp">
+                              <pre class="prettyprint"><code class="language-cs">using System;
+using System.Diagnostics;
+using IO.Swagger.Api;
+using IO.Swagger.Client;
+using IO.Swagger.Model;
+
+namespace Example
+{
+    public class apiV1UpdatePutExample
+    {
+        public void main()
+        {
+
+            var apiInstance = new DefaultApi();
+            var body = new Body_3(); // Body_3 |  (optional) 
+            var apikey = apikey_example;  // String |  (optional) 
+
+            try
+            {
+                'String' result = apiInstance.apiV1UpdatePut(body, apikey);
+                Debug.WriteLine(result);
+            }
+            catch (Exception e)
+            {
+                Debug.Print("Exception when calling DefaultApi.apiV1UpdatePut: " + e.Message );
+            }
+        }
+    }
+}
+</code></pre>
+                            </div>
+
+                            <div class="tab-pane" id="examples-Default-apiV1UpdatePut-0-php">
+                              <pre class="prettyprint"><code class="language-php"><&#63;php
+require_once(__DIR__ . '/vendor/autoload.php');
+
+$api_instance = new Swagger\Client\ApiDefaultApi();
+$body = {
+  "value" : "{\r\n    \"oldName\": \"deadlift\",\r\n    \"newName\": \"deadlift2\"\r\n}\r\n"
+}; // Body_3 | 
+$apikey = apikey_example; // String | 
+
+try {
+    $result = $api_instance->apiV1UpdatePut($body, $apikey);
+    print_r($result);
+} catch (Exception $e) {
+    echo 'Exception when calling DefaultApi->apiV1UpdatePut: ', $e->getMessage(), PHP_EOL;
+}
+?></code></pre>
+                            </div>
+
+                            <div class="tab-pane" id="examples-Default-apiV1UpdatePut-0-perl">
+                              <pre class="prettyprint"><code class="language-perl">use Data::Dumper;
+use WWW::SwaggerClient::Configuration;
+use WWW::SwaggerClient::DefaultApi;
+
+my $api_instance = WWW::SwaggerClient::DefaultApi->new();
+my $body = WWW::SwaggerClient::Object::Body_3->new(); # Body_3 | 
+my $apikey = apikey_example; # String | 
+
+eval { 
+    my $result = $api_instance->apiV1UpdatePut(body => $body, apikey => $apikey);
+    print Dumper($result);
+};
+if ($@) {
+    warn "Exception when calling DefaultApi->apiV1UpdatePut: $@\n";
+}</code></pre>
+                            </div>
+
+                            <div class="tab-pane" id="examples-Default-apiV1UpdatePut-0-python">
+                              <pre class="prettyprint"><code class="language-python">from __future__ import print_statement
+import time
+import swagger_client
+from swagger_client.rest import ApiException
+from pprint import pprint
+
+# create an instance of the API class
+api_instance = swagger_client.DefaultApi()
+body = {
+  "value" : "{\r\n    \"oldName\": \"deadlift\",\r\n    \"newName\": \"deadlift2\"\r\n}\r\n"
+} # Body_3 |  (optional)
+apikey = apikey_example # String |  (optional)
+
+try: 
+    api_response = api_instance.api_v1_update_put(body=body, apikey=apikey)
+    pprint(api_response)
+except ApiException as e:
+    print("Exception when calling DefaultApi->apiV1UpdatePut: %s\n" % e)</code></pre>
+                            </div>
+                          </div>
+
+                          <h2>Parameters</h2>
+
+
+
+                            <div class="methodsubtabletitle">Body parameters</div>
+                            <table id="methodsubtable">
+                              <tr>
+                                <th width="150px">Name</th>
+                                <th>Description</th>
+                              </tr>
+                                <tr><td style="width:150px;">body </td>
+                                <td>
+                                
+                                
+                                <script>
+                                $(document).ready(function() {
+                                  var schemaWrapper = {
+  "content" : {
+    "application/json" : {
+      "schema" : {
+        "$ref" : "#/components/schemas/body_3"
+      },
+      "examples" : {
+        "0" : {
+          "value" : "{\r\n    \"oldName\": \"deadlift\",\r\n    \"newName\": \"deadlift2\"\r\n}\r\n"
+        }
+      }
+    }
+  }
+};
+                                  var schema = schemaWrapper.content["application/json"].schema;
+                                  if (schema.$ref != null) {
+                                    schema = defsParser.$refs.get(schema.$ref);
+                                  } else {
+                                    schemaWrapper.components = {};
+                                    schemaWrapper.components.schemas = Object.assign({}, defs);
+                                    $RefParser.dereference(schemaWrapper).catch(function(err) {
+                                      console.log(err);
+                                    });
+                                  }
+                                
+                                  var view = new JSONSchemaView(schema,2,{isBodyParam: true});
+                                  var result = $('#d2e199_apiV1UpdatePut_body');
+                                  result.empty();
+                                  result.append(view.render());
+                                });
+                                </script>
+                                <div id="d2e199_apiV1UpdatePut_body"></div>
+                                </td>
+                                </tr>
+                            </table>
+
+
+                            <div class="methodsubtabletitle">Query parameters</div>
+                            <table id="methodsubtable">
+                              <tr>
+                                <th width="150px">Name</th>
+                                <th>Description</th>
+                              </tr>
+                                <tr><td style="width:150px;">apikey</td>
+                                <td>
+                                
+                                
+                                    <div id="d2e199_apiV1UpdatePut_apikey">
+                                        <div class="json-schema-view">
+                                            <div class="primitive">
+                                                <span class="type">
+                                                    String
+                                                </span>
+                                
+                                            </div>
+                                        </div>
+                                    </div>
+                                </td>
+                                </tr>
+                            </table>
+
+                          <h2>Responses</h2>
+                            <h3> Status: 200 - Successfully edited the name of a workout </h3>
+
+                            <ul class="nav nav-tabs nav-tabs-examples" >
+                                <li class="active">
+                                  <a data-toggle="tab" href="#responses-apiV1UpdatePut-200-schema">Schema</a>
+                                </li>
+
+                            </ul>
+
+                            <div class="tab-content" style='margin-bottom: 10px;'>
+                                <div class="tab-pane active" id="responses-apiV1UpdatePut-200-schema">
+                                  <div id='responses-apiV1UpdatePut-200-schema-200' style="padding: 30px; border-left: 1px solid #eee; border-right: 1px solid #eee; border-bottom: 1px solid #eee;">
+                                    <script>
+                                      $(document).ready(function() {
+                                        var schemaWrapper = {
+  "description" : "Successfully edited the name of a workout",
+  "content" : {
+    "application/json; charset=utf-8" : {
+      "schema" : {
+        "type" : "string",
+        "x-content-type" : "application/json; charset=utf-8"
+      },
+      "examples" : { }
+    }
+  }
+};
+                                        var schema = schemaWrapper.content["application/json; charset&#x3D;utf-8"].schema;
+                                        if (schema.$ref != null) {
+                                          schema = defsParser.$refs.get(schema.$ref);
+                                        } else {
+                                          schemaWrapper.components = {};
+                                          schemaWrapper.components.schemas = Object.assign({}, defs);
+                                          $RefParser.dereference(schemaWrapper).catch(function(err) {
+                                            console.log(err);
+                                          });
+                                        }
+
+                                        //console.log(JSON.stringify(schema));
+                                        var view = new JSONSchemaView(schema, 3);
+                                        $('#responses-apiV1UpdatePut-200-schema-data').val(stringify(schema));
+                                        var result = $('#responses-apiV1UpdatePut-200-schema-200');
+                                        result.empty();
+                                        result.append(view.render());
+                                      });
+                                    </script>
+                                  </div>
+                                  <input id='responses-apiV1UpdatePut-200-schema-data' type='hidden' value=''></input>
+                                </div>
+                            </div>
+
+                        </article>
+                      </div>
+                      <hr>
+                    <div id="api-Default-apiV1UpdateSessionPut">
+                      <article id="api-Default-apiV1UpdateSessionPut-0" data-group="User" data-name="apiV1UpdateSessionPut" data-version="0">
+                        <div class="pull-left">
+                          <h1>apiV1UpdateSessionPut</h1>
+                          <p></p>
+                        </div>
+                        <div class="pull-right"></div>
+                        <div class="clearfix"></div>
+                        <p></p>
+                        <p class="marked">Edit the time for a session</p>
+                        <p></p>
+                        <br />
+                        <pre class="prettyprint language-html prettyprinted" data-type="put"><code><span class="pln">/api/v1/update_session/</span></code></pre>
+                        <p>
+                          <h3>Usage and SDK Samples</h3>
+                        </p>
+                        <ul class="nav nav-tabs nav-tabs-examples">
+                          <li class="active"><a href="#examples-Default-apiV1UpdateSessionPut-0-curl">Curl</a></li>
+                          <li class=""><a href="#examples-Default-apiV1UpdateSessionPut-0-java">Java</a></li>
+                          <li class=""><a href="#examples-Default-apiV1UpdateSessionPut-0-android">Android</a></li>
+                          <!--<li class=""><a href="#examples-Default-apiV1UpdateSessionPut-0-groovy">Groovy</a></li>-->
+                          <li class=""><a href="#examples-Default-apiV1UpdateSessionPut-0-objc">Obj-C</a></li>
+                          <li class=""><a href="#examples-Default-apiV1UpdateSessionPut-0-javascript">JavaScript</a></li>
+                          <!--<li class=""><a href="#examples-Default-apiV1UpdateSessionPut-0-angular">Angular</a></li>-->
+                          <li class=""><a href="#examples-Default-apiV1UpdateSessionPut-0-csharp">C#</a></li>
+                          <li class=""><a href="#examples-Default-apiV1UpdateSessionPut-0-php">PHP</a></li>
+                          <li class=""><a href="#examples-Default-apiV1UpdateSessionPut-0-perl">Perl</a></li>
+                          <li class=""><a href="#examples-Default-apiV1UpdateSessionPut-0-python">Python</a></li>
+                        </ul>
+
+                        <div class="tab-content">
+                          <div class="tab-pane active" id="examples-Default-apiV1UpdateSessionPut-0-curl">
+                           <pre class="prettyprint"><code class="language-bsh">curl -X PUT\
+-H "Accept: application/json; charset=utf-8"\
+-H "Content-Type: application/json"\
+"https://g11-workout-server.herokuapp.com/api/v1/update_session/?apikey="</code></pre>
+                          </div>
+                          <div class="tab-pane" id="examples-Default-apiV1UpdateSessionPut-0-java">
+                            <pre class="prettyprint"><code class="language-java">import io.swagger.client.*;
+import io.swagger.client.auth.*;
+import io.swagger.client.model.*;
+import io.swagger.client.api.DefaultApi;
+
+import java.io.File;
+import java.util.*;
+
+public class DefaultApiExample {
+
+    public static void main(String[] args) {
+        
+        DefaultApi apiInstance = new DefaultApi();
+        Body_1 body = {
+  "value" : "{\r\n    \"name\": \"deadlift\",\r\n    \"time\": 20\r\n}\r\n"
+}; // Body_1 | 
+        String apikey = apikey_example; // String | 
+        try {
+            'String' result = apiInstance.apiV1UpdateSessionPut(body, apikey);
+            System.out.println(result);
+        } catch (ApiException e) {
+            System.err.println("Exception when calling DefaultApi#apiV1UpdateSessionPut");
+            e.printStackTrace();
+        }
+    }
+}</code></pre>
+                          </div>
+
+                          <div class="tab-pane" id="examples-Default-apiV1UpdateSessionPut-0-android">
+                            <pre class="prettyprint"><code class="language-java">import io.swagger.client.api.DefaultApi;
+
+public class DefaultApiExample {
+
+    public static void main(String[] args) {
+        DefaultApi apiInstance = new DefaultApi();
+        Body_1 body = {
+  "value" : "{\r\n    \"name\": \"deadlift\",\r\n    \"time\": 20\r\n}\r\n"
+}; // Body_1 | 
+        String apikey = apikey_example; // String | 
+        try {
+            'String' result = apiInstance.apiV1UpdateSessionPut(body, apikey);
+            System.out.println(result);
+        } catch (ApiException e) {
+            System.err.println("Exception when calling DefaultApi#apiV1UpdateSessionPut");
+            e.printStackTrace();
+        }
+    }
+}</code></pre>
+                          </div>
+  <!--
+  <div class="tab-pane" id="examples-Default-apiV1UpdateSessionPut-0-groovy">
+  <pre class="prettyprint language-json prettyprinted" data-type="json"><code>Coming Soon!</code></pre>
+  </div> -->
+                            <div class="tab-pane" id="examples-Default-apiV1UpdateSessionPut-0-objc">
+                              <pre class="prettyprint"><code class="language-cpp">Body_1 *body = {
+  "value" : "{\r\n    \"name\": \"deadlift\",\r\n    \"time\": 20\r\n}\r\n"
+}; //  (optional)
+String *apikey = apikey_example; //  (optional)
+
+DefaultApi *apiInstance = [[DefaultApi alloc] init];
+
+[apiInstance apiV1UpdateSessionPutWith:body
+    apikey:apikey
+              completionHandler: ^('String' output, NSError* error) {
+                            if (output) {
+                                NSLog(@"%@", output);
+                            }
+                            if (error) {
+                                NSLog(@"Error: %@", error);
+                            }
+                        }];
+</code></pre>
+                            </div>
+
+                            <div class="tab-pane" id="examples-Default-apiV1UpdateSessionPut-0-javascript">
+                              <pre class="prettyprint"><code class="language-js">var WorkoutRecorder = require('workout_recorder');
+
+var api = new WorkoutRecorder.DefaultApi()
+var opts = { 
+  'body': {
+  "value" : "{\r\n    \"name\": \"deadlift\",\r\n    \"time\": 20\r\n}\r\n"
+} // {{Body_1}} 
+  'apikey': apikey_example // {{String}} 
+};
+var callback = function(error, data, response) {
+  if (error) {
+    console.error(error);
+  } else {
+    console.log('API called successfully. Returned data: ' + data);
+  }
+};
+api.apiV1UpdateSessionPut(opts, callback);
+</code></pre>
+                            </div>
+
+                            <!--<div class="tab-pane" id="examples-Default-apiV1UpdateSessionPut-0-angular">
+              <pre class="prettyprint language-json prettyprinted" data-type="json"><code>Coming Soon!</code></pre>
+            </div>-->
+                            <div class="tab-pane" id="examples-Default-apiV1UpdateSessionPut-0-csharp">
+                              <pre class="prettyprint"><code class="language-cs">using System;
+using System.Diagnostics;
+using IO.Swagger.Api;
+using IO.Swagger.Client;
+using IO.Swagger.Model;
+
+namespace Example
+{
+    public class apiV1UpdateSessionPutExample
+    {
+        public void main()
+        {
+
+            var apiInstance = new DefaultApi();
+            var body = new Body_1(); // Body_1 |  (optional) 
+            var apikey = apikey_example;  // String |  (optional) 
+
+            try
+            {
+                'String' result = apiInstance.apiV1UpdateSessionPut(body, apikey);
+                Debug.WriteLine(result);
+            }
+            catch (Exception e)
+            {
+                Debug.Print("Exception when calling DefaultApi.apiV1UpdateSessionPut: " + e.Message );
+            }
+        }
+    }
+}
+</code></pre>
+                            </div>
+
+                            <div class="tab-pane" id="examples-Default-apiV1UpdateSessionPut-0-php">
+                              <pre class="prettyprint"><code class="language-php"><&#63;php
+require_once(__DIR__ . '/vendor/autoload.php');
+
+$api_instance = new Swagger\Client\ApiDefaultApi();
+$body = {
+  "value" : "{\r\n    \"name\": \"deadlift\",\r\n    \"time\": 20\r\n}\r\n"
+}; // Body_1 | 
+$apikey = apikey_example; // String | 
+
+try {
+    $result = $api_instance->apiV1UpdateSessionPut($body, $apikey);
+    print_r($result);
+} catch (Exception $e) {
+    echo 'Exception when calling DefaultApi->apiV1UpdateSessionPut: ', $e->getMessage(), PHP_EOL;
+}
+?></code></pre>
+                            </div>
+
+                            <div class="tab-pane" id="examples-Default-apiV1UpdateSessionPut-0-perl">
+                              <pre class="prettyprint"><code class="language-perl">use Data::Dumper;
+use WWW::SwaggerClient::Configuration;
+use WWW::SwaggerClient::DefaultApi;
+
+my $api_instance = WWW::SwaggerClient::DefaultApi->new();
+my $body = WWW::SwaggerClient::Object::Body_1->new(); # Body_1 | 
+my $apikey = apikey_example; # String | 
+
+eval { 
+    my $result = $api_instance->apiV1UpdateSessionPut(body => $body, apikey => $apikey);
+    print Dumper($result);
+};
+if ($@) {
+    warn "Exception when calling DefaultApi->apiV1UpdateSessionPut: $@\n";
+}</code></pre>
+                            </div>
+
+                            <div class="tab-pane" id="examples-Default-apiV1UpdateSessionPut-0-python">
+                              <pre class="prettyprint"><code class="language-python">from __future__ import print_statement
+import time
+import swagger_client
+from swagger_client.rest import ApiException
+from pprint import pprint
+
+# create an instance of the API class
+api_instance = swagger_client.DefaultApi()
+body = {
+  "value" : "{\r\n    \"name\": \"deadlift\",\r\n    \"time\": 20\r\n}\r\n"
+} # Body_1 |  (optional)
+apikey = apikey_example # String |  (optional)
+
+try: 
+    api_response = api_instance.api_v1_update_session_put(body=body, apikey=apikey)
+    pprint(api_response)
+except ApiException as e:
+    print("Exception when calling DefaultApi->apiV1UpdateSessionPut: %s\n" % e)</code></pre>
+                            </div>
+                          </div>
+
+                          <h2>Parameters</h2>
+
+
+
+                            <div class="methodsubtabletitle">Body parameters</div>
+                            <table id="methodsubtable">
+                              <tr>
+                                <th width="150px">Name</th>
+                                <th>Description</th>
+                              </tr>
+                                <tr><td style="width:150px;">body </td>
+                                <td>
+                                
+                                
+                                <script>
+                                $(document).ready(function() {
+                                  var schemaWrapper = {
+  "content" : {
+    "application/json" : {
+      "schema" : {
+        "$ref" : "#/components/schemas/body_1"
+      },
+      "examples" : {
+        "0" : {
+          "value" : "{\r\n    \"name\": \"deadlift\",\r\n    \"time\": 20\r\n}\r\n"
+        }
+      }
+    }
+  }
+};
+                                  var schema = schemaWrapper.content["application/json"].schema;
+                                  if (schema.$ref != null) {
+                                    schema = defsParser.$refs.get(schema.$ref);
+                                  } else {
+                                    schemaWrapper.components = {};
+                                    schemaWrapper.components.schemas = Object.assign({}, defs);
+                                    $RefParser.dereference(schemaWrapper).catch(function(err) {
+                                      console.log(err);
+                                    });
+                                  }
+                                
+                                  var view = new JSONSchemaView(schema,2,{isBodyParam: true});
+                                  var result = $('#d2e199_apiV1UpdateSessionPut_body');
+                                  result.empty();
+                                  result.append(view.render());
+                                });
+                                </script>
+                                <div id="d2e199_apiV1UpdateSessionPut_body"></div>
+                                </td>
+                                </tr>
+                            </table>
+
+
+                            <div class="methodsubtabletitle">Query parameters</div>
+                            <table id="methodsubtable">
+                              <tr>
+                                <th width="150px">Name</th>
+                                <th>Description</th>
+                              </tr>
+                                <tr><td style="width:150px;">apikey</td>
+                                <td>
+                                
+                                
+                                    <div id="d2e199_apiV1UpdateSessionPut_apikey">
+                                        <div class="json-schema-view">
+                                            <div class="primitive">
+                                                <span class="type">
+                                                    String
+                                                </span>
+                                
+                                            </div>
+                                        </div>
+                                    </div>
+                                </td>
+                                </tr>
+                            </table>
+
+                          <h2>Responses</h2>
+                            <h3> Status: 200 - Successfully edited a session time </h3>
+
+                            <ul class="nav nav-tabs nav-tabs-examples" >
+                                <li class="active">
+                                  <a data-toggle="tab" href="#responses-apiV1UpdateSessionPut-200-schema">Schema</a>
+                                </li>
+
+                            </ul>
+
+                            <div class="tab-content" style='margin-bottom: 10px;'>
+                                <div class="tab-pane active" id="responses-apiV1UpdateSessionPut-200-schema">
+                                  <div id='responses-apiV1UpdateSessionPut-200-schema-200' style="padding: 30px; border-left: 1px solid #eee; border-right: 1px solid #eee; border-bottom: 1px solid #eee;">
+                                    <script>
+                                      $(document).ready(function() {
+                                        var schemaWrapper = {
+  "description" : "Successfully edited a session time",
+  "content" : {
+    "application/json; charset=utf-8" : {
+      "schema" : {
+        "type" : "string",
+        "x-content-type" : "application/json; charset=utf-8"
+      },
+      "examples" : { }
+    }
+  }
+};
+                                        var schema = schemaWrapper.content["application/json; charset&#x3D;utf-8"].schema;
+                                        if (schema.$ref != null) {
+                                          schema = defsParser.$refs.get(schema.$ref);
+                                        } else {
+                                          schemaWrapper.components = {};
+                                          schemaWrapper.components.schemas = Object.assign({}, defs);
+                                          $RefParser.dereference(schemaWrapper).catch(function(err) {
+                                            console.log(err);
+                                          });
+                                        }
+
+                                        //console.log(JSON.stringify(schema));
+                                        var view = new JSONSchemaView(schema, 3);
+                                        $('#responses-apiV1UpdateSessionPut-200-schema-data').val(stringify(schema));
+                                        var result = $('#responses-apiV1UpdateSessionPut-200-schema-200');
+                                        result.empty();
+                                        result.append(view.render());
+                                      });
+                                    </script>
+                                  </div>
+                                  <input id='responses-apiV1UpdateSessionPut-200-schema-data' type='hidden' value=''></input>
                                 </div>
                             </div>
 
@@ -1131,10 +4916,10 @@ except ApiException as e:
                         <div class="pull-right"></div>
                         <div class="clearfix"></div>
                         <p></p>
-                        <p class="marked">Get all workouts</p>
+                        <p class="marked">Retrieve all workouts from the database</p>
                         <p></p>
                         <br />
-                        <pre class="prettyprint language-html prettyprinted" data-type="get"><code><span class="pln">/api/v1/workouts</span></code></pre>
+                        <pre class="prettyprint language-html prettyprinted" data-type="get"><code><span class="pln">/api/v1/workouts/</span></code></pre>
                         <p>
                           <h3>Usage and SDK Samples</h3>
                         </p>
@@ -1156,7 +4941,7 @@ except ApiException as e:
                           <div class="tab-pane active" id="examples-Default-apiV1WorkoutsGet-0-curl">
                            <pre class="prettyprint"><code class="language-bsh">curl -X GET\
 -H "Accept: text/html; charset=utf-8"\
-"https://g11-workout-server.herokuapp.com/api/v1/workouts"</code></pre>
+"https://g11-workout-server.herokuapp.com/api/v1/workouts/"</code></pre>
                           </div>
                           <div class="tab-pane" id="examples-Default-apiV1WorkoutsGet-0-java">
                             <pre class="prettyprint"><code class="language-java">import io.swagger.client.*;
@@ -1221,9 +5006,9 @@ DefaultApi *apiInstance = [[DefaultApi alloc] init];
                             </div>
 
                             <div class="tab-pane" id="examples-Default-apiV1WorkoutsGet-0-javascript">
-                              <pre class="prettyprint"><code class="language-js">var G11TermProject = require('g11_term_project');
+                              <pre class="prettyprint"><code class="language-js">var WorkoutRecorder = require('workout_recorder');
 
-var api = new G11TermProject.DefaultApi()
+var api = new WorkoutRecorder.DefaultApi()
 var callback = function(error, data, response) {
   if (error) {
     console.error(error);
@@ -1326,16 +5111,13 @@ except ApiException as e:
 
 
                           <h2>Responses</h2>
-                            <h3> Status: 200 - Successfully fetched all workouts </h3>
+                            <h3> Status: 200 - Successfully retrieved all workouts from the database </h3>
 
                             <ul class="nav nav-tabs nav-tabs-examples" >
                                 <li class="active">
                                   <a data-toggle="tab" href="#responses-apiV1WorkoutsGet-200-schema">Schema</a>
                                 </li>
 
-                                  <li class="">
-                                    <a data-toggle="tab" href="#responses-apiV1WorkoutsGet-200-example-0">Response Example</a>
-                                  </li>
                             </ul>
 
                             <div class="tab-content" style='margin-bottom: 10px;'>
@@ -1344,17 +5126,13 @@ except ApiException as e:
                                     <script>
                                       $(document).ready(function() {
                                         var schemaWrapper = {
-  "description" : "Successfully fetched all workouts",
+  "description" : "Successfully retrieved all workouts from the database",
   "content" : {
     "text/html; charset=utf-8" : {
       "schema" : {
         "$ref" : "#/components/schemas/inline_response_200"
       },
-      "examples" : {
-        "0" : {
-          "value" : "[{\n  \"id\" : \"1\",\n  \"name\": \"sit-up\",\n  \"cat\": \"core\",\n  \"instructions\": \"lie down and then sit up\",\n  \"equipment\": \"none\",\n  \"amounts\": \"0\"\n}]"
-        }
-      }
+      "examples" : { }
     }
   }
 };
@@ -1379,16 +5157,6 @@ except ApiException as e:
                                     </script>
                                   </div>
                                   <input id='responses-apiV1WorkoutsGet-200-schema-data' type='hidden' value=''></input>
-                                </div>
-                                  <div class="tab-pane" id="responses-apiV1WorkoutsGet-200-example-0">
-                                      <pre class="prettyprint"><code class="json">[{
-  &quot;id&quot; : &quot;1&quot;,
-  &quot;name&quot;: &quot;sit-up&quot;,
-  &quot;cat&quot;: &quot;core&quot;,
-  &quot;instructions&quot;: &quot;lie down and then sit up&quot;,
-  &quot;equipment&quot;: &quot;none&quot;,
-  &quot;amounts&quot;: &quot;0&quot;
-}]</code></pre>
                                 </div>
                             </div>
 
